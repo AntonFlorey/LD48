@@ -54,7 +54,7 @@ public class RoomManager : MonoBehaviour
     private RoomNode GetRoomWithMaxDoors(RoomSide side, int maxIncomingDoors, int minOutgoingDoors,
         int maxOutgoingDoors)
     {
-        Debug.Log("for side" + side + "make max" + maxIncomingDoors + "," + minOutgoingDoors + "," + maxOutgoingDoors);
+        // Debug.Log("for side" + side + "make max" + maxIncomingDoors + "," + minOutgoingDoors + "," + maxOutgoingDoors);
         Assert.IsTrue(maxIncomingDoors >= 1);
         if (maxOutgoingDoors < 0)
             maxOutgoingDoors = 0;
@@ -89,7 +89,6 @@ public class RoomManager : MonoBehaviour
             Assert.IsTrue(nodesToMake > 0);
             doorsLeft -= nodesToMake;
             Assert.IsTrue(doorsLeft >= 0);
-            Debug.Log("made nodesToMake=" + nodesToMake);
             for (var doorNum = 0; doorNum < nodesToMake; doorNum++)
             {
                 while (currentRooms[currRoomNum].GetRooms(side).Count >= currentRooms[currRoomNum].GetDoorCount(side))
@@ -135,7 +134,6 @@ public class RoomManager : MonoBehaviour
 
             stepsLeft--;
         }
-        Debug.Log("Made it!");
         
         EnterRoom(roomPrefabs[0], RoomSide.Right, 0);
     }
