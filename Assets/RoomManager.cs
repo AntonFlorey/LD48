@@ -12,6 +12,7 @@ public class RoomManager : MonoBehaviour
 
     public int roomWidth = 100;
 
+    private List<RoomNode> roomNodes = new List<RoomNode>();
     private int roomCount = 0;
 
     private class RoomNode
@@ -51,6 +52,14 @@ public class RoomManager : MonoBehaviour
         public int GetDoorCount(RoomSide side)
         {
             return roomPrefab.GetComponent<Room>().GetDoors(side).Count;
+        }
+
+        public void SetupInstance()
+        {
+            var leftDoors = roomObject.GetComponent<Room>().leftDoors;
+            var rightDoors = roomObject.GetComponent<Room>().rightDoors;
+            Assert.AreEqual(GetRooms(RoomSide.Left).Count, GetDoorCount(RoomSide.Left));
+            Assert.AreEqual(GetRooms(RoomSide.Right).Count, GetDoorCount(RoomSide.Right));
         }
     }
 
@@ -123,7 +132,8 @@ public class RoomManager : MonoBehaviour
         List<RoomNode> rightmostRooms = new List<RoomNode>();
         leftmostRooms.Add(startNode);
         rightmostRooms.Add(startNode);
-        int shouldStillGenerate = 1;
+        roomNodes.Add(startNode);
+        int shouldStillGenerate = 5;
         int stepsLeft = shouldStillGenerate + 10;
         while (CountDoorsAtSide(RoomSide.Left, leftmostRooms) + CountDoorsAtSide(RoomSide.Left, rightmostRooms) > 0)
         {
@@ -144,8 +154,15 @@ public class RoomManager : MonoBehaviour
                 leftmostRooms = GenerateNextRooms(RoomSide.Left, leftmostRooms, shouldStillGenerate);
                 shouldStillGenerate -= leftmostRooms.Count;
             }
+            roomNodes.AddRange(leftmostRooms);
+            roomNodes.AddRange(rightmostRooms);
 
             stepsLeft--;
+        }
+        Assert.AreEqual(roomCount, roomNodes.Count);
+        foreach (RoomNode node in roomNodes)
+        {
+            node.SetupInstance();
         }
         
         EnterRoom(startNode, RoomSide.Right, 0);

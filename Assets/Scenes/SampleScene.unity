@@ -156,6 +156,7 @@ MonoBehaviour:
   - {fileID: 3102208128844926754, guid: 42f36987af6e7e903817feb284ccc059, type: 3}
   - {fileID: 3102208128844926754, guid: e6ef62f28d734b581a81d106ad676ca1, type: 3}
   - {fileID: 3102208128844926754, guid: 65738349068a4198da4f2a41626bf06e, type: 3}
+  - {fileID: 3102208128844926754, guid: 962ce1283e39b0d30b30b29dc9054a8a, type: 3}
   player: {fileID: 1021095570}
   roomWidth: 100
 --- !u!4 &329410543
