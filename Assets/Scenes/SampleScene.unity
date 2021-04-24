@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomPrefabs:
   - {fileID: 3102208128844926754, guid: 42f36987af6e7e903817feb284ccc059, type: 3}
+  - {fileID: 3102208128844926754, guid: e6ef62f28d734b581a81d106ad676ca1, type: 3}
   player: {fileID: 1021095570}
 --- !u!4 &329410543
 Transform:
@@ -163,7 +164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329410541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.454691, y: 3.9320397, z: 1.4728509}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

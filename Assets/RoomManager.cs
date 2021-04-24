@@ -8,14 +8,15 @@ public class RoomManager : MonoBehaviour
     
     public void Start()
     {
-        EnterRoom(roomPrefabs[0]);
+        EnterRoom(roomPrefabs[0], RoomSide.Right);
     }
 
-    private void EnterRoom(GameObject roomPrefab)
+    private void EnterRoom(GameObject roomPrefab, RoomSide side)
     {
         var roomTransform = roomPrefab.transform;
         var roomObject = Instantiate(roomPrefab, roomTransform.position, roomTransform.rotation);
         var room = roomObject.GetComponent<Room>();
-        player.transform.position = room.transform.position + room.door.transform.position;   
+        var door = room.GetDoor(side);
+        player.transform.position = room.transform.position + door.transform.position;
     }
 }
