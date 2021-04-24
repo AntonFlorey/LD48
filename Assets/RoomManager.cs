@@ -8,60 +8,11 @@ using Random = UnityEngine.Random;
 public class RoomManager : MonoBehaviour
 {
     public List<GameObject> roomPrefabs;
-    public GameObject player;
 
     public int roomWidth = 100;
 
     private List<RoomNode> roomNodes = new List<RoomNode>();
-    private int roomCount = 0;
-
-    private class RoomNode
-    {
-        private readonly RoomManager manager;
-        private readonly GameObject roomPrefab;
-        private readonly List<RoomNode> leftRooms = new List<RoomNode>();
-        private readonly List<RoomNode> rightRooms = new List<RoomNode>();
-
-        public GameObject roomObject;
-
-        public RoomNode(RoomManager manager, GameObject roomPrefab)
-        {
-            this.manager = manager;
-            this.roomPrefab = roomPrefab;
-            
-            var baseTransform = manager.transform;
-            var pos = baseTransform.position + new Vector3(manager.roomCount * manager.roomWidth, 0, 0);
-            manager.roomCount++;
-            roomObject = UnityEngine.Object.Instantiate(roomPrefab, pos, baseTransform.rotation);
-        }
-
-        public List<RoomNode> GetRooms(RoomSide side)
-        {
-            switch (side)
-            {
-                case RoomSide.Left:
-                    return leftRooms;
-                case RoomSide.Right:
-                    return rightRooms;
-                default:
-                    Assert.IsTrue(false);
-                    return null;
-            }
-        }
-
-        public int GetDoorCount(RoomSide side)
-        {
-            return roomPrefab.GetComponent<Room>().GetDoors(side).Count;
-        }
-
-        public void SetupInstance()
-        {
-            var leftDoors = roomObject.GetComponent<Room>().leftDoors;
-            var rightDoors = roomObject.GetComponent<Room>().rightDoors;
-            Assert.AreEqual(GetRooms(RoomSide.Left).Count, GetDoorCount(RoomSide.Left));
-            Assert.AreEqual(GetRooms(RoomSide.Right).Count, GetDoorCount(RoomSide.Right));
-        }
-    }
+    public int roomCount = 0;
 
     private int CountDoorsAtSide(RoomSide side, List<RoomNode> nodes)
     {
@@ -164,14 +115,5 @@ public class RoomManager : MonoBehaviour
         {
             node.SetupInstance();
         }
-        
-        EnterRoom(startNode, RoomSide.Right, 0);
-    }
-
-    private void EnterRoom(RoomNode roomNode, RoomSide side, int doorNum)
-    {
-        var room = roomNode.roomObject.GetComponent<Room>();
-        var door = room.GetDoor(side, doorNum);
-        player.transform.position = room.transform.position + door.transform.position;
     }
 }
