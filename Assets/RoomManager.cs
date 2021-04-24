@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class RoomManager : MonoBehaviour
 {
     public List<GameObject> roomPrefabs;
+    public GameObject player;
 
     public int roomWidth = 100;
 
@@ -45,7 +46,7 @@ public class RoomManager : MonoBehaviour
 
         public void AddMadeNode(RoomNode newNode)
         {
-            var isWayDown = newNode.roomObject.GetComponent<Room>().WayDown;
+            var isWayDown = newNode.roomObject.GetComponent<Room>().wayDown;
             if (isWayDown)
             {
                 Assert.IsTrue(needWayDown);
@@ -71,7 +72,10 @@ public class RoomManager : MonoBehaviour
             if (!(1 <= incomingDoorCount && incomingDoorCount <= maxIncomingDoors &&
                   minOutgoingDoors <= outgoingDoorCount))
                 continue;
-            var isWayDown = roomPrefab.GetComponent<Room>().WayDown;
+            var room = roomPrefab.GetComponent<Room>();
+            if (room.entryPoint != null)
+                continue;
+            var isWayDown = room.wayDown;
             if (shouldStillGenerate.needWayDown && isWayDown)
             {
                 available.Add(roomPrefab);
@@ -139,7 +143,7 @@ public class RoomManager : MonoBehaviour
         leftmostRooms.Add(startNode);
         rightmostRooms.Add(startNode);
         roomNodes.Add(startNode);
-        var shouldStillGenerate = new ShouldStillGenerate(10, true);
+        var shouldStillGenerate = new ShouldStillGenerate(5, true);
         int stepsLeft = shouldStillGenerate.numGenericRooms + 10;
         while (CountDoorsAtSide(RoomSide.Left, leftmostRooms) + CountDoorsAtSide(RoomSide.Left, rightmostRooms) > 0)
         {
@@ -166,5 +170,8 @@ public class RoomManager : MonoBehaviour
         {
             node.SetupInstance();
         }
+
+        var entryPos = startNode.roomObject.GetComponent<Room>().entryPoint.transform.position;
+        player.transform.position = new Vector3(entryPos.x, entryPos.y, player.transform.position.z);
     }
 }

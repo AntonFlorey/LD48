@@ -4,6 +4,7 @@ using System.IO;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 public class Room : MonoBehaviour
@@ -13,7 +14,8 @@ public class Room : MonoBehaviour
     public RoomNode roomNode;
     public GameObject tiles;
     public GameObject groundTiles;
-    public bool WayDown = false;
+    public GameObject entryPoint = null;
+    public bool wayDown = false;
     private Tilemap tileMap;
     private Tilemap groundTileMap;
 
