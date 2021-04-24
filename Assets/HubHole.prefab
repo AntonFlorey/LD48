@@ -68,6 +68,8 @@ MonoBehaviour:
   rightDoors:
   - {fileID: 2336420689300688903}
   - {fileID: 8469928768776770072}
+  tiles: {fileID: 5894734827739121974}
+  groundTiles: {fileID: 3102208129057769954}
 --- !u!1 &3102208129057769954
 GameObject:
   m_ObjectHideFlags: 0

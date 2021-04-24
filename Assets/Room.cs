@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Tilemaps;
 
 public class Room : MonoBehaviour
 {
     public List<GameObject> leftDoors;
     public List<GameObject> rightDoors;
     public RoomNode roomNode;
+    public GameObject tiles;
+    public GameObject groundTiles;
 
     public GameObject GetDoor(RoomSide side, int doorNum)
     {
@@ -40,7 +44,34 @@ public class Room : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (groundTiles == null)
+        {
+            groundTiles = Instantiate(tiles, tiles.transform);
+            var otherTileMap = tiles.GetComponent<Tilemap>();
+            var groundTileMap = groundTiles.GetComponent<Tilemap>();
+            var size = groundTileMap.size;
+            for (var x = 0; x < size.x; x++)
+            {
+                for (var y = 0; y < size.y - 1; y++)
+                {
+                    var pos = new Vector3Int(x, y, 0);
+                    if (!groundTileMap.HasTile(pos))
+                        continue;
+                    if (groundTileMap.HasTile(new Vector3Int(x, y + 1, 0)))
+                    {
+                        groundTileMap.SetTile(pos, null);
+                    }
+                    else
+                    {
+                        otherTileMap.SetTile(pos, null);
+                    }
+                }
+            }
+
+            groundTiles.tag = "ground";
+            var oldPos = groundTiles.transform.position;
+            groundTiles.transform.position = new Vector3(oldPos.x, oldPos.y, 10);
+        }
     }
 
     void Update()
