@@ -13,6 +13,7 @@ public class Room : MonoBehaviour
     public RoomNode roomNode;
     public GameObject tiles;
     public GameObject groundTiles;
+    public bool WayDown = false;
     private Tilemap tileMap;
     private Tilemap groundTileMap;
 
