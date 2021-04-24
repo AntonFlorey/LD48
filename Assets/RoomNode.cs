@@ -6,8 +6,10 @@ public class RoomNode
 {
     private readonly RoomManager manager;
     private readonly GameObject roomPrefab;
-    private readonly List<RoomNode> leftRooms = new List<RoomNode>();
-    private readonly List<RoomNode> rightRooms = new List<RoomNode>();
+    private readonly List<RoomNode> leftNeighborRooms = new List<RoomNode>();
+    private readonly List<RoomNode> rightNeighborRooms = new List<RoomNode>();
+    private readonly List<int> leftNeighborDoorNums = new List<int>();
+    private readonly List<int> rightNeighborDoorNums = new List<int>();
 
     public GameObject roomObject;
 
@@ -28,9 +30,23 @@ public class RoomNode
         switch (side)
         {
             case RoomSide.Left:
-                return leftRooms;
+                return leftNeighborRooms;
             case RoomSide.Right:
-                return rightRooms;
+                return rightNeighborRooms;
+            default:
+                Assert.IsTrue(false);
+                return null;
+        }
+    }
+
+    public List<int> GetRoomDoorNums(RoomSide side)
+    {
+        switch (side)
+        {
+            case RoomSide.Left:
+                return leftNeighborDoorNums;
+            case RoomSide.Right:
+                return rightNeighborDoorNums;
             default:
                 Assert.IsTrue(false);
                 return null;

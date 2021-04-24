@@ -68,8 +68,12 @@ public class RoomManager : MonoBehaviour
                 {
                     currRoomNum++;
                 }
+
+                var currentRoomDoorNum = currentRooms[currRoomNum].GetRooms(side).Count;
                 currentRooms[currRoomNum].GetRooms(side).Add(nextNode);
+                currentRooms[currRoomNum].GetRoomDoorNums(side).Add(doorNum);
                 nextNode.GetRooms(oppositeSide).Add(currentRooms[currRoomNum]);
+                nextNode.GetRoomDoorNums(oppositeSide).Add(currentRoomDoorNum);
             }
         }
         return nextRooms;
