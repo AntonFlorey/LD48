@@ -59,8 +59,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6720a5faf37bf813ebce64fcd57500da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftDoor: {fileID: 7567439492644070211}
-  rightDoor: {fileID: 6296570117977928860}
+  leftDoors:
+  - {fileID: 7567439492644070211}
+  rightDoors:
+  - {fileID: 6296570117977928860}
 --- !u!1 &3102208129057769954
 GameObject:
   m_ObjectHideFlags: 0

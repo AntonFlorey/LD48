@@ -1,21 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class Room : MonoBehaviour
 {
-    public GameObject leftDoor;
-    public GameObject rightDoor;
+    public List<GameObject> leftDoors;
+    public List<GameObject> rightDoors;
 
-    public GameObject GetDoor(RoomSide side)
+    public GameObject GetDoor(RoomSide side, int doorNum)
     {
         switch (side)
         {
             case RoomSide.Left:
-                return leftDoor;
+                return leftDoors[doorNum];
             case RoomSide.Right:
-                return rightDoor;
+                return rightDoors[doorNum];
             default:
+                return null;
+        }
+    }
+
+    public List<GameObject> GetDoors(RoomSide side)
+    {
+        switch (side)
+        {
+            case RoomSide.Left:
+                return leftDoors;
+            case RoomSide.Right:
+                return rightDoors;
+            default:
+                Assert.IsTrue(false);
                 return null;
         }
     }
@@ -26,9 +42,20 @@ public class Room : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public static RoomSide OppositeSide(RoomSide s)
+    {
+        switch (s)
+        {
+            case RoomSide.Left: return RoomSide.Right;
+            case RoomSide.Right: return RoomSide.Left;
+            default:
+                Assert.IsTrue(false);
+                return RoomSide.Left;  // return any
+        }
     }
 }
