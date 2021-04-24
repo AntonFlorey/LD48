@@ -84,7 +84,7 @@ public class RoomManager : MonoBehaviour
         leftmostRooms.Add(startNode);
         rightmostRooms.Add(startNode);
         roomNodes.Add(startNode);
-        int shouldStillGenerate = 0;
+        int shouldStillGenerate = 10;
         int stepsLeft = shouldStillGenerate + 10;
         while (CountDoorsAtSide(RoomSide.Left, leftmostRooms) + CountDoorsAtSide(RoomSide.Left, rightmostRooms) > 0)
         {
