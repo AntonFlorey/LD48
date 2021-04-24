@@ -157,6 +157,7 @@ MonoBehaviour:
   - {fileID: 3102208128844926754, guid: e6ef62f28d734b581a81d106ad676ca1, type: 3}
   - {fileID: 3102208128844926754, guid: 65738349068a4198da4f2a41626bf06e, type: 3}
   player: {fileID: 1021095570}
+  roomWidth: 100
 --- !u!4 &329410543
 Transform:
   m_ObjectHideFlags: 0
@@ -315,6 +316,8 @@ GameObject:
   - component: {fileID: 1021095572}
   - component: {fileID: 1021095571}
   - component: {fileID: 1021095573}
+  - component: {fileID: 1021095574}
+  - component: {fileID: 1021095575}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -400,6 +403,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+--- !u!50 &1021095574
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021095570}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!70 &1021095575
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021095570}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.5}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
 --- !u!1 &1504961700
 GameObject:
   m_ObjectHideFlags: 0

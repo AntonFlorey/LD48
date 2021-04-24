@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
+    public float jumpForce;
 
     // Start is called before the first frame update
     void Start()
@@ -19,4 +20,11 @@ public class PlayerController : MonoBehaviour
         float y = Input.GetAxis("Vertical");
         transform.position += new Vector3(x, y, 0) * Time.deltaTime * moveSpeed;
     }
+
+    private void Jump()
+	{
+
+	}
+
+
 }
