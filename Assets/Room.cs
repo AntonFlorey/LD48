@@ -13,6 +13,8 @@ public class Room : MonoBehaviour
     public RoomNode roomNode;
     public GameObject tiles;
     public GameObject groundTiles;
+    private Tilemap tileMap;
+    private Tilemap groundTileMap;
 
     public GameObject GetDoor(RoomSide side, int doorNum)
     {
@@ -72,11 +74,16 @@ public class Room : MonoBehaviour
             var oldPos = groundTiles.transform.position;
             groundTiles.transform.position = new Vector3(oldPos.x, oldPos.y, 10);
         }
+        tileMap = tiles.GetComponent<Tilemap>();
+        groundTileMap = groundTiles.GetComponent<Tilemap>();
     }
 
-    void Update()
+    public Vector3Int GetTilePos(Vector3 pos)
     {
-        
+        // maybe broken, idk?
+        pos -= tileMap.transform.position;
+        var size = tileMap.cellSize;
+        return new Vector3Int((int) (pos.x / size.x), (int) (pos.y / size.y), 0);
     }
 
     public static RoomSide OppositeSide(RoomSide s)

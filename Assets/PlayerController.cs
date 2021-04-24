@@ -13,11 +13,16 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D myBody;
     private int jumpsLeft = 1;
 
+    private GameObject roomObject;
+    private Room room;
+
     // Start is called before the first frame update
     void Start()
     {
         jumpsLeft = maxjumps;
         myBody = this.GetComponent<Rigidbody2D>();
+        roomObject = transform.parent.gameObject;
+        room = roomObject.GetComponent<Room>();
     }
 
     // Update is called once per frame
@@ -54,8 +59,6 @@ public class PlayerController : MonoBehaviour
 		if (!other.CompareTag("door"))
 			return;
         GameObject doorObj = other.gameObject;
-        GameObject roomObj = doorObj.transform.parent.gameObject;
-        Room room = roomObj.GetComponent<Room>();
         int leftIdx = room.GetDoors(RoomSide.Left).IndexOf(doorObj);
         int rightIdx = room.GetDoors(RoomSide.Right).IndexOf(doorObj);
         if (leftIdx != -1)
