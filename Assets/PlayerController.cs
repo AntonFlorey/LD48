@@ -69,7 +69,8 @@ public class PlayerController : MonoBehaviour
     private void LeaveRoomThroughDoor(RoomNode oldRoom, RoomSide oldDoorSide, int oldDoorNum)
     {
         var newDoorSide = Room.OppositeSide(oldDoorSide);
-        var newDoorNum = 0;   // todo !!! set this!!
+        var newDoorNum = oldRoom.GetRoomDoorNums(oldDoorSide)[oldDoorNum];   // todo !!! set this!!
+        Debug.Log("enter door from door num"+oldDoorNum+"to"+newDoorNum);
         RoomNode newRoom = oldRoom.GetRooms(oldDoorSide)[oldDoorNum];
         var newDoor = newRoom.roomObject.GetComponent<Room>().GetDoor(newDoorSide, newDoorNum);
         transform.position = newDoor.transform.position + Room.RoomSideToVec(newDoorSide);
