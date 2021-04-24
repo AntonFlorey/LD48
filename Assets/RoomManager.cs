@@ -10,15 +10,28 @@ public class RoomManager : MonoBehaviour
     public List<GameObject> roomPrefabs;
     public GameObject player;
 
+    public int roomWidth = 100;
+
+    private int roomCount = 0;
+
     private class RoomNode
     {
+        private readonly RoomManager manager;
         private readonly GameObject roomPrefab;
         private readonly List<RoomNode> leftRooms = new List<RoomNode>();
         private readonly List<RoomNode> rightRooms = new List<RoomNode>();
 
-        public RoomNode(GameObject roomPrefab)
+        public GameObject roomObject;
+
+        public RoomNode(RoomManager manager, GameObject roomPrefab)
         {
+            this.manager = manager;
             this.roomPrefab = roomPrefab;
+            
+            var baseTransform = manager.transform;
+            var pos = baseTransform.position + new Vector3(manager.roomCount * manager.roomWidth, 0, 0);
+            manager.roomCount++;
+            roomObject = UnityEngine.Object.Instantiate(roomPrefab, pos, baseTransform.rotation);
         }
 
         public List<RoomNode> GetRooms(RoomSide side)
@@ -69,7 +82,7 @@ public class RoomManager : MonoBehaviour
         }
         Assert.IsTrue(available.Count > 0);
         var chosenRoomPrefab = available[Random.Range(0, available.Count)];
-        return new RoomNode(chosenRoomPrefab);
+        return new RoomNode(this, chosenRoomPrefab);
     }
 
     private List<RoomNode> GenerateNextRooms(RoomSide side, List<RoomNode> currentRooms, int shouldStillGenerate)
@@ -105,7 +118,7 @@ public class RoomManager : MonoBehaviour
     public void Start()
     {
         // generate map!
-        var startNode = new RoomNode(roomPrefabs[0]);
+        var startNode = new RoomNode(this, roomPrefabs[0]);
         List<RoomNode> leftmostRooms = new List<RoomNode>();
         List<RoomNode> rightmostRooms = new List<RoomNode>();
         leftmostRooms.Add(startNode);
@@ -135,14 +148,12 @@ public class RoomManager : MonoBehaviour
             stepsLeft--;
         }
         
-        EnterRoom(roomPrefabs[0], RoomSide.Right, 0);
+        EnterRoom(startNode, RoomSide.Right, 0);
     }
 
-    private void EnterRoom(GameObject roomPrefab, RoomSide side, int doorNum)
+    private void EnterRoom(RoomNode roomNode, RoomSide side, int doorNum)
     {
-        var roomTransform = roomPrefab.transform;
-        var roomObject = Instantiate(roomPrefab, roomTransform.position, roomTransform.rotation);
-        var room = roomObject.GetComponent<Room>();
+        var room = roomNode.roomObject.GetComponent<Room>();
         var door = room.GetDoor(side, doorNum);
         player.transform.position = room.transform.position + door.transform.position;
     }
