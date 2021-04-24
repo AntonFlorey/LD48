@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UI;
 using UnityEngine.Windows.WebCam;
 using Random = UnityEngine.Random;
 
@@ -9,6 +10,8 @@ public class RoomManager : MonoBehaviour
 {
     public List<GameObject> roomPrefabs;
     public GameObject player;
+    public GameObject currentStageText;
+    private Text myCurrentStageText;
 
     public int roomWidth = 100;
 
@@ -126,12 +129,14 @@ public class RoomManager : MonoBehaviour
 
     public void Start()
     {
-        currentStage = 0;
+        currentStage = 1;
+        myCurrentStageText = currentStageText.GetComponent<Text>();
         GenerateMap();
     }
 
     public void GenerateMap()
     {
+        myCurrentStageText.text = currentStage + "";
         foreach (RoomNode node in roomNodes)
         {
             Destroy(node.roomObject);
