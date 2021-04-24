@@ -153,12 +153,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomPrefabs:
+  - {fileID: 3102208128844926754, guid: f0c0ee85a141f8112a1d7018573fe85f, type: 3}
   - {fileID: 3102208128844926754, guid: 42f36987af6e7e903817feb284ccc059, type: 3}
   - {fileID: 3102208128844926754, guid: e6ef62f28d734b581a81d106ad676ca1, type: 3}
   - {fileID: 3102208128844926754, guid: 65738349068a4198da4f2a41626bf06e, type: 3}
   - {fileID: 3102208128844926754, guid: 962ce1283e39b0d30b30b29dc9054a8a, type: 3}
   - {fileID: 3102208128844926754, guid: b8fa2f4fcb0fc74209c4f977f272c919, type: 3}
   - {fileID: 3102208128844926754, guid: 3f5e5260d2932e9bb9a2e8e421708ad7, type: 3}
+  player: {fileID: 1021095570}
   roomWidth: 100
   currentStage: 0
   roomCount: 0
