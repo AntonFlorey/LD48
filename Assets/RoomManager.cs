@@ -126,16 +126,17 @@ public class RoomManager : MonoBehaviour
 
     public void Start()
     {
-        GenerateMap(0);
-        // generate map!
+        currentStage = 0;
+        GenerateMap();
     }
 
-    public void GenerateMap(int stage)
+    public void GenerateMap()
     {
         foreach (RoomNode node in roomNodes)
         {
             Destroy(node.roomObject);
         }
+        roomCount = 0;
         roomNodes.Clear();
         var startNode = new RoomNode(this, roomPrefabs[0]);
         List<RoomNode> leftmostRooms = new List<RoomNode>();
@@ -173,5 +174,11 @@ public class RoomManager : MonoBehaviour
 
         var entryPos = startNode.roomObject.GetComponent<Room>().entryPoint.transform.position;
         player.transform.position = new Vector3(entryPos.x, entryPos.y, player.transform.position.z);
+    }
+
+    public void EnterNextStage()
+    {
+        currentStage++;
+        GenerateMap();
     }
 }

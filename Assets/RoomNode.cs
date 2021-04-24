@@ -4,7 +4,7 @@ using UnityEngine.Assertions;
 
 public class RoomNode
 {
-    private readonly RoomManager manager;
+    public readonly RoomManager manager;
     private readonly GameObject roomPrefab;
     private readonly List<RoomNode> leftNeighborRooms = new List<RoomNode>();
     private readonly List<RoomNode> rightNeighborRooms = new List<RoomNode>();
