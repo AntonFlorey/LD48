@@ -15,7 +15,7 @@ public class Room : MonoBehaviour
     public GameObject tiles;
     public GameObject groundTiles;
     public GameObject entryPoint = null;
-    public bool wayDown = false;
+    public GameObject wayDown = null;
     private Tilemap tileMap;
     private Tilemap groundTileMap;
 

@@ -46,7 +46,7 @@ public class RoomManager : MonoBehaviour
 
         public void AddMadeNode(RoomNode newNode)
         {
-            var isWayDown = newNode.roomObject.GetComponent<Room>().wayDown;
+            var isWayDown = newNode.roomObject.GetComponent<Room>().wayDown != null;
             if (isWayDown)
             {
                 Assert.IsTrue(needWayDown);
@@ -75,7 +75,7 @@ public class RoomManager : MonoBehaviour
             var room = roomPrefab.GetComponent<Room>();
             if (room.entryPoint != null)
                 continue;
-            var isWayDown = room.wayDown;
+            var isWayDown = room.wayDown != null;
             if (shouldStillGenerate.needWayDown && isWayDown)
             {
                 available.Add(roomPrefab);
