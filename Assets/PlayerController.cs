@@ -50,7 +50,9 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
-    {
+	{
+		if (!other.CompareTag("door"))
+			return;
         GameObject doorObj = other.gameObject;
         GameObject roomObj = doorObj.transform.parent.gameObject;
         Room room = roomObj.GetComponent<Room>();

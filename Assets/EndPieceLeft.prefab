@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3102208128844926757}
   - component: {fileID: 7374883231870663015}
   m_Layer: 0
-  m_Name: EndPiece
+  m_Name: EndPieceLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,6 +61,8 @@ MonoBehaviour:
   leftDoors:
   - {fileID: 7567439492644070211}
   rightDoors: []
+  tiles: {fileID: 3102208129057769954}
+  groundTiles: {fileID: 0}
 --- !u!1 &3102208129057769954
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,7 +2224,7 @@ GameObject:
   - component: {fileID: 2867250694508966189}
   m_Layer: 0
   m_Name: LeftDoor
-  m_TagString: Untagged
+  m_TagString: door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
