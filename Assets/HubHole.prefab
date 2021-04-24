@@ -6163,6 +6163,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightTopDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 868894184238454247, guid: 7471995c34f7cec03b50c2ed46b9c087, type: 3}
+      propertyPath: m_TagString
+      value: door
+      objectReference: {fileID: 0}
     - target: {fileID: 3454623729729614302, guid: 7471995c34f7cec03b50c2ed46b9c087, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -6235,6 +6239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftBottomDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 868894184238454247, guid: 7471995c34f7cec03b50c2ed46b9c087, type: 3}
+      propertyPath: m_TagString
+      value: door
+      objectReference: {fileID: 0}
     - target: {fileID: 3454623729729614302, guid: 7471995c34f7cec03b50c2ed46b9c087, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -6302,6 +6310,10 @@ PrefabInstance:
     - target: {fileID: 868894184238454247, guid: 7471995c34f7cec03b50c2ed46b9c087, type: 3}
       propertyPath: m_Name
       value: LeftTopDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 868894184238454247, guid: 7471995c34f7cec03b50c2ed46b9c087, type: 3}
+      propertyPath: m_TagString
+      value: door
       objectReference: {fileID: 0}
     - target: {fileID: 3454623729729614302, guid: 7471995c34f7cec03b50c2ed46b9c087, type: 3}
       propertyPath: m_RootOrder
@@ -6374,6 +6386,10 @@ PrefabInstance:
     - target: {fileID: 868894184238454247, guid: 7471995c34f7cec03b50c2ed46b9c087, type: 3}
       propertyPath: m_Name
       value: RightBottomDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 868894184238454247, guid: 7471995c34f7cec03b50c2ed46b9c087, type: 3}
+      propertyPath: m_TagString
+      value: door
       objectReference: {fileID: 0}
     - target: {fileID: 3454623729729614302, guid: 7471995c34f7cec03b50c2ed46b9c087, type: 3}
       propertyPath: m_RootOrder
