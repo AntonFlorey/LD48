@@ -11,12 +11,15 @@ public class CrawlMovementController : MonoBehaviour
     public float velocity = 1;
     private Room room;
     private Rigidbody2D myBody;
+    private SpriteRenderer mySpriteRenderer;
 
     private void Start()
     {
         room = transform.parent.gameObject.GetComponent<Room>();
         Physics2D.queriesStartInColliders = false;
-        myBody = this.GetComponent<Rigidbody2D>();
+        myBody = GetComponent<Rigidbody2D>();
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
+        mySpriteRenderer.flipX = (walkingDirection == RoomSide.Right);
     }
 
     void FixedUpdate()
@@ -35,6 +38,7 @@ public class CrawlMovementController : MonoBehaviour
         {
             // turn, do not update pos
             walkingDirection = Room.OppositeSide(walkingDirection);
+            mySpriteRenderer.flipX = (walkingDirection == RoomSide.Right);
             return;
         }
         myBody.velocity = new Vector2(velocity * Room.RoomSideToVec(walkingDirection).x, myBody.velocity.y);
