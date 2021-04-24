@@ -8,6 +8,7 @@ public class Room : MonoBehaviour
 {
     public List<GameObject> leftDoors;
     public List<GameObject> rightDoors;
+    public RoomNode roomNode;
 
     public GameObject GetDoor(RoomSide side, int doorNum)
     {
@@ -56,6 +57,18 @@ public class Room : MonoBehaviour
             default:
                 Assert.IsTrue(false);
                 return RoomSide.Left;  // return any
+        }
+    }
+
+    public static Vector3 RoomSideToVec(RoomSide s)
+    {
+        switch (s)
+        {
+            case RoomSide.Left: return new Vector3(1, 0, 0);
+            case RoomSide.Right: return new Vector3(-1, 0, 0);
+            default:
+                Assert.IsTrue(false);
+                return new Vector3(0, 0, 0);  // return any
         }
     }
 }

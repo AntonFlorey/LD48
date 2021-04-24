@@ -157,8 +157,9 @@ MonoBehaviour:
   - {fileID: 3102208128844926754, guid: e6ef62f28d734b581a81d106ad676ca1, type: 3}
   - {fileID: 3102208128844926754, guid: 65738349068a4198da4f2a41626bf06e, type: 3}
   - {fileID: 3102208128844926754, guid: 962ce1283e39b0d30b30b29dc9054a8a, type: 3}
-  player: {fileID: 1021095570}
+  - {fileID: 3102208128844926754, guid: b8fa2f4fcb0fc74209c4f977f272c919, type: 3}
   roomWidth: 100
+  roomCount: 0
 --- !u!4 &329410543
 Transform:
   m_ObjectHideFlags: 0
@@ -184,6 +185,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -199,6 +201,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7db4ba4e76745fba2ea5a060875754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1021095570}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -254,7 +269,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1021095570
 GameObject:
@@ -457,5 +472,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
