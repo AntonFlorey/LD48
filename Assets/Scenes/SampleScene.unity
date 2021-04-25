@@ -505,7 +505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bound:
-    m_Center: {x: 0, y: 0, z: 0}
+    m_Center: {x: 1, y: 0, z: 0}
     m_Extent: {x: 5, y: 5, z: 0}
   icons:
   - {fileID: 1161201145128540330, guid: fb4d6d1e3a991f049a315e98baf675bd, type: 3}
@@ -516,7 +516,7 @@ MonoBehaviour:
   myLineRenderer: {fileID: 7949128226108843597, guid: decb88915801ac54abd6443883c29301, type: 3}
   myIcon: {fileID: 1969562723291446110, guid: 7cb81e77d2a6d9c478f12260f1625231, type: 3}
   playerIcon: {fileID: 340005104}
-  spacing: 1
+  spacing: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

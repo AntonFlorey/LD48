@@ -15,13 +15,6 @@ public class MiniMap : MonoBehaviour
     private List<GameObject> activeLines = new List<GameObject>();
     private List<GameObject> activeIcons = new List<GameObject>();
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        ClearMap();
-    }
-
     private bool SameRoom(StageNode a, StageNode b)
 	{
         return a.horizontalNum == b.horizontalNum && a.stageDepth == b.stageDepth;
@@ -43,6 +36,7 @@ public class MiniMap : MonoBehaviour
 
     public void CreateMap(RoomManager myManager)
 	{
+        Debug.Log("Generating the minimap...");
         StageNode startNode = myManager.currentLevelStartStage;
         int depthLayers = RoomDepth(startNode, 1);
 
@@ -63,13 +57,14 @@ public class MiniMap : MonoBehaviour
             float middle = bound.center.x - offset * currLayer.Count / 2f;
             for (int i = 0; i < currLayer.Count; i++)
             {
-                linspaceV.Add(middle + offset * (float)i / (float)((int)currLayer.Count));
+                linspaceV.Add(middle + offset * (float)i);
             }
 
             for (int i = 0; i < currLayer.Count; i++)
 			{
                 DrawIcon((int)currLayer[i].type, new Vector2(linspaceV[i], linspaceD[currLayer[i].stageDepth]));
-                if(SameRoom(currLayer[i], myManager.currentStage))
+                Debug.Log("Minimap icon added...");
+                if (SameRoom(currLayer[i], myManager.currentStage))
 				{
                     DrawPlayer(new Vector2(linspaceV[i], linspaceD[currLayer[i].stageDepth]));
 				}
