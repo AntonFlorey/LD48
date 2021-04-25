@@ -339,6 +339,7 @@ public class RoomManager : MonoBehaviour
         }
         else
         {
+            print("moving into next stage, going through way down num " + GetCurrentRoom().wayDownNum);
             currentStage = currentStage.nextStages[GetCurrentRoom().wayDownNum];
         }    
         GenerateMap();

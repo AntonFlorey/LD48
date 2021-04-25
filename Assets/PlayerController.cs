@@ -175,7 +175,6 @@ public class PlayerController : MonoBehaviour
 			}
 		} else if (other.CompareTag("down"))
 		{
-			Debug.Log("entering new stage ");
 			room.roomNode.manager.EnterNextStage();
 		}
     }

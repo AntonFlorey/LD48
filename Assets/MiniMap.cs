@@ -74,10 +74,8 @@ public class MiniMap : MonoBehaviour
                 currLayerDrawPosX.Add(middle + offset * (float)horizontalPos);
             }
 
-            Debug.Log("make layer!");
             for (int horizontalPos = 0; horizontalPos < currLayer.Count; horizontalPos++)
 			{
-				Debug.Log("has elemenet" + horizontalPos + ":" + currLayer[horizontalPos] + " which has " + currLayer[horizontalPos].type + StageNode.GetStageTypeNum(currLayer[horizontalPos].type));
                 DrawIcon(currLayer[horizontalPos].type, new Vector2(currLayerDrawPosX[horizontalPos], linspaceD[currLayer[horizontalPos].stageDepth]));
                 if (SameRoom(currLayer[horizontalPos], myManager.currentStage))
 				{
