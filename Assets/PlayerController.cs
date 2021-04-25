@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -11,12 +12,15 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 1f;
     public float torsoHeight = 1f;
     public float maxVelY = 10f;
+    public GameObject camera;
+    public GameObject slashAttack;
 
     private Rigidbody2D myBody;
     private SpriteRenderer myRenderer;
     private Animator myAnimator;
     private Collider2D myCollider;
     private HealthComponent myHealth;
+    private Camera myCamera;
     private int jumpsLeft = 1;
     public bool airborne = false;
     public RoomNode currentRoomNode;
@@ -27,11 +31,12 @@ public class PlayerController : MonoBehaviour
     {
 	    Physics2D.queriesStartInColliders = false;
         jumpsLeft = maxjumps;
-        myBody = this.GetComponent<Rigidbody2D>();
-        myAnimator = this.GetComponent<Animator>();
-        myRenderer = this.GetComponent<SpriteRenderer>();
-        myCollider = this.GetComponent<Collider2D>();
-        myHealth = this.GetComponent<HealthComponent>();
+        myBody = GetComponent<Rigidbody2D>();
+        myAnimator = GetComponent<Animator>();
+        myRenderer = GetComponent<SpriteRenderer>();
+        myCollider = GetComponent<Collider2D>();
+        myHealth = GetComponent<HealthComponent>();
+        myCamera = camera.GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -41,6 +46,11 @@ public class PlayerController : MonoBehaviour
 		{
             Debug.Log("Jump Input detected");
             Jump();
+		}
+		if (Input.GetButtonDown("Fire1"))
+		{
+			Debug.Log("Attack Input detected");
+			Attack();
 		}
 
         // Check for ground underneath
@@ -63,6 +73,19 @@ public class PlayerController : MonoBehaviour
         jumpsLeft--;
 	}
 
+	private void Attack()
+	{
+		Vector3 mousePos = Input.mousePosition;
+		mousePos.z = myCamera.nearClipPlane;
+		var worldPos = myCamera.ScreenToWorldPoint(mousePos);
+		var selfPos = transform.position;
+		var attackDir = (worldPos.x < selfPos.x) ? RoomSide.Left : RoomSide.Right;
+		var attackDirInt = attackDir == RoomSide.Left ? -1 : 1;
+		Debug.Log(attackDir);
+		var attack = Instantiate(slashAttack, transform.parent);
+		attack.transform.position = transform.position + new Vector3(attackDirInt * transform.localScale.x / 2, 0, 0);
+	}
+
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.collider.CompareTag("enemy"))
@@ -82,6 +105,8 @@ public class PlayerController : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		GameObject doorObj = other.gameObject;
+		if (doorObj.transform.parent == null)
+			return;
 		GameObject roomObj = doorObj.transform.parent.gameObject;
 		Room room = roomObj.GetComponent<Room>();
 		if (other.CompareTag("door"))

@@ -476,6 +476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   health: 10
+  touchDamage: 1
   text: {fileID: 1198800313}
 --- !u!1 &1198800313
 GameObject:
@@ -673,6 +674,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3812019442374871235, guid: 530af64c22bde13488c56370de25b434, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 519420028}
+    - target: {fileID: 3812019442374871235, guid: 530af64c22bde13488c56370de25b434, type: 3}
+      propertyPath: slashAttack
+      value: 
+      objectReference: {fileID: 6476308254274508147, guid: f485a9d8d1d3277fbb7549bc16ac2466, type: 3}
     - target: {fileID: 3812019442374871236, guid: 530af64c22bde13488c56370de25b434, type: 3}
       propertyPath: m_Name
       value: Player
