@@ -27,7 +27,6 @@ public class CrawlMovementController : MonoBehaviour
     {
         if (!myRoom.IsActive())
             return;
-        Debug.Log("The room is active");
         float epsilon = 0.1f;
         var radius = transform.localScale / 2;
         var obstacleInFront = Physics2D.Raycast(
