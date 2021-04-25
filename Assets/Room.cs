@@ -20,23 +20,11 @@ public class Room : MonoBehaviour
     private Tilemap groundTileMap;
     private List<GameObject> aliveEnemies;
 
-    public Transform bound1;
-    public Transform bound2;
-
     public Bounds getBounds()
 	{
         Bounds tileBounds = tileMap.localBounds;
-        Bounds result = new Bounds(tileMap.transform.TransformPoint(tileBounds.center), tileBounds.size);
-        
-        //result.min = tileMap.transform.TransformPoint(tileBounds.min);
-        //result.max = tileMap.transform.TransformPoint(tileBounds.max);
-        if(bound1 != null && bound2 != null)
-		{
-            bound1.position = result.min;
-            bound2.position = result.max;
-        }
-        return result;
-	}
+        return new Bounds(tileMap.transform.TransformPoint(tileBounds.center), tileBounds.size);
+    }
 
     public GameObject GetDoor(RoomSide side, int doorNum)
     {
