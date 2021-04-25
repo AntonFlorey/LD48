@@ -15,6 +15,8 @@ public class StageNode
         Heal = 4
     }
 
+    public static int NUM_STAGE_TYPES = 5;
+    
     public readonly RoomManager manager;
     public readonly StageType type;
     public readonly int pathRisk;

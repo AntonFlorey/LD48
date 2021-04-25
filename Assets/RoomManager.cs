@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -241,16 +242,26 @@ public class RoomManager : MonoBehaviour
                 willConnectTo = Math.Min(Math.Max(willConnectTo, 1), connectToLeft);
                 Debug.Log("Decided to connect again=" + connectAgain + " and to news=" + willConnectTo + " from the" + connectToLeft + " that are left");
                 
-                // todo: add risk+reward
-                var newStage = new StageNode(this, depth, newStageNum, StageNode.StageType.Normal, 0, 0);
-
+                var connectToPrevStages = new List<StageNode>();
                 var startAtOldStageNum = connectedPrevUntil + (connectAgain ? 0 : 1);
                 var newConnectPrevUntil = connectedPrevUntil + willConnectTo;
                 Debug.Log("Thus will connect to prev nodes from " + startAtOldStageNum + " to " + (connectedPrevUntil + 1 + willConnectTo));
+                int riskSum = 0;
+                int rewardSum = 0;
                 for (var oldStageNum = startAtOldStageNum; oldStageNum <= newConnectPrevUntil; oldStageNum++)
                 {
-                    prevStages[oldStageNum].nextStages.Add(newStage);
+                    connectToPrevStages.Add(prevStages[oldStageNum]);
+                    riskSum += prevStages[oldStageNum].pathRisk;
+                    rewardSum += prevStages[oldStageNum].pathReward;
                 }
+                
+                int risk = riskSum / connectToPrevStages.Count;
+                int reward = rewardSum / connectToPrevStages.Count;
+                var nextStageType = MakeRandomStageType(risk, reward);
+                var newStage = new StageNode(this, depth, newStageNum, nextStageType,
+                    risk + GetTypeRisk(nextStageType), reward + GetTypeReward(nextStageType));
+                foreach (var oldStage in connectToPrevStages)
+                    oldStage.nextStages.Add(newStage);
                 newStages.Add(newStage);
                 connectedPrevUntil = newConnectPrevUntil;
             }
@@ -260,6 +271,36 @@ public class RoomManager : MonoBehaviour
         Debug.Log("start stage is:");
         Debug.Log(start);
         return start;
+    }
+
+    private int GetTypeRisk(StageNode.StageType nextStageType)
+    {
+        switch (nextStageType)
+        {
+            case StageNode.StageType.Challenge:
+                return 2;
+            case StageNode.StageType.Treasure:
+                return 1;
+            default:
+                return 0;
+        }
+    }
+
+    private int GetTypeReward(StageNode.StageType nextStageType)
+    {
+        switch (nextStageType)
+        {
+            case StageNode.StageType.Treasure:
+                return 2;
+            default:
+                return 0;
+        }
+    }
+
+    private StageNode.StageType MakeRandomStageType(int risk, int reward)
+    {
+        // todo: this ignores risk, reward for now.
+        return StageNode.StageType.Normal;
     }
 
     public void EnterNextStage()
