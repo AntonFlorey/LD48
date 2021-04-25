@@ -137,7 +137,7 @@ public class MiniMap : MonoBehaviour
 	{
         GameObject newIcon = Instantiate(myIcon, transform);
         activeIcons.Add(newIcon);
-        myIcon.GetComponent<SpriteRenderer>().sprite = icons[StageNode.GetStageTypeNum(type)];
+        newIcon.GetComponent<SpriteRenderer>().sprite = icons[StageNode.GetStageTypeNum(type)];
         newIcon.transform.localPosition = new Vector3(pos.x, pos.y, newIcon.transform.position.z);
 	}
 
