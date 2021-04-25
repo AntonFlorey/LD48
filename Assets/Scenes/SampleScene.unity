@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1021095570}
+  playeer: {fileID: 1021095574}
   lerpSpeed: 1
 --- !u!20 &519420031
 Camera:
@@ -462,6 +463,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3812019442374871236, guid: 530af64c22bde13488c56370de25b434, type: 3}
   m_PrefabInstance: {fileID: 3812019442305443414}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1021095574 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3812019442374871235, guid: 530af64c22bde13488c56370de25b434, type: 3}
+  m_PrefabInstance: {fileID: 3812019442305443414}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021095570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d5923d494c2c8e4ae02196d0a25241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1504961700
 GameObject:
   m_ObjectHideFlags: 0
