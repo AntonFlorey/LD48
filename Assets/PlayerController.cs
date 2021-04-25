@@ -41,7 +41,11 @@ public class PlayerController : MonoBehaviour
         airborne = true;
         RaycastHit2D rc = Physics2D.Raycast(transform.position, Vector2.down, torsoHeight);
         Debug.DrawRay(transform.position, torsoHeight * Vector2.down, Color.green, 1f);
-        if(rc.collider != null && rc.collider.tag == "ground")
+        if(rc.collider == null)
+		{
+            Debug.Log("no object below");
+		}
+        if(rc.collider != null && rc.collider.CompareTag("ground"))
 		{
             airborne = false;
 		}
