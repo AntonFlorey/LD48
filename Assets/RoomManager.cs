@@ -10,6 +10,7 @@ public class RoomManager : MonoBehaviour
 {
     public List<GameObject> roomPrefabs;
     public GameObject player;
+    public PlayerController myPlayer;
     public GameObject currentStageText;
     private Text myCurrentStageText;
 
@@ -129,6 +130,7 @@ public class RoomManager : MonoBehaviour
 
     public void Start()
     {
+        myPlayer = player.GetComponent<PlayerController>();
         currentStage = 1;
         myCurrentStageText = currentStageText.GetComponent<Text>();
         GenerateMap();
@@ -179,6 +181,7 @@ public class RoomManager : MonoBehaviour
 
         var entryPos = startNode.roomObject.GetComponent<Room>().entryPoint.transform.position;
         player.transform.position = new Vector3(entryPos.x, entryPos.y, player.transform.position.z);
+        myPlayer.currentRoomNode = startNode;
     }
 
     public void EnterNextStage()

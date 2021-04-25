@@ -112,4 +112,9 @@ public class Room : MonoBehaviour
                 return new Vector3(0, 0, 0);  // return any
         }
     }
+
+    public bool IsActive()
+    {
+        return roomNode.manager.myPlayer.currentRoomNode.roomObject.Equals(roomNode.roomObject);
+    }
 }

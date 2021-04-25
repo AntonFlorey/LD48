@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D myBody;
     private int jumpsLeft = 1;
+    public RoomNode currentRoomNode;
 
     // Start is called before the first frame update
     void Start()
@@ -81,5 +82,6 @@ public class PlayerController : MonoBehaviour
         RoomNode newRoom = oldRoom.GetRooms(oldDoorSide)[oldDoorNum];
         var newDoor = newRoom.roomObject.GetComponent<Room>().GetDoor(newDoorSide, newDoorNum);
         transform.position = newDoor.transform.position + Room.RoomSideToVec(newDoorSide);
+        currentRoomNode = newRoom;
     }
 }

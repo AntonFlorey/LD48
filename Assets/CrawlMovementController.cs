@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEditor.UI;
 using UnityEngine;
 
@@ -9,13 +10,13 @@ public class CrawlMovementController : MonoBehaviour
     public RoomSide walkingDirection = RoomSide.Left;
     public bool walksOffEdges = false;
     public float velocity = 1;
-    private Room room;
+    private Room myRoom;
     private Rigidbody2D myBody;
     private SpriteRenderer mySpriteRenderer;
 
     private void Start()
     {
-        room = transform.parent.gameObject.GetComponent<Room>();
+        myRoom = transform.parent.gameObject.GetComponent<Room>();
         Physics2D.queriesStartInColliders = false;
         myBody = GetComponent<Rigidbody2D>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
@@ -24,6 +25,9 @@ public class CrawlMovementController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!myRoom.IsActive())
+            return;
+        Debug.Log("The room is active");
         float epsilon = 0.1f;
         var radius = transform.localScale / 2;
         var obstacleInFront = Physics2D.Raycast(
