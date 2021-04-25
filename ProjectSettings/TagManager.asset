@@ -8,6 +8,7 @@ TagManager:
   - ground
   - down
   - enemy
+  - attack
   layers:
   - Default
   - TransparentFX
