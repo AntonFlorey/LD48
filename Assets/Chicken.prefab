@@ -190,6 +190,6 @@ MonoBehaviour:
   health: 2
   touchDamage: 1
   damageCooldown: 1
-  damageAnimTime: 0.2
-  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  damageAnimTime: 0.4
+  damageColor: {r: 1, g: 1, b: 1, a: 1}
   text: {fileID: 0}
