@@ -101,17 +101,13 @@ public class Room : MonoBehaviour
         {
             door.GetComponent<BoxCollider2D>().isTrigger = open;
             if (open)
-            {
                 Destroy(door.GetComponent<SpriteRenderer>());
-            }
         }
         foreach (var door in rightDoors)
         {
             door.GetComponent<BoxCollider2D>().isTrigger = open;
             if (open)
-            {
                 Destroy(door.GetComponent<SpriteRenderer>());
-            }
         }
     }
 
