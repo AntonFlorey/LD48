@@ -32,7 +32,6 @@ public class CameraController : MonoBehaviour
 		// Clamp dis shit
 
 		Bounds b = playeer.currentRoomNode.myRoom.getBounds();
-		Debug.Log(b);
 		float widthOffset = myCam.orthographicSize * myCam.aspect;
 		float heightOffset = myCam.orthographicSize;
 		float clampX = Mathf.Clamp(transform.position.x, b.min.x + widthOffset, b.max.x - widthOffset);

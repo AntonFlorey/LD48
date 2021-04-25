@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 1f;
     public float torsoHeight = 1f;
     public float maxVelY = 10f;
-    public GameObject camera;
     public GameObject slashAttack;
 
     private Rigidbody2D myBody;
@@ -36,7 +35,7 @@ public class PlayerController : MonoBehaviour
         myRenderer = GetComponent<SpriteRenderer>();
         myCollider = GetComponent<Collider2D>();
         myHealth = GetComponent<HealthComponent>();
-        myCamera = camera.GetComponent<Camera>();
+        myCamera = Camera.main;
     }
 
     // Update is called once per frame
@@ -54,9 +53,11 @@ public class PlayerController : MonoBehaviour
 		}
 
         // Check for ground underneath
-        RaycastHit2D rc = Physics2D.Raycast(transform.position, Vector2.down, torsoHeight);
-        Debug.DrawRay(transform.position, torsoHeight * Vector2.down, Color.green, 1f);
-        airborne = rc.collider == null;
+        LayerMask mask = LayerMask.GetMask("ground");
+        mask = int.MaxValue;
+        RaycastHit2D[] rc = Physics2D.RaycastAll(transform.position, Vector2.down, torsoHeight, mask);
+        //Debug.DrawRay(transform.position, torsoHeight * Vector2.down, Color.green, 1f);
+        airborne = rc.Length == 0;
 
         ToggleAnimation();
         ToggleOrientation();
