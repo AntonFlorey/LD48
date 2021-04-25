@@ -16,7 +16,9 @@ public class RoomManager : MonoBehaviour
 
     public int roomWidth = 100;
 
-    public int currentStage = 0;
+    public int currentLevel = 0;
+    public StageNode currentLevelStartStage;
+    public StageNode currentStage;
     private List<RoomNode> roomNodes = new List<RoomNode>();
     public int roomCount = 0;
 
@@ -131,14 +133,16 @@ public class RoomManager : MonoBehaviour
     public void Start()
     {
         myPlayer = player.GetComponent<PlayerController>();
-        currentStage = 1;
+        currentLevelStartStage = GenerateLevelStartStage();
+        currentStage = currentLevelStartStage;
+
         myCurrentStageText = currentStageText.GetComponent<Text>();
         GenerateMap();
     }
 
     public void GenerateMap()
     {
-        myCurrentStageText.text = "Stage " + currentStage;
+        myCurrentStageText.text = "Stage " + (currentStage.stageDepth+1);
         foreach (RoomNode node in roomNodes)
         {
             Destroy(node.roomObject);
@@ -152,6 +156,7 @@ public class RoomManager : MonoBehaviour
         rightmostRooms.Add(startNode);
         roomNodes.Add(startNode);
         var shouldStillGenerate = new ShouldStillGenerate(5, true);
+        // todo set number of needWayDown rooms.
         int stepsLeft = shouldStillGenerate.numGenericRooms + 10;
         while (CountDoorsAtSide(RoomSide.Left, leftmostRooms) + CountDoorsAtSide(RoomSide.Left, rightmostRooms) > 0)
         {
@@ -184,15 +189,82 @@ public class RoomManager : MonoBehaviour
         myPlayer.currentRoomNode = startNode;
     }
 
+    private static int RandomTowardsTarget(int old, int target, int maxDiff, int noise=1)
+    {
+        int center = (int) Mathf.MoveTowards(old, target, Random.Range(maxDiff - noise, maxDiff + noise));
+        return Random.Range(center - noise, center + 2);
+    }
+
+    private StageNode GenerateLevelStartStage()
+    {
+        int totalDepth = 3;
+        int targetWidth = 3;
+        int maxWidthDiff = 2;
+        Debug.Log("Making stages:");
+        List<StageNode> prevStages = new List<StageNode>();
+        StageNode start = new StageNode(this, 0, 0, StageNode.StageType.Normal, 0, 0);
+        prevStages.Add(start);
+        for (var depth = 1; depth < totalDepth; depth++)
+        {
+            Debug.Log("Depth=" + depth);
+            int prevWidth = prevStages.Count;
+            int newWidth = Math.Max(RandomTowardsTarget(prevWidth, targetWidth, maxWidthDiff), 2);
+            Debug.Log("Will make" + newWidth + " new");
+            List<StageNode> newStages = new List<StageNode>();
+            int connectedPrevUntil = 0;
+            for (var newStageNum = 0; newStageNum < newWidth; newStageNum++)
+            {
+                Debug.Log("Make new " + newStageNum);
+                // if we have an equal mapping, every prev has to point to newWidth / prevWidth.
+                int connectToLeft = prevWidth - connectedPrevUntil - 1;
+                bool connectAgain = Random.Range(0, 1) == 0;
+                connectAgain |= newStageNum == 0;  // have to connect to first.
+                connectAgain |= connectToLeft == 0;  // have to connect if nothing else left
+                int willConnectTo = connectToLeft / (newWidth - newStageNum);
+                willConnectTo = Random.Range(willConnectTo - 1, willConnectTo + 1);  // add some noise
+                willConnectTo = Math.Min(Math.Max(willConnectTo, 1), connectToLeft);
+                Debug.Log("Decided to connect again=" + connectAgain + " and to news=" + willConnectTo + " from the" + connectToLeft + " that are left");
+                
+                // todo: add risk+reward
+                var newStage = new StageNode(this, depth, newStageNum, StageNode.StageType.Normal, 0, 0);
+
+                var startAtOldStageNum = connectedPrevUntil + (connectAgain ? 0 : 1);
+                var newConnectPrevUntil = connectedPrevUntil + willConnectTo;
+                Debug.Log("Thus will connect to prev nodes from " + startAtOldStageNum + " to " + (connectedPrevUntil + 1 + willConnectTo));
+                for (var oldStageNum = startAtOldStageNum; oldStageNum <= newConnectPrevUntil; oldStageNum++)
+                {
+                    prevStages[oldStageNum].nextStages.Add(newStage);
+                }
+                newStages.Add(newStage);
+                connectedPrevUntil = newConnectPrevUntil;
+            }
+            prevStages = newStages;
+        }
+
+        Debug.Log("start stage is:");
+        Debug.Log(start);
+        return start;
+    }
+
     public void EnterNextStage()
     {
-        currentStage++;
+        if (currentStage.nextStages.Count == 0)
+        {
+            // final thingy, move on.
+            currentLevel += 1;
+            currentLevelStartStage = GenerateLevelStartStage();
+            currentStage = currentLevelStartStage;
+        }
+        else
+        {
+            // TODO: handle this properly!!!
+            currentStage = currentStage.nextStages[0];
+        }    
         GenerateMap();
     }
 
     public RoomNode GetCurrentRoom()
     {
-        Debug.Log("yos");
         return myPlayer.currentRoomNode;
     }
 }

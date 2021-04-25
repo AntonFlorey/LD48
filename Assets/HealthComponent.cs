@@ -20,6 +20,7 @@ public class HealthComponent : MonoBehaviour
     private bool takingDamage = false;
     private float damageAnimTimeLeft = 0;
     private float damageCooldownLeft = 0;
+    private Vector3 fullScale;
 
     void Start()
     {
@@ -55,30 +56,40 @@ public class HealthComponent : MonoBehaviour
                 showingAnimation = false;
                 myRenderer.color = resetColor;
             }
+            if (IsDead())
+            {
+                transform.localScale = fullScale * (damageAnimTimeLeft / damageAnimTime);
+            }
         }
 
         if (takingDamage)
         {
             damageCooldownLeft -= Time.deltaTime;
             if (damageCooldownLeft <= 0)
+            {
                 takingDamage = false;
+                if (IsDead())
+                    DoDie();
+            }
         }
+    }
+
+    public bool IsDead()
+    {
+        return gameObject.CompareTag("enemy") && health <= 0;
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
         UpdateText();
-        if (gameObject.CompareTag("enemy") && health <= 0)
-        {
-            DoDie();
-        }
 
         takingDamage = true;
         damageCooldownLeft = damageCooldown;
         showingAnimation = true;
         damageAnimTimeLeft = damageAnimTime;
         myRenderer.color = damageColor;
+        fullScale = transform.localScale;
     }
 
     private void DoDie()

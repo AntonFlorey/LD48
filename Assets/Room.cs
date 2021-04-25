@@ -157,7 +157,6 @@ public class Room : MonoBehaviour
 
     public bool IsActive()
     {
-        Debug.Log(roomNode);
         return roomNode.manager.GetCurrentRoom().roomObject.Equals(roomNode.roomObject);
     }
 
