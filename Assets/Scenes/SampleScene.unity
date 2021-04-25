@@ -234,6 +234,7 @@ MonoBehaviour:
   - {fileID: 3102208128844926754, guid: 962ce1283e39b0d30b30b29dc9054a8a, type: 3}
   - {fileID: 3102208128844926754, guid: b8fa2f4fcb0fc74209c4f977f272c919, type: 3}
   - {fileID: 3102208128844926754, guid: 3f5e5260d2932e9bb9a2e8e421708ad7, type: 3}
+  - {fileID: 3102208128844926754, guid: c1f4d21bcd29a536cb61bc933dc65af9, type: 3}
   player: {fileID: 1021095570}
   myPlayer: {fileID: 0}
   currentStageText: {fileID: 709930688}
@@ -512,7 +513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bound:
     m_Center: {x: 1, y: 0, z: 0}
-    m_Extent: {x: 5, y: 5, z: 0}
+    m_Extent: {x: 8, y: 12, z: 0}
   icons:
   - {fileID: 1161201145128540330, guid: fb4d6d1e3a991f049a315e98baf675bd, type: 3}
   - {fileID: 2130535880278150251, guid: fb4d6d1e3a991f049a315e98baf675bd, type: 3}
@@ -926,7 +927,7 @@ RectTransform:
   m_GameObject: {fileID: 1632328311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5376, y: 1.55, z: 1}
+  m_LocalScale: {x: 2.5376, y: 1.7, z: 1}
   m_Children: []
   m_Father: {fileID: 599154667}
   m_RootOrder: 0

@@ -216,7 +216,7 @@ public class RoomManager : MonoBehaviour
 
     private StageNode GenerateLevelStartStage()
     {
-        int totalDepth = 3;
+        int totalDepth = 16;
         int targetWidth = 3;
         int maxWidthDiff = 2;
         Debug.Log("Making stages:");
