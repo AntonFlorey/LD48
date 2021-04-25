@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpForce = 1f;
     public float torsoHeight = 1f;
+    public float maxVelY = 10f;
 
 
     private Rigidbody2D myBody;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private int jumpsLeft = 1;
     public bool airborne = false;
     public RoomNode currentRoomNode;
+    public float moveAnimRatio = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +41,8 @@ public class PlayerController : MonoBehaviour
 
         // Check for ground underneath
         airborne = true;
-        RaycastHit2D rc = Physics2D.Raycast(transform.position, Vector2.down, torsoHeight);
+        LayerMask mask = LayerMask.GetMask("ground");
+        RaycastHit2D rc = Physics2D.Raycast(transform.position, Vector2.down, torsoHeight, mask);
         Debug.DrawRay(transform.position, torsoHeight * Vector2.down, Color.green, 1f);
         if(rc.collider == null)
 		{
@@ -146,16 +149,20 @@ public class PlayerController : MonoBehaviour
         if(Input.GetAxis("Horizontal") != 0)
 		{
 
-            ChangeAnimatorState("Player_Run");
+            ChangeAnimatorState("Player_Run", moveSpeed * moveAnimRatio);
+            
             return;
 		}
 
         ChangeAnimatorState("Player_Idle");
-	}
+        myAnimator.speed = 1f;
 
-    private void ChangeAnimatorState(string targetState)
+    }
+
+    private void ChangeAnimatorState(string targetState, float speed = 1f)
 	{
         // Hab keine Bock meheeer
         myAnimator.PlayInFixedTime(targetState);
-	}
+        myAnimator.speed = speed;
+    }
 }

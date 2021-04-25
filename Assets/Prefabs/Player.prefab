@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3812019442374871236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.87, y: 5.16, z: 1}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.0625, y: 1.9375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -99,10 +99,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxjumps: 2
-  moveSpeed: 10
+  moveSpeed: 6
   jumpForce: 18
-  torsoHeight: 2
+  torsoHeight: 1.2
+  maxVelY: 10
   airborne: 0
+  moveAnimRatio: 0.15
 --- !u!50 &3812019442374871232
 Rigidbody2D:
   serializedVersion: 4
@@ -120,7 +122,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: 7e7bb1946caf8044a86ddce005aa6849, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -137,8 +139,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.10566831, y: 0.0035221577}
-  m_Size: {x: 0.7886634, y: 1.9369254}
+  m_Offset: {x: -0.10272741, y: 0}
+  m_Size: {x: 0.82193947, y: 2}
   m_Direction: 0
 --- !u!95 &6263860654771444785
 Animator:
