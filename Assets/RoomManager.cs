@@ -14,6 +14,7 @@ public class RoomManager : MonoBehaviour
     public PlayerController myPlayer;
     public GameObject currentStageText;
     private Text myCurrentStageText;
+    public MiniMap map;
 
     public int roomWidth = 100;
 
@@ -146,6 +147,7 @@ public class RoomManager : MonoBehaviour
     public void GenerateMap()
     {
         myCurrentStageText.text = "Stage " + (currentStage.stageDepth+1);
+        map.CreateMap(this);
         foreach (RoomNode node in roomNodes)
         {
             Destroy(node.roomObject);

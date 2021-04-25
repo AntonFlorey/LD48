@@ -8,11 +8,11 @@ public class StageNode
 {
     public enum StageType
     {
-        Normal = 1,
-        Treasure = 2,
-        Puzzle = 3,
-        Challenge = 4,
-        Heal = 5
+        Normal = 0,
+        Treasure = 1,
+        Puzzle = 2,
+        Challenge = 3,
+        Heal = 4
     }
 
     public readonly RoomManager manager;
