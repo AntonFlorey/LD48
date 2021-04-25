@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 1f;
     public float torsoHeight = 1f;
 
-
     private Rigidbody2D myBody;
     private SpriteRenderer myRenderer;
     private Animator myAnimator;
@@ -22,6 +21,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+	    Physics2D.queriesStartInColliders = false;
         jumpsLeft = maxjumps;
         myBody = this.GetComponent<Rigidbody2D>();
         myAnimator = this.GetComponent<Animator>();
@@ -38,13 +38,9 @@ public class PlayerController : MonoBehaviour
 		}
 
         // Check for ground underneath
-        airborne = true;
         RaycastHit2D rc = Physics2D.Raycast(transform.position, Vector2.down, torsoHeight);
         Debug.DrawRay(transform.position, torsoHeight * Vector2.down, Color.green, 1f);
-        if(rc.collider != null && rc.collider.tag == "ground")
-		{
-            airborne = false;
-		}
+        airborne = rc.collider == null;
 
         ToggleAnimation();
         ToggleOrientation();
