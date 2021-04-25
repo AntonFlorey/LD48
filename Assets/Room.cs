@@ -18,6 +18,7 @@ public class Room : MonoBehaviour
     public GameObject wayDown = null;
     private Tilemap tileMap;
     private Tilemap groundTileMap;
+    private List<GameObject> aliveEnemies;
 
     public GameObject GetDoor(RoomSide side, int doorNum)
     {
@@ -79,6 +80,39 @@ public class Room : MonoBehaviour
         }
         tileMap = tiles.GetComponent<Tilemap>();
         groundTileMap = groundTiles.GetComponent<Tilemap>();
+
+        aliveEnemies = new List<GameObject>();
+        for (int enemyIdx = 0; enemyIdx < transform.childCount; enemyIdx++)
+        {
+            var enemyTransform = transform.GetChild(enemyIdx);
+            if (enemyTransform.gameObject.CompareTag("enemy"))
+            {
+                aliveEnemies.Add(enemyTransform.gameObject);
+            }
+        }
+
+        UpdateDoors();
+    }
+
+    private void UpdateDoors()
+    {
+        var open = IsCleared();
+        foreach (var door in leftDoors)
+        {
+            door.GetComponent<BoxCollider2D>().isTrigger = open;
+            if (open)
+            {
+                Destroy(door.GetComponent<SpriteRenderer>());
+            }
+        }
+        foreach (var door in rightDoors)
+        {
+            door.GetComponent<BoxCollider2D>().isTrigger = open;
+            if (open)
+            {
+                Destroy(door.GetComponent<SpriteRenderer>());
+            }
+        }
     }
 
     public Vector3Int GetTilePos(Vector3 pos)
@@ -116,5 +150,10 @@ public class Room : MonoBehaviour
     public bool IsActive()
     {
         return roomNode.manager.myPlayer.currentRoomNode.roomObject.Equals(roomNode.roomObject);
+    }
+
+    public bool IsCleared()
+    {
+        return aliveEnemies.Count == 0;
     }
 }

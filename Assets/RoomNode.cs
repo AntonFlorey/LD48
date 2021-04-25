@@ -12,6 +12,7 @@ public class RoomNode
     private readonly List<int> rightNeighborDoorNums = new List<int>();
 
     public GameObject roomObject;
+    public Room myRoom;
 
     public RoomNode(RoomManager manager, GameObject roomPrefab)
     {
@@ -22,10 +23,11 @@ public class RoomNode
         var pos = baseTransform.position + new Vector3(manager.roomCount * manager.roomWidth, 0, 0);
         manager.roomCount++;
         roomObject = UnityEngine.Object.Instantiate(roomPrefab, pos, baseTransform.rotation);
-        roomObject.GetComponent<Room>().roomNode = this;
+        myRoom = roomObject.GetComponent<Room>();
+        myRoom.roomNode = this;
     }
 
-    public List<RoomNode> GetRooms(RoomSide side)
+    public List<RoomNode> GetNeighborRooms(RoomSide side)
     {
         switch (side)
         {
@@ -62,7 +64,7 @@ public class RoomNode
     {
         var leftDoors = roomObject.GetComponent<Room>().leftDoors;
         var rightDoors = roomObject.GetComponent<Room>().rightDoors;
-        Assert.AreEqual(GetRooms(RoomSide.Left).Count, GetDoorCount(RoomSide.Left));
-        Assert.AreEqual(GetRooms(RoomSide.Right).Count, GetDoorCount(RoomSide.Right));
+        Assert.AreEqual(GetNeighborRooms(RoomSide.Left).Count, GetDoorCount(RoomSide.Left));
+        Assert.AreEqual(GetNeighborRooms(RoomSide.Right).Count, GetDoorCount(RoomSide.Right));
     }
 }

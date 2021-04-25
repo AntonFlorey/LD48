@@ -113,15 +113,15 @@ public class RoomManager : MonoBehaviour
             Assert.IsTrue(doorsLeft >= 0);
             for (var doorNum = 0; doorNum < nodesToMake; doorNum++)
             {
-                while (currentRooms[currRoomNum].GetRooms(side).Count >= currentRooms[currRoomNum].GetDoorCount(side))
+                while (currentRooms[currRoomNum].GetNeighborRooms(side).Count >= currentRooms[currRoomNum].GetDoorCount(side))
                 {
                     currRoomNum++;
                 }
 
-                var currentRoomDoorNum = currentRooms[currRoomNum].GetRooms(side).Count;
-                currentRooms[currRoomNum].GetRooms(side).Add(nextNode);
+                var currentRoomDoorNum = currentRooms[currRoomNum].GetNeighborRooms(side).Count;
+                currentRooms[currRoomNum].GetNeighborRooms(side).Add(nextNode);
                 currentRooms[currRoomNum].GetRoomDoorNums(side).Add(doorNum);
-                nextNode.GetRooms(oppositeSide).Add(currentRooms[currRoomNum]);
+                nextNode.GetNeighborRooms(oppositeSide).Add(currentRooms[currRoomNum]);
                 nextNode.GetRoomDoorNums(oppositeSide).Add(currentRoomDoorNum);
             }
         }
