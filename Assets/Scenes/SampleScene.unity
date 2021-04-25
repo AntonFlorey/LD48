@@ -1126,6 +1126,14 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 519420028}
+    - target: {fileID: 3812019442374871235, guid: 530af64c22bde13488c56370de25b434, type: 3}
+      propertyPath: leftAttackOffset
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812019442374871235, guid: 530af64c22bde13488c56370de25b434, type: 3}
+      propertyPath: rightAttackOffset
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3812019442374871236, guid: 530af64c22bde13488c56370de25b434, type: 3}
       propertyPath: m_Name
       value: Player

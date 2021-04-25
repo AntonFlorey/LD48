@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public RoomNode currentRoomNode;
     public float moveAnimRatio = 0.1f;
     [SerializeField] private bool attacking = false;
-
+    public RoomSide orientation = RoomSide.Right;
 
 
     // Start is called before the first frame update
@@ -127,7 +127,8 @@ public class PlayerController : MonoBehaviour
 		mousePos.z = myCamera.nearClipPlane;
 		var worldPos = myCamera.ScreenToWorldPoint(mousePos);
 		var selfPos = transform.position;
-		var attackDir = (worldPos.x < selfPos.x) ? RoomSide.Left : RoomSide.Right;
+		// var attackDir = (worldPos.x < selfPos.x) ? RoomSide.Left : RoomSide.Right;
+		var attackDir = orientation;
 		var attackDirInt = attackDir == RoomSide.Left ? -1 : 1;
 		var attack = Instantiate(slashAttack, transform.parent);
 		var extraOffset = attackDir == RoomSide.Left ? leftAttackOffset : rightAttackOffset;
@@ -201,11 +202,13 @@ public class PlayerController : MonoBehaviour
 		}
 		if (myRenderer.flipX && Input.GetAxis("Horizontal") > 0)
 		{
+			orientation = RoomSide.Right;
             myRenderer.flipX = false;
             return;
 		}
         if (!myRenderer.flipX && Input.GetAxis("Horizontal") < 0)
 		{
+			orientation = RoomSide.Left;
             myRenderer.flipX = true;
             return;
         }
