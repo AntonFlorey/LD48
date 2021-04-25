@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3228117620187243727}
   - component: {fileID: 8866915237654369096}
   m_Layer: 0
-  m_Name: CrawlMonster
+  m_Name: Chicken
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
