@@ -183,8 +183,8 @@ public class RoomManager : MonoBehaviour
             }
             else
             {
-                rightmostRooms = GenerateNextRooms(RoomSide.Right, rightmostRooms, shouldStillGenerate, -radius);
-                leftmostRooms = GenerateNextRooms(RoomSide.Left, leftmostRooms, shouldStillGenerate, radius);
+                rightmostRooms = GenerateNextRooms(RoomSide.Right, rightmostRooms, shouldStillGenerate, radius);
+                leftmostRooms = GenerateNextRooms(RoomSide.Left, leftmostRooms, shouldStillGenerate, -radius);
             }
             roomNodes.AddRange(leftmostRooms);
             roomNodes.AddRange(rightmostRooms);
@@ -197,13 +197,13 @@ public class RoomManager : MonoBehaviour
             node.SetupInstance();
         }
 
-        var sortedRoomNodes = new List<RoomNode>(roomNodes);
-        sortedRoomNodes.OrderBy(node => node.horizontalPos);
+        var sortedRoomNodes = roomNodes.OrderBy(node => node.horizontalPos);
         var wayDownNum = 0;
         foreach (var node in sortedRoomNodes)
         {
             if (node.roomObject.GetComponent<Room>().wayDown != null)
             {
+                Debug.Log("will make room" + node.horizontalPos + "the wayDownNum=" + wayDownNum);
                 node.wayDownNum = wayDownNum;
                 wayDownNum++;
             }

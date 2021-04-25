@@ -251,7 +251,7 @@ MonoBehaviour:
   - 2
   - 1.5
   levelStageDepth: 3
-  levelTargetStageWidths: 020000000300000004000000
+  levelTargetStageWidths: 050000000300000004000000
   levelTargetNumGenericRoomsPerStage: 000000000100000002000000
 --- !u!4 &329410543
 Transform:
