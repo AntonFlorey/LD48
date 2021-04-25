@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MiniMap : MonoBehaviour
 {
@@ -13,11 +14,20 @@ public class MiniMap : MonoBehaviour
     public GameObject playerIcon;
     public float spacing = 1f;
     public float thickness = 1f;
+    public GameObject uiElem;
 
     private List<GameObject> activeLines = new List<GameObject>();
     private List<GameObject> activeIcons = new List<GameObject>();
 
-    private bool SameRoom(StageNode a, StageNode b)
+	private void Update()
+	{
+        Image im = (Image)uiElem.GetComponentInChildren(typeof(Image), true);
+        RawImage rim = (RawImage)uiElem.GetComponentInChildren(typeof(RawImage), true);
+        im.enabled = Input.GetButton("Tab");
+        rim.enabled = Input.GetButton("Tab");
+    }
+
+	private bool SameRoom(StageNode a, StageNode b)
 	{
         return a.horizontalNum == b.horizontalNum && a.stageDepth == b.stageDepth;
 	}
@@ -167,8 +177,4 @@ public class MiniMap : MonoBehaviour
         activeLines.Clear();
         activeIcons.Clear();
     }
-
-
-
-
 }

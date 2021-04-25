@@ -527,8 +527,7 @@ MonoBehaviour:
   playerIcon: {fileID: 340005104}
   spacing: 2
   thickness: 2
-  defaultColor: {r: 0.033018887, g: 1, b: 0.8724309, a: 0}
-  specialColor: {r: 1, g: 0.59171915, b: 0, a: 0}
+  uiElem: {fileID: 599154666}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
