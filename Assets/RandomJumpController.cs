@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Net;
 using UnityEditor.UI;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RandomJumpController : MonoBehaviour
 {
     private Room myRoom;
     public int maxTime = 10;
-    public int jumpForce;
+    public float jumpForce = 2f;
     public int currentTime;
     private Rigidbody2D myBody;
 
@@ -18,7 +19,7 @@ public class RandomJumpController : MonoBehaviour
         myRoom = transform.parent.gameObject.GetComponent<Room>();
         myBody = GetComponent<Rigidbody2D>();
         Physics2D.queriesStartInColliders = false;
-        currentTime = maxTime;
+        currentTime = Random.Range((int) (maxTime * 0.8), (int) (maxTime * 1.2));;
     }
 
     void FixedUpdate()
@@ -36,7 +37,8 @@ public class RandomJumpController : MonoBehaviour
         if (currentTime <= 0)
         {
             // flap!
-            myBody.AddForce(new Vector2(0, jumpForce));
+            myBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            currentTime = Random.Range((int) (maxTime * 0.8), (int) (maxTime * 1.2));
         }
     }
 }

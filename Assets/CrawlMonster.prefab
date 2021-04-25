@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -2385622088173398844}
   - component: {fileID: -3468765936338543897}
   - component: {fileID: 3228117620187243727}
+  - component: {fileID: 8866915237654369096}
   m_Layer: 0
   m_Name: CrawlMonster
   m_TagString: enemy
@@ -157,3 +158,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1}
   m_Direction: 0
+--- !u!114 &8866915237654369096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5009388995366303733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 356c15037e42402db785abdd9ce49d30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTime: 250
+  jumpForce: 8
+  currentTime: 250
