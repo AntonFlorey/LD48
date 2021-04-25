@@ -16,6 +16,16 @@ public class StageNode
     }
 
     public static int NUM_STAGE_TYPES = 5;
+
+    public static int GetStageTypeNum(StageType type)
+    {
+        return (int) type;
+    }
+
+    public static StageType GetStageTypeFromNum(int num)
+    {
+        return (StageType) num;
+    }
     
     public readonly RoomManager manager;
     public readonly StageType type;

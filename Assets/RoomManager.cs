@@ -24,6 +24,7 @@ public class RoomManager : MonoBehaviour
     public StageNode currentStage;
     private List<RoomNode> roomNodes = new List<RoomNode>();
     public int roomCount = 0;
+    public float[] stageTypeFrequencies;
 
     private int CountDoorsAtSide(RoomSide side, List<RoomNode> nodes)
     {
@@ -140,6 +141,7 @@ public class RoomManager : MonoBehaviour
         myPlayer = player.GetComponent<PlayerController>();
         currentLevelStartStage = GenerateLevelStartStage();
         currentStage = currentLevelStartStage;
+        Assert.AreEqual(stageTypeFrequencies.Length, StageNode.NUM_STAGE_TYPES);
 
         myCurrentStageText = currentStageText.GetComponent<Text>();
         GenerateMap();
@@ -300,7 +302,21 @@ public class RoomManager : MonoBehaviour
     private StageNode.StageType MakeRandomStageType(int risk, int reward)
     {
         // todo: this ignores risk, reward for now.
-        return StageNode.StageType.Normal;
+        float valTotal = 0;
+        foreach (var freq in stageTypeFrequencies)
+        {
+            valTotal += freq;
+        }
+
+        float random = Random.Range(0, valTotal);
+        for (var num = 0; num < StageNode.NUM_STAGE_TYPES; num++)
+        {
+            random -= stageTypeFrequencies[num];
+            if (random <= 0)
+                return StageNode.GetStageTypeFromNum(num);
+        }
+
+        return StageNode.GetStageTypeFromNum(StageNode.NUM_STAGE_TYPES - 1);
     }
 
     public void EnterNextStage()
