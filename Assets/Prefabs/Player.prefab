@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d4546340839cd694598923464b4d89e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,8 +105,13 @@ MonoBehaviour:
   torsoHeight: 1.2
   maxVelY: 50
   slashAttack: {fileID: 6476308254274508147, guid: f485a9d8d1d3277fbb7549bc16ac2466, type: 3}
+  leftAttackOffset: 0
+  rightAttackOffset: 0
+  attackSpeed: 1
+  attackPenalty: 0
   airborne: 0
   moveAnimRatio: 0.15
+  attacking: 0
 --- !u!50 &3812019442374871232
 Rigidbody2D:
   serializedVersion: 4
@@ -178,4 +183,7 @@ MonoBehaviour:
   maxHealth: 10
   health: 10
   touchDamage: 1
+  damageCooldown: 1
+  damageAnimTime: 0.2
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
   text: {fileID: 0}

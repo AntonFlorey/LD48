@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
     private HealthComponent myHealth;
     private Camera myCamera;
     private int jumpsLeft = 1;
-    public bool airborne = false;
+    private bool airborne = false;
+	private bool crouch = false; 
     public RoomNode currentRoomNode;
     public float moveAnimRatio = 0.1f;
     [SerializeField] private bool attacking = false;
@@ -48,17 +49,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetButtonDown("Jump") && jumpsLeft > 0)
-		{
-            Debug.Log("Jump Input detected");
-            Jump();
-		}
-		if (Input.GetButtonDown("Fire1"))
-		{
-			Debug.Log("Attack Input detected");
-			Attack();
-		}
-
+		HandleInput();
         // Check for ground underneath
         LayerMask mask = LayerMask.GetMask("ground");
         mask = int.MaxValue;
@@ -69,6 +60,30 @@ public class PlayerController : MonoBehaviour
         ToggleOrientation();
     }
 
+	private void HandleInput()
+	{
+		if (Input.GetButtonDown("Jump") && jumpsLeft > 0)
+		{
+			Debug.Log("Jump Input detected");
+			Jump();
+			return;
+		}
+		if (Input.GetButtonDown("Fire1"))
+		{
+			Debug.Log("Attack Input detected");
+			Attack();
+			return;
+		}
+		if (!airborne && Input.GetAxis("Vertical") < 0)
+		{
+			crouch = true;
+		}
+		else
+		{
+			crouch = false;
+		}
+	}
+
 	private void LateUpdate()
 	{
 		ToggleAnimation();
@@ -76,13 +91,17 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (!attacking)
+		if (!attacking && !crouch)
 		{
             myBody.velocity = new Vector3(moveSpeed * Input.GetAxis("Horizontal"), Mathf.Clamp(myBody.velocity.y, -maxVelY, maxVelY));
 		}
+		else if(attacking)
+		{
+			myBody.velocity = new Vector3(moveSpeed * Input.GetAxis("Horizontal") * attackPenalty, Mathf.Clamp(myBody.velocity.y, -maxVelY, maxVelY));
+		}
 		else
 		{
-			myBody.velocity = attackPenalty * myBody.velocity;
+			myBody.velocity = new Vector3(0f, Mathf.Clamp(myBody.velocity.y, -maxVelY, maxVelY));
 		}
 	}
 
@@ -219,16 +238,21 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if(Input.GetAxis("Horizontal") != 0)
+		if (crouch)
+		{
+			ChangeAnimatorState("Player_Crouch");
+			return;
+		}
+
+		if (Input.GetAxis("Horizontal") != 0)
 		{
 
-            ChangeAnimatorState("Player_Run", moveSpeed * moveAnimRatio);
-            
-            return;
+			ChangeAnimatorState("Player_Run", moveSpeed * moveAnimRatio);
+
+			return;
 		}
 
         ChangeAnimatorState("Player_Idle");
-        myAnimator.speed = 1f;
     }
 
     private void ChangeAnimatorState(string targetState, float speed = 1f)
