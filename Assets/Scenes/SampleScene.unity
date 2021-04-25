@@ -239,7 +239,7 @@ MonoBehaviour:
   player: {fileID: 1021095570}
   myPlayer: {fileID: 0}
   currentStageText: {fileID: 709930688}
-  map: {fileID: 369943613}
+  minimap: {fileID: 369943613}
   roomWidth: 100
   currentLevel: 0
   roomCount: 0
@@ -522,9 +522,13 @@ MonoBehaviour:
   - {fileID: 5543941588292853863, guid: fb4d6d1e3a991f049a315e98baf675bd, type: 3}
   - {fileID: -1863859237976802683, guid: fb4d6d1e3a991f049a315e98baf675bd, type: 3}
   myLineRenderer: {fileID: 7949128226108843597, guid: decb88915801ac54abd6443883c29301, type: 3}
+  specialLineRenderer: {fileID: 7949128226108843597, guid: 6557322ee4be60747b236813ad17c693, type: 3}
   myIcon: {fileID: 1969562723291446110, guid: 7cb81e77d2a6d9c478f12260f1625231, type: 3}
   playerIcon: {fileID: 340005104}
   spacing: 2
+  thickness: 2
+  defaultColor: {r: 0.033018887, g: 1, b: 0.8724309, a: 0}
+  specialColor: {r: 1, g: 0.59171915, b: 0, a: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

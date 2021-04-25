@@ -190,6 +190,7 @@ public class PlayerController : MonoBehaviour
         var newDoor = newRoom.roomObject.GetComponent<Room>().GetDoor(newDoorSide, newDoorNum);
         transform.position = newDoor.transform.position + Room.RoomSideToVec(newDoorSide);
         currentRoomNode = newRoom;
+		currentRoomNode.manager.ReloadMinimap();
     }
 
     private void ToggleOrientation()

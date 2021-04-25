@@ -15,7 +15,7 @@ public class RoomManager : MonoBehaviour
     public PlayerController myPlayer;
     public GameObject currentStageText;
     private Text myCurrentStageText;
-    public MiniMap map;
+    public MiniMap minimap;
 
     public int roomWidth = 100;
 
@@ -150,7 +150,6 @@ public class RoomManager : MonoBehaviour
     public void GenerateMap()
     {
         myCurrentStageText.text = "Stage " + (currentStage.stageDepth+1);
-        map.CreateMap(this);
         foreach (RoomNode node in roomNodes)
         {
             Destroy(node.roomObject);
@@ -206,6 +205,7 @@ public class RoomManager : MonoBehaviour
         var entryPos = startNode.roomObject.GetComponent<Room>().entryPoint.transform.position;
         player.transform.position = new Vector3(entryPos.x, entryPos.y, player.transform.position.z);
         myPlayer.currentRoomNode = startNode;
+        minimap.CreateMap(this);
     }
 
     private static int RandomTowardsTarget(int old, int target, int maxDiff, int noise=1)
@@ -339,4 +339,9 @@ public class RoomManager : MonoBehaviour
     {
         return myPlayer.currentRoomNode;
     }
+
+    public void ReloadMinimap()
+	{
+        minimap.CreateMap(this);
+	}
 }
