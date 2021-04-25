@@ -144,7 +144,8 @@ public class PlayerController : MonoBehaviour
 			// Physics2D.IgnoreCollision(myCollider, collision.collider);
 			// take damage.
 			HealthComponent otherHealthComp = collision.collider.GetComponent<HealthComponent>();
-			myHealth.TakeDamage(otherHealthComp.touchDamage);
+			if (!otherHealthComp.IsDead())
+				myHealth.TakeDamage(otherHealthComp.touchDamage);
 		}
 		else if (collision.collider.CompareTag("ground"))
 		{
