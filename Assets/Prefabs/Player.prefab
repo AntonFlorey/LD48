@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3812019442374871235}
   - component: {fileID: 3812019442374871232}
   - component: {fileID: 3812019442374871233}
+  - component: {fileID: 6263860654771444785}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: -1966381394238714707, guid: ea88b780a4a4e5b4d9dcb0e9b615d93b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,7 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxjumps: 2
   moveSpeed: 10
-  jumpForce: 10
+  jumpForce: 18
+  torsoHeight: 2
+  airborne: 0
 --- !u!50 &3812019442374871232
 Rigidbody2D:
   serializedVersion: 4
@@ -115,7 +118,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: 7e7bb1946caf8044a86ddce005aa6849, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -134,6 +137,25 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: -0.10566831, y: 0.0035221577}
+  m_Size: {x: 0.7886634, y: 1.9369254}
   m_Direction: 0
+--- !u!95 &6263860654771444785
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812019442374871236}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eb8cb67787727184c8d803b1efa00db0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

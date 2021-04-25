@@ -9,15 +9,22 @@ public class PlayerController : MonoBehaviour
     public int maxjumps = 1;
     public float moveSpeed;
     public float jumpForce = 1f;
+    public float torsoHeight = 1f;
+
 
     private Rigidbody2D myBody;
+    private SpriteRenderer myRenderer;
+    private Animator myAnimator;
     private int jumpsLeft = 1;
+    public bool airborne = false;
 
     // Start is called before the first frame update
     void Start()
     {
         jumpsLeft = maxjumps;
         myBody = this.GetComponent<Rigidbody2D>();
+        myAnimator = this.GetComponent<Animator>();
+        myRenderer = this.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -28,6 +35,18 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Jump Input detected");
             Jump();
 		}
+
+        // Check for ground underneath
+        airborne = true;
+        RaycastHit2D rc = Physics2D.Raycast(transform.position, Vector2.down, torsoHeight);
+        Debug.DrawRay(transform.position, torsoHeight * Vector2.down, Color.green, 1f);
+        if(rc.collider != null && rc.collider.tag == "ground")
+		{
+            airborne = false;
+		}
+
+        ToggleAnimation();
+        ToggleOrientation();
     }
 
 	private void FixedUpdate()
@@ -77,4 +96,53 @@ public class PlayerController : MonoBehaviour
         var newDoor = newRoom.roomObject.GetComponent<Room>().GetDoor(newDoorSide, newDoorNum);
         transform.position = newDoor.transform.position + Room.RoomSideToVec(newDoorSide);
     }
+
+    private void ToggleOrientation()
+	{
+		if (myRenderer.flipX && Input.GetAxis("Horizontal") > 0)
+		{
+            myRenderer.flipX = false;
+            return;
+		}
+        if (!myRenderer.flipX && Input.GetAxis("Horizontal") < 0)
+		{
+            myRenderer.flipX = true;
+            return;
+        }
+
+	}
+
+    private void ToggleAnimation()
+	{
+        float yVel = myBody.velocity.y;
+        if (airborne)
+		{
+            if(yVel > 0)
+			{
+                // Player is rising
+                ChangeAnimatorState("Player_Rise");
+            }
+            else
+			{
+                // Player is falling 
+                ChangeAnimatorState("Player_Fall"); // TODO
+            }
+            return;
+        }
+
+        if(Input.GetAxis("Horizontal") != 0)
+		{
+
+            ChangeAnimatorState("Player_Run");
+            return;
+		}
+
+        ChangeAnimatorState("Player_Idle");
+	}
+
+    private void ChangeAnimatorState(string targetState)
+	{
+        // Hab keine Bock meheeer
+        myAnimator.PlayInFixedTime(targetState);
+	}
 }
