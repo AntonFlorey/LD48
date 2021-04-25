@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public GameObject slashAttack;
     public float leftAttackOffset = 0;
     public float rightAttackOffset = 0;
+	public float attackSpeed = 1;
+	public float attackPenalty = 0f;
 
     private Rigidbody2D myBody;
     private SpriteRenderer myRenderer;
@@ -26,6 +28,9 @@ public class PlayerController : MonoBehaviour
     public bool airborne = false;
     public RoomNode currentRoomNode;
     public float moveAnimRatio = 0.1f;
+    [SerializeField] private bool attacking = false;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -61,24 +66,44 @@ public class PlayerController : MonoBehaviour
         //Debug.DrawRay(transform.position, torsoHeight * Vector2.down, Color.green, 1f);
         airborne = rc.Length == 0;
 
-        ToggleAnimation();
         ToggleOrientation();
     }
 
+	private void LateUpdate()
+	{
+		ToggleAnimation();
+	}
+
 	private void FixedUpdate()
 	{
-        myBody.velocity = new Vector3(moveSpeed * Input.GetAxis("Horizontal"), Mathf.Clamp(myBody.velocity.y, -maxVelY, maxVelY));
+		if (!attacking)
+		{
+            myBody.velocity = new Vector3(moveSpeed * Input.GetAxis("Horizontal"), Mathf.Clamp(myBody.velocity.y, -maxVelY, maxVelY));
+		}
+		else
+		{
+			myBody.velocity = attackPenalty * myBody.velocity;
+		}
 	}
 
 	private void Jump()
 	{
-        myBody.velocity = new Vector3(myBody.velocity.x, Mathf.Clamp(jumpForce, -maxVelY, maxVelY));
-        //myBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        jumpsLeft--;
+		if (!attacking)
+		{
+            myBody.velocity = new Vector3(myBody.velocity.x, Mathf.Clamp(jumpForce, -maxVelY, maxVelY));
+            //myBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            jumpsLeft--;
+        }
 	}
 
 	private void Attack()
 	{
+		if (attacking)
+		{
+			return;
+		}
+        attacking = true;
+		ChangeAnimatorState("Player_Attack", attackSpeed);
 		Vector3 mousePos = Input.mousePosition;
 		mousePos.z = myCamera.nearClipPlane;
 		var worldPos = myCamera.ScreenToWorldPoint(mousePos);
@@ -149,6 +174,10 @@ public class PlayerController : MonoBehaviour
 
     private void ToggleOrientation()
 	{
+		if (attacking)
+		{
+            return;
+		}
 		if (myRenderer.flipX && Input.GetAxis("Horizontal") > 0)
 		{
             myRenderer.flipX = false;
@@ -164,6 +193,16 @@ public class PlayerController : MonoBehaviour
 
     private void ToggleAnimation()
 	{
+		// Attack Animation
+		if (attacking)
+		{
+            if(myAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+			{
+                attacking = false;
+			}
+            return;
+		}
+
         float yVel = myBody.velocity.y;
         if (airborne)
 		{
@@ -190,13 +229,13 @@ public class PlayerController : MonoBehaviour
 
         ChangeAnimatorState("Player_Idle");
         myAnimator.speed = 1f;
-
     }
 
     private void ChangeAnimatorState(string targetState, float speed = 1f)
 	{
-        // Hab keine Bock meheeer
-        myAnimator.PlayInFixedTime(targetState);
-        myAnimator.speed = speed;
+		// Hab keine Bock meheeer
+		myAnimator.speed = speed;
+		myAnimator.PlayInFixedTime(targetState);
+        
     }
 }
