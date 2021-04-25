@@ -138,7 +138,7 @@ public class RoomManager : MonoBehaviour
 
     public void GenerateMap()
     {
-        myCurrentStageText.text = currentStage + "";
+        myCurrentStageText.text = "Stage " + currentStage;
         foreach (RoomNode node in roomNodes)
         {
             Destroy(node.roomObject);

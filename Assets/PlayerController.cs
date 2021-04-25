@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D myBody;
     private SpriteRenderer myRenderer;
     private Animator myAnimator;
+    private Collider2D myCollider;
+    private HealthComponent myHealth;
     private int jumpsLeft = 1;
     public bool airborne = false;
     public RoomNode currentRoomNode;
@@ -28,6 +30,8 @@ public class PlayerController : MonoBehaviour
         myBody = this.GetComponent<Rigidbody2D>();
         myAnimator = this.GetComponent<Animator>();
         myRenderer = this.GetComponent<SpriteRenderer>();
+        myCollider = this.GetComponent<Collider2D>();
+        myHealth = this.GetComponent<HealthComponent>();
     }
 
     // Update is called once per frame
@@ -61,7 +65,15 @@ public class PlayerController : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if(collision.collider.tag == "ground")
+		if (collision.collider.CompareTag("enemy"))
+		{
+			// TODO: do this too: but then also add a new collider
+			// Physics2D.IgnoreCollision(myCollider, collision.collider);
+			// take damage.
+			HealthComponent otherHealthComp = collision.collider.GetComponent<HealthComponent>();
+			myHealth.TakeDamage(otherHealthComp.touchDamage);
+		}
+		else if (collision.collider.CompareTag("ground"))
 		{
             jumpsLeft = maxjumps;
 		}
