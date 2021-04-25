@@ -464,22 +464,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3812019442374871236, guid: 530af64c22bde13488c56370de25b434, type: 3}
   m_PrefabInstance: {fileID: 3812019442305443414}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1021095571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021095570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb277968d3c61f8f4a7fae5e4bf062e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 10
-  health: 10
-  touchDamage: 1
-  text: {fileID: 1198800313}
 --- !u!114 &1021095575 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3812019442374871235, guid: 530af64c22bde13488c56370de25b434, type: 3}
@@ -643,6 +627,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1021095571, guid: 530af64c22bde13488c56370de25b434, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 1198800313}
     - target: {fileID: 3812019442374871234, guid: 530af64c22bde13488c56370de25b434, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -691,10 +679,6 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 519420028}
-    - target: {fileID: 3812019442374871235, guid: 530af64c22bde13488c56370de25b434, type: 3}
-      propertyPath: slashAttack
-      value: 
-      objectReference: {fileID: 6476308254274508147, guid: f485a9d8d1d3277fbb7549bc16ac2466, type: 3}
     - target: {fileID: 3812019442374871236, guid: 530af64c22bde13488c56370de25b434, type: 3}
       propertyPath: m_Name
       value: Player

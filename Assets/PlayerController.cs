@@ -64,12 +64,13 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-        myBody.velocity = new Vector3(moveSpeed * Input.GetAxis("Horizontal"), myBody.velocity.y);
+        myBody.velocity = new Vector3(moveSpeed * Input.GetAxis("Horizontal"), Mathf.Clamp(myBody.velocity.y, -maxVelY, maxVelY));
 	}
 
 	private void Jump()
 	{
-        myBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        myBody.velocity = new Vector3(myBody.velocity.x, Mathf.Clamp(jumpForce, -maxVelY, maxVelY));
+        //myBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         jumpsLeft--;
 	}
 

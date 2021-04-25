@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3812019442374871232}
   - component: {fileID: 3812019442374871233}
   - component: {fileID: 6263860654771444785}
+  - component: {fileID: 1021095571}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -100,9 +101,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxjumps: 2
   moveSpeed: 6
-  jumpForce: 18
+  jumpForce: 20
   torsoHeight: 1.2
-  maxVelY: 10
+  maxVelY: 50
+  camera: {fileID: 0}
+  slashAttack: {fileID: 6476308254274508147, guid: f485a9d8d1d3277fbb7549bc16ac2466, type: 3}
   airborne: 0
   moveAnimRatio: 0.15
 --- !u!50 &3812019442374871232
@@ -161,3 +164,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1021095571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812019442374871236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb277968d3c61f8f4a7fae5e4bf062e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
+  touchDamage: 1
+  text: {fileID: 0}
