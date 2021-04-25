@@ -31,7 +31,8 @@ public class HealthComponent : MonoBehaviour
         {
             myText = text.GetComponent<Text>();
         }
-        myCollider = GetComponent<Collider2D>();
+        var colliders = GetComponentsInChildren(typeof(Collider2D), true);
+        myCollider = (Collider2D)colliders[colliders.Length - 1];
         myRenderer = GetComponent<SpriteRenderer>();
         UpdateText();
         resetColor = myRenderer.color;
@@ -98,12 +99,11 @@ public class HealthComponent : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if (transform.gameObject.CompareTag("enemy") && other.CompareTag("attack"))
+    public void RecieveTriggerFromHitbox(Collider2D other)
+	{
+        if (other.CompareTag("attack") && !takingDamage)
         {
-            Physics2D.IgnoreCollision(myCollider, other);
-            TakeDamage(other.gameObject.GetComponent<StaticAttackController>().damage);
+            TakeDamage(other.gameObject.GetComponent<StaticAttackController>().damage);   
         }
     }
 }

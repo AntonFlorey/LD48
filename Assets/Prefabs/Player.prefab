@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 3812019442374871233}
   - component: {fileID: 6263860654771444785}
   - component: {fileID: 1021095571}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d4546340839cd694598923464b4d89e7, type: 2}
+  - {fileID: 2100000, guid: e6047c0d7df4dc54d8682e1b2118c752, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,6 +112,7 @@ MonoBehaviour:
   attackPenalty: 0
   moveAnimRatio: 0.15
   attacking: 0
+  orientation: 2
 --- !u!50 &3812019442374871232
 Rigidbody2D:
   serializedVersion: 4
@@ -197,7 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6899300420747202032}
   - component: {fileID: 3841177488975789227}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hitbox
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -231,6 +232,6 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.15743136, y: 0.1911667}
-  m_Size: {x: 0.7586372, y: 1.584745}
+  m_Offset: {x: -0.057565987, y: 0.09338176}
+  m_Size: {x: 0.55890644, y: 1.7803147}
   m_Direction: 0
