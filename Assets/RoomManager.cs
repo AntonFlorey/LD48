@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -35,19 +36,19 @@ public class RoomManager : MonoBehaviour
     private class ShouldStillGenerate
     {
         public int numGenericRooms;
-        public bool needWayDown;
+        public int numWaysDown;
 
-        public ShouldStillGenerate(int numGenericRooms, bool needWayDown)
+        public ShouldStillGenerate(int numGenericRooms, int numWaysDown)
         {
             if (numGenericRooms < 0)
                 numGenericRooms = 0;
             this.numGenericRooms = numGenericRooms;
-            this.needWayDown = needWayDown;
+            this.numWaysDown = numWaysDown;
         }
 
         public bool IsDone()
         {
-            return numGenericRooms <= 0 && !needWayDown;
+            return numGenericRooms <= 0 && numWaysDown <= 0;
         }
 
         public void AddMadeNode(RoomNode newNode)
@@ -55,8 +56,8 @@ public class RoomManager : MonoBehaviour
             var isWayDown = newNode.roomObject.GetComponent<Room>().wayDown != null;
             if (isWayDown)
             {
-                Assert.IsTrue(needWayDown);
-                needWayDown = false;
+                Assert.IsTrue(numWaysDown > 0);
+                numWaysDown--;
             } else
             {
                 numGenericRooms = Math.Max(0, numGenericRooms - 1);
@@ -64,7 +65,8 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    private RoomNode GetRoomWithMaxDoors(RoomSide side, int maxIncomingDoors, ShouldStillGenerate shouldStillGenerate)
+    private RoomNode GetRoomWithMaxDoors(RoomSide side, int maxIncomingDoors, ShouldStillGenerate shouldStillGenerate,
+        int madeRoomRadius)
     {
         Assert.IsTrue(maxIncomingDoors >= 1);
         var minOutgoingDoors = shouldStillGenerate.IsDone() ? 0 : 1;
@@ -82,7 +84,7 @@ public class RoomManager : MonoBehaviour
             if (room.entryPoint != null)
                 continue;
             var isWayDown = room.wayDown != null;
-            if (shouldStillGenerate.needWayDown && isWayDown)
+            if (shouldStillGenerate.numWaysDown > 0 && isWayDown)
             {
                 available.Add(roomPrefab);
             } else if (!isWayDown && outgoingDoorCount <= maxOutgoingGeneralDoors)
@@ -92,12 +94,13 @@ public class RoomManager : MonoBehaviour
         }
         Assert.IsTrue(available.Count > 0);
         var chosenRoomPrefab = available[Random.Range(0, available.Count)];
-        var madeNode = new RoomNode(this, chosenRoomPrefab);
+        var madeNode = new RoomNode(this, chosenRoomPrefab, madeRoomRadius);
         shouldStillGenerate.AddMadeNode(madeNode);
         return madeNode;
     }
 
-    private List<RoomNode> GenerateNextRooms(RoomSide side, List<RoomNode> currentRooms, ShouldStillGenerate shouldStillGenerate)
+    private List<RoomNode> GenerateNextRooms(RoomSide side, List<RoomNode> currentRooms,
+        ShouldStillGenerate shouldStillGenerate, int radius)
     {
         var oppositeSide = Room.OppositeSide(side);
         var currRoomNum = 0;
@@ -107,7 +110,7 @@ public class RoomManager : MonoBehaviour
         {
             // find a room with <= rooms at opposite of side.
             RoomNode nextNode = GetRoomWithMaxDoors(
-                oppositeSide, doorsLeft, shouldStillGenerate);
+                oppositeSide, doorsLeft, shouldStillGenerate, radius);
             nextRooms.Add(nextNode);
             var nodesToMake = nextNode.GetDoorCount(oppositeSide);
             Assert.IsTrue(nodesToMake > 0);
@@ -149,39 +152,50 @@ public class RoomManager : MonoBehaviour
         }
         roomCount = 0;
         roomNodes.Clear();
-        var startNode = new RoomNode(this, roomPrefabs[0]);
+        var startNode = new RoomNode(this, roomPrefabs[0], 0);
         List<RoomNode> leftmostRooms = new List<RoomNode>();
         List<RoomNode> rightmostRooms = new List<RoomNode>();
         leftmostRooms.Add(startNode);
         rightmostRooms.Add(startNode);
         roomNodes.Add(startNode);
-        var shouldStillGenerate = new ShouldStillGenerate(5, true);
-        // todo set number of needWayDown rooms.
-        int stepsLeft = shouldStillGenerate.numGenericRooms + 10;
+        var shouldStillGenerate = new ShouldStillGenerate(5, currentStage.GetNumWaysDown());
+        int radius = 1;
         while (CountDoorsAtSide(RoomSide.Left, leftmostRooms) + CountDoorsAtSide(RoomSide.Left, rightmostRooms) > 0)
         {
-            if (stepsLeft <= 0)
+            if (radius >= shouldStillGenerate.numGenericRooms + 10)
                 Assert.IsTrue(false);
 
             if (Random.Range(0, 2) == 0)
             {
-                leftmostRooms = GenerateNextRooms(RoomSide.Left, leftmostRooms, shouldStillGenerate);
-                rightmostRooms = GenerateNextRooms(RoomSide.Right, rightmostRooms, shouldStillGenerate);
+                leftmostRooms = GenerateNextRooms(RoomSide.Left, leftmostRooms, shouldStillGenerate, -radius);
+                rightmostRooms = GenerateNextRooms(RoomSide.Right, rightmostRooms, shouldStillGenerate, radius);
             }
             else
             {
-                rightmostRooms = GenerateNextRooms(RoomSide.Right, rightmostRooms, shouldStillGenerate);
-                leftmostRooms = GenerateNextRooms(RoomSide.Left, leftmostRooms, shouldStillGenerate);
+                rightmostRooms = GenerateNextRooms(RoomSide.Right, rightmostRooms, shouldStillGenerate, -radius);
+                leftmostRooms = GenerateNextRooms(RoomSide.Left, leftmostRooms, shouldStillGenerate, radius);
             }
             roomNodes.AddRange(leftmostRooms);
             roomNodes.AddRange(rightmostRooms);
 
-            stepsLeft--;
+            radius++;
         }
         Assert.AreEqual(roomCount, roomNodes.Count);
         foreach (RoomNode node in roomNodes)
         {
             node.SetupInstance();
+        }
+
+        var sortedRoomNodes = new List<RoomNode>(roomNodes);
+        sortedRoomNodes.OrderBy(node => node.horizontalPos);
+        var wayDownNum = 0;
+        foreach (var node in sortedRoomNodes)
+        {
+            if (node.roomObject.GetComponent<Room>().wayDown != null)
+            {
+                node.wayDownNum = wayDownNum;
+                wayDownNum++;
+            }
         }
 
         var entryPos = startNode.roomObject.GetComponent<Room>().entryPoint.transform.position;
@@ -257,8 +271,7 @@ public class RoomManager : MonoBehaviour
         }
         else
         {
-            // TODO: handle this properly!!!
-            currentStage = currentStage.nextStages[0];
+            currentStage = currentStage.nextStages[GetCurrentRoom().wayDownNum];
         }    
         GenerateMap();
     }

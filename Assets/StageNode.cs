@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -35,5 +36,10 @@ public class StageNode
     public override string ToString()
     {
         return "StageNode(d" + stageDepth + "p" + horizontalNum + " " + type + " " + string.Join(" ", nextStages.ConvertAll<string>(a => a.ToString()).ToArray()) + ")";
+    }
+
+    public int GetNumWaysDown()
+    {
+        return Math.Max(nextStages.Count, 1);  // at least one, one for the boss!
     }
 }

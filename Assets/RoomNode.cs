@@ -10,14 +10,17 @@ public class RoomNode
     private readonly List<RoomNode> rightNeighborRooms = new List<RoomNode>();
     private readonly List<int> leftNeighborDoorNums = new List<int>();
     private readonly List<int> rightNeighborDoorNums = new List<int>();
+    public int wayDownNum = -1;
 
     public GameObject roomObject;
     public Room myRoom;
+    public int horizontalPos;
 
-    public RoomNode(RoomManager manager, GameObject roomPrefab)
+    public RoomNode(RoomManager manager, GameObject roomPrefab, int horizontalPos)
     {
         this.manager = manager;
         this.roomPrefab = roomPrefab;
+        this.horizontalPos = horizontalPos;
         
         var baseTransform = manager.transform;
         var pos = baseTransform.position + new Vector3(manager.roomCount * manager.roomWidth, 0, 0);
