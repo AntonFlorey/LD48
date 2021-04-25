@@ -20,6 +20,16 @@ public class Room : MonoBehaviour
     private Tilemap groundTileMap;
     private List<GameObject> aliveEnemies;
 
+    public Bounds getBounds()
+	{
+        Bounds result = new Bounds();
+        BoundsInt tileBounds = tileMap.cellBounds;
+        float cSize = tileMap.cellSize.x;
+        result.min = tileMap.LocalToWorld(new Vector3(tileBounds.xMin * cSize, tileBounds.yMin * cSize));
+        result.max = tileMap.LocalToWorld(new Vector3(tileBounds.xMax * cSize, tileBounds.yMax * cSize));
+        return result;
+	}
+
     public GameObject GetDoor(RoomSide side, int doorNum)
     {
         switch (side)
