@@ -17,6 +17,8 @@ public class Room : MonoBehaviour
     public GameObject groundTiles;
     public GameObject entryPoint = null;
     public GameObject wayDown = null;
+    public bool specialRoom;
+    public StageNode.StageType specialRoomType;
     private Tilemap tileMap;
     private Tilemap groundTileMap;
     private List<GameObject> aliveEnemies;

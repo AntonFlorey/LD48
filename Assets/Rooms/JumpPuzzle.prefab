@@ -59,15 +59,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6720a5faf37bf813ebce64fcd57500da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftDoors:
-  - {fileID: 0}
-  - {fileID: 0}
+  leftDoors: []
   rightDoors:
   - {fileID: 8469928768776770072}
   tiles: {fileID: 5894734827739121974}
   groundTiles: {fileID: 0}
   entryPoint: {fileID: 0}
   wayDown: {fileID: 0}
+  specialRoom: 1
+  specialRoomType: 2
 --- !u!1 &5089527423317400196
 GameObject:
   m_ObjectHideFlags: 0
@@ -3635,8 +3635,8 @@ Tilemap:
   - first: {x: 24, y: 19, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 24
-      m_TileSpriteIndex: 24
+      m_TileIndex: 9
+      m_TileSpriteIndex: 9
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -7912,7 +7912,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 45c66b5dd46d0f8499e165dd9e94715d, type: 2}
   - m_RefCount: 5
     m_Data: {fileID: 11400000, guid: 85cad0c2406edb04d8b40e1e70530d7d, type: 2}
-  - m_RefCount: 4
+  - m_RefCount: 5
     m_Data: {fileID: 11400000, guid: d2ce74c6c82a1c940b6aea8fbd621f0f, type: 2}
   - m_RefCount: 8
     m_Data: {fileID: 11400000, guid: d5312ebcf090ea7389c2591f5e09001a, type: 2}
@@ -7942,7 +7942,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 081964f59f3b4a5479fc0b5f22f2e834, type: 2}
   - m_RefCount: 7
     m_Data: {fileID: 11400000, guid: 042d41ffd37fd6846b32c97f05f21c1e, type: 2}
-  - m_RefCount: 508
+  - m_RefCount: 507
     m_Data: {fileID: 11400000, guid: a01ba9b1c0589644caeaf288742700c3, type: 2}
   - m_RefCount: 5
     m_Data: {fileID: 11400000, guid: 39f299df459d17441b72fb82a23b6a45, type: 2}
@@ -7971,7 +7971,7 @@ Tilemap:
     m_Data: {fileID: 6633698438236917473, guid: 125087c6230664d4c8d1cc2e07c5d2d6, type: 3}
   - m_RefCount: 5
     m_Data: {fileID: -591491923841590759, guid: 125087c6230664d4c8d1cc2e07c5d2d6, type: 3}
-  - m_RefCount: 4
+  - m_RefCount: 5
     m_Data: {fileID: 1157461879057227869, guid: 125087c6230664d4c8d1cc2e07c5d2d6, type: 3}
   - m_RefCount: 8
     m_Data: {fileID: 5694904769269739756, guid: 125087c6230664d4c8d1cc2e07c5d2d6, type: 3}
@@ -8001,7 +8001,7 @@ Tilemap:
     m_Data: {fileID: 1738059905208273516, guid: 125087c6230664d4c8d1cc2e07c5d2d6, type: 3}
   - m_RefCount: 7
     m_Data: {fileID: -169982878260430966, guid: 125087c6230664d4c8d1cc2e07c5d2d6, type: 3}
-  - m_RefCount: 508
+  - m_RefCount: 507
     m_Data: {fileID: 7667112224711705684, guid: 125087c6230664d4c8d1cc2e07c5d2d6, type: 3}
   - m_RefCount: 5
     m_Data: {fileID: 4778119328724819480, guid: 125087c6230664d4c8d1cc2e07c5d2d6, type: 3}

@@ -163,7 +163,7 @@ public class RoomManager : MonoBehaviour
         leftmostRooms.Add(startNode);
         rightmostRooms.Add(startNode);
         roomNodes.Add(startNode);
-        var shouldStillGenerate = new ShouldStillGenerate(5, currentStage.GetNumWaysDown());
+        var shouldStillGenerate = new ShouldStillGenerate(2, currentStage.GetNumWaysDown());
         int radius = 1;
         while (CountDoorsAtSide(RoomSide.Left, leftmostRooms) + CountDoorsAtSide(RoomSide.Left, rightmostRooms) > 0)
         {

@@ -235,6 +235,7 @@ MonoBehaviour:
   - {fileID: 3102208128844926754, guid: b8fa2f4fcb0fc74209c4f977f272c919, type: 3}
   - {fileID: 3102208128844926754, guid: 3f5e5260d2932e9bb9a2e8e421708ad7, type: 3}
   - {fileID: 3102208128844926754, guid: c1f4d21bcd29a536cb61bc933dc65af9, type: 3}
+  - {fileID: 3102208128844926754, guid: 5036b776a17a4920cb7e984099be8cdf, type: 3}
   player: {fileID: 1021095570}
   myPlayer: {fileID: 0}
   currentStageText: {fileID: 709930688}
