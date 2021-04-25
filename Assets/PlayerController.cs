@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpForce = 1f;
     public float torsoHeight = 1f;
+    public float maxVelY = 10f;
 
     private Rigidbody2D myBody;
     private SpriteRenderer myRenderer;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private int jumpsLeft = 1;
     public bool airborne = false;
     public RoomNode currentRoomNode;
+    public float moveAnimRatio = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -138,16 +140,20 @@ public class PlayerController : MonoBehaviour
         if(Input.GetAxis("Horizontal") != 0)
 		{
 
-            ChangeAnimatorState("Player_Run");
+            ChangeAnimatorState("Player_Run", moveSpeed * moveAnimRatio);
+            
             return;
 		}
 
         ChangeAnimatorState("Player_Idle");
-	}
+        myAnimator.speed = 1f;
 
-    private void ChangeAnimatorState(string targetState)
+    }
+
+    private void ChangeAnimatorState(string targetState, float speed = 1f)
 	{
         // Hab keine Bock meheeer
         myAnimator.PlayInFixedTime(targetState);
-	}
+        myAnimator.speed = speed;
+    }
 }
