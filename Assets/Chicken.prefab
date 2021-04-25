@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -3468765936338543897}
   - component: {fileID: 3228117620187243727}
   - component: {fileID: 8866915237654369096}
+  - component: {fileID: 2020925339046356250}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: enemy
@@ -173,3 +174,19 @@ MonoBehaviour:
   maxTime: 250
   jumpForce: 8
   currentTime: 250
+--- !u!114 &2020925339046356250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5009388995366303733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb277968d3c61f8f4a7fae5e4bf062e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 2
+  health: 2
+  touchDamage: 1
+  text: {fileID: 0}
