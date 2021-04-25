@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -6524517629087480824, guid: e321c158ab5701a9da47a0bd92529723, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -189,4 +189,7 @@ MonoBehaviour:
   maxHealth: 2
   health: 2
   touchDamage: 1
+  damageCooldown: 1
+  damageAnimTime: 0.2
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
   text: {fileID: 0}

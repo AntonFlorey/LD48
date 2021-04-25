@@ -189,4 +189,10 @@ public class RoomManager : MonoBehaviour
         currentStage++;
         GenerateMap();
     }
+
+    public RoomNode GetCurrentRoom()
+    {
+        Debug.Log("yos");
+        return myPlayer.currentRoomNode;
+    }
 }

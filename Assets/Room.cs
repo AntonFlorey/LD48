@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +12,7 @@ public class Room : MonoBehaviour
 {
     public List<GameObject> leftDoors;
     public List<GameObject> rightDoors;
-    public RoomNode roomNode;
+    internal RoomNode roomNode;
     public GameObject tiles;
     public GameObject groundTiles;
     public GameObject entryPoint = null;
@@ -156,7 +157,8 @@ public class Room : MonoBehaviour
 
     public bool IsActive()
     {
-        return roomNode.manager.myPlayer.currentRoomNode.roomObject.Equals(roomNode.roomObject);
+        Debug.Log(roomNode);
+        return roomNode.manager.GetCurrentRoom().roomObject.Equals(roomNode.roomObject);
     }
 
     public void MarkEnemyDeath(GameObject enemy)
