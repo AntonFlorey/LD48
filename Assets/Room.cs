@@ -50,10 +50,8 @@ public class Room : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Making a room!");
         if (groundTiles == null)
         {
-            Debug.Log("making ground tiles for" + name);
             groundTiles = Instantiate(tiles, transform);
             groundTiles.name = tiles.name + "_Ground";
             var deepTileMap = tiles.GetComponent<Tilemap>();
