@@ -62,24 +62,30 @@ public class Room : MonoBehaviour
     {
         if (groundTiles == null)
         {
-            groundTiles = Instantiate(tiles, tiles.transform);
-            var otherTileMap = tiles.GetComponent<Tilemap>();
+            groundTiles = Instantiate(tiles, transform);
+            groundTiles.name = tiles.name + "_Ground";
+            var deepTileMap = tiles.GetComponent<Tilemap>();
             var groundTileMap = groundTiles.GetComponent<Tilemap>();
-            var size = groundTileMap.size;
-            for (var x = 0; x < size.x; x++)
+            var bounds = groundTileMap.cellBounds;
+            Assert.AreEqual(bounds, deepTileMap.cellBounds);
+            for (var x = bounds.xMin; x < bounds.xMax; x++)
             {
-                for (var y = 0; y < size.y - 1; y++)
+                for (var y = bounds.yMin; y < bounds.yMax - 1; y++)
                 {
                     var pos = new Vector3Int(x, y, 0);
                     if (!groundTileMap.HasTile(pos))
+                    {
+                        Assert.IsFalse(groundTileMap.HasTile(pos));
                         continue;
+                    }
                     if (groundTileMap.HasTile(new Vector3Int(x, y + 1, 0)))
                     {
                         groundTileMap.SetTile(pos, null);
+                        Debug.Log("Removed sth");
                     }
                     else
                     {
-                        otherTileMap.SetTile(pos, null);
+                        deepTileMap.SetTile(pos, null);
                     }
                 }
             }
