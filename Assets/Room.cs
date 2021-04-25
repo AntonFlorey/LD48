@@ -4,6 +4,7 @@ using System.IO;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 public class Room : MonoBehaviour
@@ -13,8 +14,11 @@ public class Room : MonoBehaviour
     public RoomNode roomNode;
     public GameObject tiles;
     public GameObject groundTiles;
+    public GameObject entryPoint = null;
+    public GameObject wayDown = null;
     private Tilemap tileMap;
     private Tilemap groundTileMap;
+    private List<GameObject> aliveEnemies;
 
     public GameObject GetDoor(RoomSide side, int doorNum)
     {
@@ -76,6 +80,39 @@ public class Room : MonoBehaviour
         }
         tileMap = tiles.GetComponent<Tilemap>();
         groundTileMap = groundTiles.GetComponent<Tilemap>();
+
+        aliveEnemies = new List<GameObject>();
+        for (int enemyIdx = 0; enemyIdx < transform.childCount; enemyIdx++)
+        {
+            var enemyTransform = transform.GetChild(enemyIdx);
+            if (enemyTransform.gameObject.CompareTag("enemy"))
+            {
+                aliveEnemies.Add(enemyTransform.gameObject);
+            }
+        }
+
+        UpdateDoors();
+    }
+
+    private void UpdateDoors()
+    {
+        var open = IsCleared();
+        foreach (var door in leftDoors)
+        {
+            door.GetComponent<BoxCollider2D>().isTrigger = open;
+            if (open)
+            {
+                Destroy(door.GetComponent<SpriteRenderer>());
+            }
+        }
+        foreach (var door in rightDoors)
+        {
+            door.GetComponent<BoxCollider2D>().isTrigger = open;
+            if (open)
+            {
+                Destroy(door.GetComponent<SpriteRenderer>());
+            }
+        }
     }
 
     public Vector3Int GetTilePos(Vector3 pos)
@@ -108,5 +145,15 @@ public class Room : MonoBehaviour
                 Assert.IsTrue(false);
                 return new Vector3(0, 0, 0);  // return any
         }
+    }
+
+    public bool IsActive()
+    {
+        return roomNode.manager.myPlayer.currentRoomNode.roomObject.Equals(roomNode.roomObject);
+    }
+
+    public bool IsCleared()
+    {
+        return aliveEnemies.Count == 0;
     }
 }

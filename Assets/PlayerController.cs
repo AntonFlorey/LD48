@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Animator myAnimator;
     private int jumpsLeft = 1;
     public bool airborne = false;
+    public RoomNode currentRoomNode;
 
     // Start is called before the first frame update
     void Start()
@@ -70,31 +71,39 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (!other.CompareTag("door"))
-			return;
-        GameObject doorObj = other.gameObject;
-        GameObject roomObj = doorObj.transform.parent.gameObject;
-        Room room = roomObj.GetComponent<Room>();
-        int leftIdx = room.GetDoors(RoomSide.Left).IndexOf(doorObj);
-        int rightIdx = room.GetDoors(RoomSide.Right).IndexOf(doorObj);
-        if (leftIdx != -1)
-        {
-            LeaveRoomThroughDoor(room.roomNode, RoomSide.Left, leftIdx);
-        }
-        else if (rightIdx != -1)
-        {
-            LeaveRoomThroughDoor(room.roomNode, RoomSide.Right, rightIdx);
-        }
+		GameObject doorObj = other.gameObject;
+		GameObject roomObj = doorObj.transform.parent.gameObject;
+		Room room = roomObj.GetComponent<Room>();
+		if (other.CompareTag("door"))
+		{
+			int leftIdx = room.GetDoors(RoomSide.Left).IndexOf(doorObj);
+			int rightIdx = room.GetDoors(RoomSide.Right).IndexOf(doorObj);
+			if (leftIdx != -1)
+			{
+				LeaveRoomThroughDoor(room.roomNode, RoomSide.Left, leftIdx);
+			}
+			else if (rightIdx != -1)
+			{
+				LeaveRoomThroughDoor(room.roomNode, RoomSide.Right, rightIdx);
+			}
+		} else if (other.CompareTag("down"))
+		{
+			Debug.Log("entering new stage " + (room.roomNode.manager.currentStage+1));
+			room.roomNode.manager.EnterNextStage();
+		}
     }
 
     private void LeaveRoomThroughDoor(RoomNode oldRoom, RoomSide oldDoorSide, int oldDoorNum)
     {
+	    if (!oldRoom.myRoom.IsCleared())
+		    return;
         var newDoorSide = Room.OppositeSide(oldDoorSide);
         var newDoorNum = oldRoom.GetRoomDoorNums(oldDoorSide)[oldDoorNum];   // todo !!! set this!!
         Debug.Log("enter door from door num"+oldDoorNum+"to"+newDoorNum);
-        RoomNode newRoom = oldRoom.GetRooms(oldDoorSide)[oldDoorNum];
+        RoomNode newRoom = oldRoom.GetNeighborRooms(oldDoorSide)[oldDoorNum];
         var newDoor = newRoom.roomObject.GetComponent<Room>().GetDoor(newDoorSide, newDoorNum);
         transform.position = newDoor.transform.position + Room.RoomSideToVec(newDoorSide);
+        currentRoomNode = newRoom;
     }
 
     private void ToggleOrientation()
