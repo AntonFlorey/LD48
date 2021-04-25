@@ -77,7 +77,6 @@ public class Room : MonoBehaviour
                     if (groundTileMap.HasTile(new Vector3Int(x, y + 1, 0)))
                     {
                         groundTileMap.SetTile(pos, null);
-                        Debug.Log("Removed sth");
                     }
                     else
                     {
@@ -158,6 +157,12 @@ public class Room : MonoBehaviour
     public bool IsActive()
     {
         return roomNode.manager.myPlayer.currentRoomNode.roomObject.Equals(roomNode.roomObject);
+    }
+
+    public void MarkEnemyDeath(GameObject enemy)
+    {
+        aliveEnemies.Remove(enemy);
+        UpdateDoors();
     }
 
     public bool IsCleared()

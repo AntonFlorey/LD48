@@ -83,16 +83,16 @@ public class PlayerController : MonoBehaviour
 		var selfPos = transform.position;
 		var attackDir = (worldPos.x < selfPos.x) ? RoomSide.Left : RoomSide.Right;
 		var attackDirInt = attackDir == RoomSide.Left ? -1 : 1;
-		Debug.Log(attackDir);
 		var attack = Instantiate(slashAttack, transform.parent);
 		attack.transform.position = transform.position + new Vector3(attackDirInt * transform.localScale.x / 2, 0, 0);
+		attack.GetComponent<StaticAttackController>().active = true;
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.collider.CompareTag("enemy"))
 		{
-			// TODO: do this too: but then also add a new collider
+			// TODO: do this too: but then also add a new trigger.
 			// Physics2D.IgnoreCollision(myCollider, collision.collider);
 			// take damage.
 			HealthComponent otherHealthComp = collision.collider.GetComponent<HealthComponent>();
