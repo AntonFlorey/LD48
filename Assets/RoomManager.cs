@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.Windows.WebCam;
 using Random = UnityEngine.Random;
@@ -19,12 +20,17 @@ public class RoomManager : MonoBehaviour
 
     public int roomWidth = 100;
 
+    public int levelCount = 3;
     public int currentLevel = 0;
     public StageNode currentLevelStartStage;
     public StageNode currentStage;
     private List<RoomNode> roomNodes = new List<RoomNode>();
     public int roomCount = 0;
     public float[] stageTypeFrequencies;
+
+    public int levelStageDepth = 12;
+    public List<int> levelTargetStageWidths;
+    public List<int> levelTargetNumGenericRoomsPerStage;
 
     private int CountDoorsAtSide(RoomSide side, List<RoomNode> nodes)
     {
@@ -162,7 +168,8 @@ public class RoomManager : MonoBehaviour
         leftmostRooms.Add(startNode);
         rightmostRooms.Add(startNode);
         roomNodes.Add(startNode);
-        var shouldStillGenerate = new ShouldStillGenerate(2, currentStage.GetNumWaysDown());
+        var numGenericRooms = levelTargetNumGenericRoomsPerStage[currentLevel];
+        var shouldStillGenerate = new ShouldStillGenerate(numGenericRooms, currentStage.GetNumWaysDown());
         int radius = 1;
         while (CountDoorsAtSide(RoomSide.Left, leftmostRooms) + CountDoorsAtSide(RoomSide.Left, rightmostRooms) > 0)
         {
@@ -216,8 +223,8 @@ public class RoomManager : MonoBehaviour
 
     private StageNode GenerateLevelStartStage()
     {
-        int totalDepth = 16;
-        int targetWidth = 3;
+        int totalDepth = levelStageDepth;
+        int targetWidth = levelTargetStageWidths[currentLevel];
         int maxWidthDiff = 2;
         Debug.Log("Making stages:");
         List<StageNode> prevStages = new List<StageNode>();
@@ -309,9 +316,11 @@ public class RoomManager : MonoBehaviour
         }
 
         float random = Random.Range(0, valTotal);
+        Debug.Log("Draw" + random + "<=" + valTotal);
         for (var num = 0; num < StageNode.NUM_STAGE_TYPES; num++)
         {
             random -= stageTypeFrequencies[num];
+            Debug.Log("After" + num+ " its" + random);
             if (random <= 0)
                 return StageNode.GetStageTypeFromNum(num);
         }

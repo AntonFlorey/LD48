@@ -15,16 +15,19 @@ public class StageNode
         Heal = 4
     }
 
-    public static int NUM_STAGE_TYPES = 5;
-
+    public static StageType[] STAGE_TYPES = new StageType[]
+    {
+        StageType.Normal, StageType.Treasure, StageType.Puzzle, StageType.Challenge, StageType.Heal
+    };
+    public static int NUM_STAGE_TYPES = STAGE_TYPES.Length;
     public static int GetStageTypeNum(StageType type)
     {
-        return (int) type;
+        return Array.IndexOf(STAGE_TYPES, type);
     }
 
     public static StageType GetStageTypeFromNum(int num)
     {
-        return (StageType) num;
+        return STAGE_TYPES[num];
     }
     
     public readonly RoomManager manager;

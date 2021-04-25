@@ -49,7 +49,6 @@ public class MiniMap : MonoBehaviour
     public void CreateMap(RoomManager myManager)
 	{
         ClearMap();
-        Debug.Log("Generating the minimap...");
         StageNode startNode = myManager.currentLevelStartStage;
         int depthLayers = RoomDepth(startNode, 1);
 
@@ -67,22 +66,22 @@ public class MiniMap : MonoBehaviour
         while(currLayer.Count != 0)
 		{
             // Draw the Rooms from the previous layer ...
-            // create vert linspace
-            List<float> linspaceV = new List<float>();
+            List<float> currLayerDrawPosX = new List<float>();
             float offset = Mathf.Min(spacing, (float)(bound.max.x - bound.min.x) / currLayer.Count);
             float middle = bound.center.x - offset * currLayer.Count / 2f;
-            for (int i = 0; i < currLayer.Count; i++)
+            for (int horizontalPos = 0; horizontalPos < currLayer.Count; horizontalPos++)
             {
-                linspaceV.Add(middle + offset * (float)i);
+                currLayerDrawPosX.Add(middle + offset * (float)horizontalPos);
             }
 
-            for (int i = 0; i < currLayer.Count; i++)
+            Debug.Log("make layer!");
+            for (int horizontalPos = 0; horizontalPos < currLayer.Count; horizontalPos++)
 			{
-                DrawIcon((int)currLayer[i].type, new Vector2(linspaceV[i], linspaceD[currLayer[i].stageDepth]));
-                Debug.Log("Minimap icon added...");
-                if (SameRoom(currLayer[i], myManager.currentStage))
+				Debug.Log("has elemenet" + horizontalPos + ":" + currLayer[horizontalPos] + " which has " + currLayer[horizontalPos].type + StageNode.GetStageTypeNum(currLayer[horizontalPos].type));
+                DrawIcon(currLayer[horizontalPos].type, new Vector2(currLayerDrawPosX[horizontalPos], linspaceD[currLayer[horizontalPos].stageDepth]));
+                if (SameRoom(currLayer[horizontalPos], myManager.currentStage))
 				{
-                    DrawPlayer(new Vector2(linspaceV[i], linspaceD[currLayer[i].stageDepth]));
+                    DrawPlayer(new Vector2(currLayerDrawPosX[horizontalPos], linspaceD[currLayer[horizontalPos].stageDepth]));
 				}
 			}
 
@@ -95,13 +94,12 @@ public class MiniMap : MonoBehaviour
                     foreach (int parent in parents)
                     {
                         Vector2 p0 = new Vector2(lastLinspace[parent], linspaceD[node.stageDepth - 1]);
-                        Vector2 p1 = new Vector2(linspaceV[node.horizontalNum], linspaceD[node.stageDepth]);
+                        Vector2 p1 = new Vector2(currLayerDrawPosX[node.horizontalNum], linspaceD[node.stageDepth]);
                         Color col = new Color(194, 194, 209);
                         int wayDownNum = myManager.GetCurrentRoom().wayDownNum;
 
                         if (myManager.currentStage.stageDepth == node.stageDepth - 1 && myManager.currentStage.horizontalNum == parent && wayDownNum >= 0 && node.horizontalNum == myManager.currentStage.nextStages[wayDownNum].horizontalNum)
 						{
-                            Debug.Log("SPECIAL EDGE ADDED");
                             DrawLine(p0, p1, true, thickness);
 						}
 						else
@@ -129,17 +127,17 @@ public class MiniMap : MonoBehaviour
                     }
                 }
             }
-            lastLinspace = linspaceV;
+            lastLinspace = currLayerDrawPosX;
             currLayer = tmp;
         }
 
 	}
 
-    private void DrawIcon(int id, Vector2 pos)
+    private void DrawIcon(StageNode.StageType type, Vector2 pos)
 	{
         GameObject newIcon = Instantiate(myIcon, transform);
         activeIcons.Add(newIcon);
-        myIcon.GetComponent<SpriteRenderer>().sprite = icons[id];
+        myIcon.GetComponent<SpriteRenderer>().sprite = icons[StageNode.GetStageTypeNum(type)];
         newIcon.transform.localPosition = new Vector3(pos.x, pos.y, newIcon.transform.position.z);
 	}
 
