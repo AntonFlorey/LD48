@@ -240,13 +240,13 @@ public class RoomManager : MonoBehaviour
             int connectedPrevUntil = 0;
             for (var newStageNum = 0; newStageNum < newWidth; newStageNum++)
             {
-                Debug.Log("Make new " + newStageNum);
                 // if we have an equal mapping, every prev has to point to newWidth / prevWidth.
                 int connectToLeft = prevWidth - connectedPrevUntil - 1;
-                bool connectAgain = Random.Range(0, 1) == 0;
+                Debug.Log("Make new " + newStageNum +", with connectToLeft=" + connectToLeft);
+                bool connectAgain = Random.Range(0, 2) == 0;
                 connectAgain |= newStageNum == 0;  // have to connect to first.
                 connectAgain |= connectToLeft == 0;  // have to connect if nothing else left
-                int willConnectTo = connectToLeft / (newWidth - newStageNum);
+                int willConnectTo = (int) ((connectToLeft * 1f / (newWidth - newStageNum)) + 0.5f);
                 willConnectTo = Random.Range(willConnectTo - 1, willConnectTo + 1);  // add some noise
                 willConnectTo = Math.Min(Math.Max(willConnectTo, 1), connectToLeft);
                 Debug.Log("Decided to connect again=" + connectAgain + " and to news=" + willConnectTo + " from the" + connectToLeft + " that are left");
@@ -316,11 +316,9 @@ public class RoomManager : MonoBehaviour
         }
 
         float random = Random.Range(0, valTotal);
-        Debug.Log("Draw" + random + "<=" + valTotal);
         for (var num = 0; num < StageNode.NUM_STAGE_TYPES; num++)
         {
             random -= stageTypeFrequencies[num];
-            Debug.Log("After" + num+ " its" + random);
             if (random <= 0)
                 return StageNode.GetStageTypeFromNum(num);
         }
