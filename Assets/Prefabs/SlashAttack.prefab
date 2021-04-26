@@ -126,5 +126,5 @@ MonoBehaviour:
   damage: 1
   active: 0
   autoDestroy: 1
-  knockback: 30
+  knockback: 8
   knockbackDuration: 0.5

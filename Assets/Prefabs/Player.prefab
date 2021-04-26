@@ -111,6 +111,7 @@ MonoBehaviour:
   rightAttackOffset: 0
   attackSpeed: 1
   attackPenalty: 0
+  knockbackMultiplier: 1
   airborne: 0
   rcWidth: 1
   moveAnimRatio: 0.15
@@ -214,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: 
-  itemsLeftToSpawn: 01000000
+  itemsLeftToSpawn: 01000000020000000300000004000000
 --- !u!1 &6797576712842548848
 GameObject:
   m_ObjectHideFlags: 0
