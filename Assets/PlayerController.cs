@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private HealthComponent myHealth;
     private Camera myCamera;
     private int jumpsLeft = 1;
+	private bool dead = false;
     [SerializeField] private bool airborne = false;
 	private bool crouch = false; 
     public RoomNode currentRoomNode;
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
     {
 	    Physics2D.queriesStartInColliders = false;
         jumpsLeft = maxjumps;
+		dead = false;
         myBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         myRenderer = GetComponent<SpriteRenderer>();
@@ -295,6 +297,9 @@ public class PlayerController : MonoBehaviour
 
     private void ToggleAnimation()
 	{
+		if(dead){
+			return;
+		}
 		// Attack Animation
 		if (attacking)
 		{
@@ -345,6 +350,10 @@ public class PlayerController : MonoBehaviour
 		// Hab keine Bock meheeer
 		myAnimator.speed = speed;
 		myAnimator.PlayInFixedTime(targetState);
+	}
+
+	private void Die(){
+		ChangeAnimatorState("Player_Die");
 	}
 }
 
