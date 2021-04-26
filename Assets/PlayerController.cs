@@ -333,6 +333,6 @@ public class PlayerController : MonoBehaviour
 		// Hab keine Bock meheeer
 		myAnimator.speed = speed;
 		myAnimator.PlayInFixedTime(targetState);
-        
-    }
+	}
 }
+
