@@ -112,18 +112,36 @@ public class Room : MonoBehaviour
     private void UpdateDoors()
     {
         var open = IsCleared();
-        foreach (var door in leftDoors)
-        {
-            door.GetComponent<BoxCollider2D>().isTrigger = open;
-            if (open)
-                Destroy(door.GetComponent<SpriteRenderer>());
+		if (open)
+		{
+            foreach (var door in leftDoors) {
+                StartCoroutine(OpenDoor(door));
+            }
+            foreach (var door in rightDoors)
+            {
+                StartCoroutine(OpenDoor(door));
+            }
         }
-        foreach (var door in rightDoors)
-        {
-            door.GetComponent<BoxCollider2D>().isTrigger = open;
-            if (open)
-                Destroy(door.GetComponent<SpriteRenderer>());
+		else
+		{
+            foreach (var door in leftDoors)
+            {
+                door.GetComponent<BoxCollider2D>().isTrigger = false;
+            }
+            foreach (var door in rightDoors)
+            {
+                door.GetComponent<BoxCollider2D>().isTrigger = false;
+            }
         }
+    }
+
+    private IEnumerator OpenDoor(GameObject door)
+	{
+        door.GetComponent<Animator>().Play("Door_Open");
+        float secs = door.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(secs);
+        door.GetComponent<BoxCollider2D>().isTrigger = true;
+        Destroy(door.GetComponent<SpriteRenderer>());
     }
 
     public Vector3Int GetTilePos(Vector3 pos)

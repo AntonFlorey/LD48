@@ -101,7 +101,8 @@ public class HealthComponent : MonoBehaviour
 	{
         if (other.CompareTag("attack") && !takingDamage)
         {
-            TakeDamage(other.gameObject.GetComponent<StaticAttackController>().damage);   
+            Debug.Log("I am getting hurt!" + this.name + " from " + other.name);
+            TakeDamage(other.gameObject.GetComponent<AttackController>().damage);   
         }
     }
 }

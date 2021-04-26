@@ -14,6 +14,11 @@ public class Hitbox : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		myHealthComponent.RecieveTriggerFromHitbox(collision);		
+		myHealthComponent.RecieveTriggerFromHitbox(collision);
+	}
+
+	private void OnTriggerStay2D(Collider2D other)
+	{
+		myHealthComponent.RecieveTriggerFromHitbox(other);
 	}
 }

@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
 		var extraOffset = attackDir == RoomSide.Left ? leftAttackOffset : rightAttackOffset;
 		attack.transform.position = transform.position + 
 		                            new Vector3(attackDirInt * (extraOffset + attack.transform.localScale.x / 2), 0, 0);
-		attack.GetComponent<StaticAttackController>().active = true;
+		attack.GetComponent<AttackController>().active = true;
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)

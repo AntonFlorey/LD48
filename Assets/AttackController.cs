@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StaticAttackController : MonoBehaviour
+public class AttackController : MonoBehaviour
 {
     public int maxLifetime = 500;
     public int damage = 1;
     public bool active = false;
     private int lifetimeLeft;
+    public bool autoDestroy = false;
     
     void Start()
     {
@@ -17,12 +18,15 @@ public class StaticAttackController : MonoBehaviour
 
     void Update()
     {
-        if (!active)
-            return;
-        lifetimeLeft -= 1;
-        if (lifetimeLeft <= 0)
-        {
-            Destroy(gameObject);
-        }
+		if (autoDestroy)
+		{
+            if (!active)
+                return;
+            lifetimeLeft -= 1;
+            if (lifetimeLeft <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }   
     }
 }

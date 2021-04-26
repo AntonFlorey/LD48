@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 756911275217304693}
   - component: {fileID: 8966725952388835233}
-  - component: {fileID: 5354499510729526756}
   - component: {fileID: 7691163375349718609}
+  - component: {fileID: 6798493628038660131}
   m_Layer: 9
   m_Name: hitbox
-  m_TagString: Untagged
+  m_TagString: attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,19 +49,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.005648136, y: -0.01843214}
   m_Size: {x: 0.9631357, y: 0.9631357}
   m_Direction: 0
---- !u!114 &5354499510729526756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 480939815221313814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40acb29a03e39cf4dbb957ccdae74c72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myHealthComponent: {fileID: 0}
 --- !u!114 &7691163375349718609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +62,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myHealthComponent: {fileID: 0}
+--- !u!114 &6798493628038660131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480939815221313814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac677224254f8ab79578db436014c0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLifetime: 500
+  damage: 1
+  active: 0
+  autoDestroy: 0
 --- !u!1 &5009388995366303733
 GameObject:
   m_ObjectHideFlags: 0

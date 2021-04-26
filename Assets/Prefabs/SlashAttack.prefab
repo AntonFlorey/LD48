@@ -125,3 +125,4 @@ MonoBehaviour:
   maxLifetime: 50
   damage: 1
   active: 0
+  autoDestroy: 1
