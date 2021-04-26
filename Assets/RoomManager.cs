@@ -46,28 +46,39 @@ public class RoomManager : MonoBehaviour
     {
         public int numGenericRooms;
         public int numWaysDown;
+        public int numSpecialRooms;
+        public StageNode.StageType specialRoomType;
 
-        public ShouldStillGenerate(int numGenericRooms, int numWaysDown)
+        public ShouldStillGenerate(int numGenericRooms, int numWaysDown, int numSpecialRooms, StageNode.StageType specialRoomType)
         {
             if (numGenericRooms < 0)
                 numGenericRooms = 0;
             this.numGenericRooms = numGenericRooms;
             this.numWaysDown = numWaysDown;
+            this.numSpecialRooms = numSpecialRooms;
+            this.specialRoomType = specialRoomType;
         }
 
         public bool IsDone()
         {
-            return numGenericRooms <= 0 && numWaysDown <= 0;
+            return numGenericRooms <= 0 && numWaysDown <= 0 && numSpecialRooms <= 0;
         }
 
         public void AddMadeNode(RoomNode newNode)
         {
-            var isWayDown = newNode.roomObject.GetComponent<Room>().wayDown != null;
+            var room = newNode.roomObject.GetComponent<Room>();
+            var isWayDown = room.wayDown != null;
             if (isWayDown)
             {
                 Assert.IsTrue(numWaysDown > 0);
                 numWaysDown--;
-            } else
+            } else if (room.specialRoom)
+            {
+                Assert.IsTrue(numSpecialRooms > 0);
+                Assert.AreEqual(room.specialRoomType, specialRoomType);
+                numSpecialRooms--;
+            }
+            else
             {
                 numGenericRooms = Math.Max(0, numGenericRooms - 1);
             }
@@ -96,7 +107,12 @@ public class RoomManager : MonoBehaviour
             if (shouldStillGenerate.numWaysDown > 0 && isWayDown)
             {
                 available.Add(roomPrefab);
-            } else if (!isWayDown && outgoingDoorCount <= maxOutgoingGeneralDoors)
+            } else if (shouldStillGenerate.numSpecialRooms > 0 &&
+                       room.specialRoomType == shouldStillGenerate.specialRoomType)
+            {
+                available.Add(roomPrefab);
+            }
+            else if (!isWayDown && !room.specialRoom && outgoingDoorCount <= maxOutgoingGeneralDoors)
             {
                 available.Add(roomPrefab);
             }
@@ -169,7 +185,9 @@ public class RoomManager : MonoBehaviour
         rightmostRooms.Add(startNode);
         roomNodes.Add(startNode);
         var numGenericRooms = levelTargetNumGenericRoomsPerStage[currentLevel];
-        var shouldStillGenerate = new ShouldStillGenerate(numGenericRooms, currentStage.GetNumWaysDown());
+        var needSpecialRooms = currentStage.type != StageNode.StageType.Normal;
+        var shouldStillGenerate = new ShouldStillGenerate(numGenericRooms, currentStage.GetNumWaysDown(), 
+            needSpecialRooms ? 1 : 0, currentStage.type);
         int radius = 1;
         while (CountDoorsAtSide(RoomSide.Left, leftmostRooms) + CountDoorsAtSide(RoomSide.Left, rightmostRooms) > 0)
         {
