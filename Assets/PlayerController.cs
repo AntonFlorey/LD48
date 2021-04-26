@@ -130,6 +130,15 @@ public class PlayerController : MonoBehaviour
 
 	private void LateUpdate()
 	{
+		var b = currentRoomNode.myRoom.getBounds();
+		if (b.size == Vector3.zero)
+			return;  // wait for loading
+		var widthOffset = transform.localScale.x / 2;
+		var heightOffset = transform.localScale.y / 2;
+		float clampX = Mathf.Clamp(transform.position.x, b.min.x + widthOffset, b.max.x - widthOffset);
+		float clampY = Mathf.Clamp(transform.position.y, b.min.y + heightOffset, b.max.y - heightOffset);
+		transform.position = new Vector3(clampX, clampY, transform.position.z);
+
 		ToggleAnimation();
 	}
 
