@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480939815221313814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.03, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2520909514980894279}
@@ -46,9 +46,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.005648136, y: -0.01843214}
-  m_Size: {x: 0.9631357, y: 0.9631357}
-  m_Direction: 0
+  m_Offset: {x: -0.10271498, y: 0.39333218}
+  m_Size: {x: 1.7433331, y: 1.1581951}
+  m_Direction: 1
 --- !u!114 &7691163375349718609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
   damage: 1
   active: 0
   autoDestroy: 0
-  knockback: 20
+  knockback: 5
   knockbackDuration: 0.2
   constantVelocity: 0
   attackAngle: {x: 1, y: 0}
@@ -92,11 +92,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2520909514980894279}
   - component: {fileID: 2185459226527515551}
-  - component: {fileID: 7263052610636520227}
   - component: {fileID: -2385622088173398844}
   - component: {fileID: -3468765936338543897}
   - component: {fileID: 3228117620187243727}
-  - component: {fileID: 8866915237654369096}
   - component: {fileID: 2020925339046356250}
   - component: {fileID: 1586052092876956537}
   m_Layer: 7
@@ -161,32 +159,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 580f9beb6fdc62e4ca9a10d862954b26, type: 3}
+  m_Sprite: {fileID: -653499504392438884, guid: 580f9beb6fdc62e4ca9a10d862954b26, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7263052610636520227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5009388995366303733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5d4d28bf69059decb06bc26bfbf0f7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkingDirection: 1
-  walksOffEdges: 0
-  velocity: 1
 --- !u!95 &-2385622088173398844
 Animator:
   serializedVersion: 3
@@ -197,7 +180,7 @@ Animator:
   m_GameObject: {fileID: 5009388995366303733}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 658817ce0b062e3459094f80b618cd56, type: 2}
+  m_Controller: {fileID: 9100000, guid: 436348042b348374b973d8c46dc7579e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -243,21 +226,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1}
   m_Direction: 0
---- !u!114 &8866915237654369096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5009388995366303733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 356c15037e42402db785abdd9ce49d30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxTime: 250
-  jumpForce: 8
-  currentTime: 250
 --- !u!114 &2020925339046356250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,7 +267,7 @@ MonoBehaviour:
   droppedItems:
   - {fileID: 610248595711851802, guid: bbdd9802f1ecc80b38a12c7da89c8eac, type: 3}
   dropChances:
-  - 1
+  - 0.1
   dropRandomInventoryItem: 0
   randomInventoryItemPrefab: {fileID: 0}
   dropOffset: {x: 0, y: 0.5, z: 0}

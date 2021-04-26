@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   myMap: {fileID: 369943613}
+  foresight: 1
 --- !u!20 &62485121
 Camera:
   m_ObjectHideFlags: 0
