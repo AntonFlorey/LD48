@@ -24,7 +24,9 @@ public class Room : MonoBehaviour
     private List<GameObject> aliveEnemies;
 
     public Bounds getBounds()
-	{
+    {
+        if (tileMap == null)
+            return new Bounds(Vector3.zero, Vector3.zero);
         Bounds tileBounds = tileMap.localBounds;
         return new Bounds(tileMap.transform.TransformPoint(tileBounds.center), tileBounds.size);
     }

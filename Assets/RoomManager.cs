@@ -80,6 +80,12 @@ public class RoomManager : MonoBehaviour
                 numGenericRooms = Math.Max(0, numGenericRooms - 1);
             }
         }
+
+        public override string ToString()
+        {
+            return "ShouldStillGenerate(numGenericRooms=" + numGenericRooms + ", numWaysDown=" + numWaysDown +
+                   ", numSpecialRooms=" + numSpecialRooms + " of type " + specialRoomType + ")";
+        }
     }
 
     private RoomNode GetRoomWithMaxDoors(RoomSide side, int maxIncomingDoors, ShouldStillGenerate shouldStillGenerate,
@@ -114,7 +120,7 @@ public class RoomManager : MonoBehaviour
                 available.Add(roomPrefab);
             }
         }
-        Assert.IsTrue(available.Count > 0);
+        Assert.IsTrue(available.Count > 0, "Not all necessary rooms are available to make " + shouldStillGenerate);
         var chosenRoomPrefab = available[Random.Range(0, available.Count)];
         var madeNode = new RoomNode(this, chosenRoomPrefab, madeRoomRadius);
         shouldStillGenerate.AddMadeNode(madeNode);

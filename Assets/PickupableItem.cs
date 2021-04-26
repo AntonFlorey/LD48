@@ -25,10 +25,10 @@ public class PickupableItem : MonoBehaviour
         if (moveTowardsObject == null)
             return;
         var diff = moveTowardsObject.transform.position - transform.position;
+        Debug.Log(myBody.transform.position);
+        Debug.DrawRay(transform.position, diff, Color.red, 2);
         if (diff.sqrMagnitude <= maxMoveTowardsDistance * maxMoveTowardsDistance)
-            myBody.velocity = new Vector2(diff.normalized.x * moveTowardsForce, myBody.velocity.y);
-        else
-            myBody.velocity = new Vector2(0, myBody.velocity.y);
+            myBody.AddForce(diff.normalized * moveTowardsForce);
     }
 
     public void OnPickup(GameObject player)
