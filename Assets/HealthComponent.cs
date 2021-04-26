@@ -15,6 +15,7 @@ public class HealthComponent : MonoBehaviour
     private Color resetColor;
     public Color damageColor = Color.red;
     public Color healColor = Color.green;
+    public Color cutoutColor = Color.black;
     public GameObject heartImage = null;
     private RectTransform myHeartImageTransform = null;
     private Rigidbody2D myBody = null;
@@ -49,11 +50,6 @@ public class HealthComponent : MonoBehaviour
         knockBacktime = 0f;
     }
 
-	private void FixedUpdate()
-	{
-		
-	}
-
 	private void UpdateText()
     {
         if (heartImage == null)
@@ -69,7 +65,7 @@ public class HealthComponent : MonoBehaviour
         {
             damageAnimTimeLeft -= Time.deltaTime;
             float time = Mathf.Abs(Mathf.Sin(damageAnimTimeLeft * 10));
-            myRenderer.color = Color.Lerp(resetColor, lastDamage > 0 ? damageColor : healColor, time);
+            myRenderer.color = Color.Lerp(cutoutColor, lastDamage > 0 ? damageColor : healColor, time);
             if (damageAnimTimeLeft <= 0)
             {
                 showingAnimation = false;
