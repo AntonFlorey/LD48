@@ -59,6 +59,7 @@ public class Room : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        tiles.GetComponent<Tilemap>().CompressBounds();
         if (groundTiles == null)
         {
             groundTiles = Instantiate(tiles, transform);
