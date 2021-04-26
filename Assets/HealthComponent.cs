@@ -95,18 +95,11 @@ public class HealthComponent : MonoBehaviour
 
     public void TakeDamage(AttackController atk)
     {
-        health -= atk.damage;
-        UpdateText();
         if(atk.knockback != 0)
 		{
             StartCoroutine(Knockback((transform.position - atk.transform.position).normalized * atk.knockback, atk.knockbackDuration));
         }
-        takingDamage = true;
-        damageCooldownLeft = damageCooldown;
-        showingAnimation = true;
-        damageAnimTimeLeft = damageAnimTime;
-        myRenderer.color = damageColor;
-        fullScale = transform.localScale;
+        TakeDamage(atk.damage);
     }
 
     public void TakeDamage(int damage)
