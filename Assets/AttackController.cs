@@ -10,7 +10,6 @@ public class AttackController : MonoBehaviour
     public int damage = 1;
     public bool active = false;
     private int lifetimeLeft;
-    private Rigidbody2D myBody;
     public bool autoDestroy = false;
     public float knockback = 0f;
     public float knockbackDuration = 0f;
@@ -21,7 +20,6 @@ public class AttackController : MonoBehaviour
     void Start()
     {
         lifetimeLeft = maxLifetime;
-        myBody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -41,7 +39,10 @@ public class AttackController : MonoBehaviour
     public void StartAttack(RoomSide attackDir)
     {
         this.attackDir = attackDir;
-        int attackDirInt = attackDir == RoomSide.Right ? 1 : 0;
+        int attackDirInt = attackDir == RoomSide.Right ? 1 : -1;
+        Rigidbody2D myBody = GetComponent<Rigidbody2D>();
         myBody.velocity = attackDirInt * constantVelocity * attackAngle.normalized;
+        var myRenderer = GetComponent<SpriteRenderer>();
+        myRenderer.flipX = attackDir == RoomSide.Left;
     }
 }
