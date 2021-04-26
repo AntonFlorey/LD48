@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 1f;
     public float torsoHeight = 1f;
     public float maxVelY = 10f;
-    public GameObject slashAttack;
+    public GameObject attackPrefab;
     public float leftAttackOffset = 0;
     public float rightAttackOffset = 0;
 	public float attackSpeed = 1;
@@ -188,13 +188,14 @@ public class PlayerController : MonoBehaviour
 		// var attackDir = (worldPos.x < selfPos.x) ? RoomSide.Left : RoomSide.Right;
 		var attackDir = orientation;
 		var attackDirInt = attackDir == RoomSide.Left ? -1 : 1;
-		var attack = Instantiate(slashAttack, transform.parent);
+		var attack = Instantiate(attackPrefab, transform.parent);
 		var attackController = attack.GetComponent<AttackController>();
 		var extraOffset = attackDir == RoomSide.Left ? leftAttackOffset : rightAttackOffset;
 		attack.transform.position = transform.position + 
 		                            new Vector3(attackDirInt * (extraOffset + attack.transform.localScale.x / 2), 0, 0);
 		attackController.active = true;
 		attackController.knockback *= knockbackMultiplier;
+		attackController.StartAttack(attackDir);
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)

@@ -106,7 +106,7 @@ MonoBehaviour:
   jumpForce: 20
   torsoHeight: 1.2
   maxVelY: 50
-  slashAttack: {fileID: 6476308254274508147, guid: f485a9d8d1d3277fbb7549bc16ac2466, type: 3}
+  attackPrefab: {fileID: 6476308254274508147, guid: f485a9d8d1d3277fbb7549bc16ac2466, type: 3}
   leftAttackOffset: 0
   rightAttackOffset: 0
   attackSpeed: 1
@@ -194,7 +194,7 @@ MonoBehaviour:
   damageCooldown: 1
   damageAnimTime: 0.2
   invulnerable: 0
-  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  damageColor: {r: 1, g: 1, b: 1, a: 1}
   healColor: {r: 0, g: 1, b: 0, a: 1}
   cutoutColor: {r: 0, g: 0, b: 0, a: 1}
   heartImage: {fileID: 0}

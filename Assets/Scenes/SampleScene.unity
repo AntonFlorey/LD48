@@ -1067,18 +1067,6 @@ PrefabInstance:
       propertyPath: heartImage
       value: 
       objectReference: {fileID: 1165988111}
-    - target: {fileID: 1021095571, guid: 530af64c22bde13488c56370de25b434, type: 3}
-      propertyPath: damageColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1021095571, guid: 530af64c22bde13488c56370de25b434, type: 3}
-      propertyPath: damageColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1021095571, guid: 530af64c22bde13488c56370de25b434, type: 3}
-      propertyPath: damageColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3812019442374871234, guid: 530af64c22bde13488c56370de25b434, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1126,18 +1114,6 @@ PrefabInstance:
     - target: {fileID: 3812019442374871236, guid: 530af64c22bde13488c56370de25b434, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3812019442374871237, guid: 530af64c22bde13488c56370de25b434, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3812019442374871237, guid: 530af64c22bde13488c56370de25b434, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3812019442374871237, guid: 530af64c22bde13488c56370de25b434, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 530af64c22bde13488c56370de25b434, type: 3}
