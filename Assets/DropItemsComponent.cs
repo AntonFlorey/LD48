@@ -54,7 +54,7 @@ public class DropItemsComponent : MonoBehaviour
 
         if (dropRandomInventoryItem)
         {
-            Debug.Log("drop inventory tile");
+            Debug.Log("drop inventory item");
             var inventory = parent.GetComponent<Room>().roomNode.manager.player.GetComponent<InventoryComponent>();
             if (inventory.itemsLeftToSpawn.Count == 0)
                 Debug.LogWarning("could not drop any item! nothing left!");
@@ -67,6 +67,7 @@ public class DropItemsComponent : MonoBehaviour
                 var drop = Instantiate(randomInventoryItemPrefab, parent);
                 // todo: add a texture.
                 PickupableItem pickup = drop.GetComponent<PickupableItem>();
+                drop.GetComponent<SpriteRenderer>().sprite = inventory.allItemSprites[(int) itemType];
                 pickup.givesItem = true;
                 pickup.itemType = itemType;
                 DoDropSingleItem(drop);

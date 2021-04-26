@@ -109,9 +109,10 @@ MonoBehaviour:
   attackPrefab: {fileID: 6476308254274508147, guid: f485a9d8d1d3277fbb7549bc16ac2466, type: 3}
   leftAttackOffset: 0
   rightAttackOffset: 0
-  attackSpeed: 1
+  attackSpeed: 2
   attackPenalty: 0
   knockbackMultiplier: 1
+  jumpsLeft: 1
   airborne: 0
   rcWidth: 1
   moveAnimRatio: 0.15
@@ -215,7 +216,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: 
-  itemsLeftToSpawn: 01000000020000000300000004000000
+  itemsLeftToSpawn: 0100000002000000030000000400000005000000
+  arrowItemAttackPrefab: {fileID: 0}
+  allItemSprites:
+  - {fileID: 0}
+  - {fileID: 5543941588292853863, guid: fb4d6d1e3a991f049a315e98baf675bd, type: 3}
+  - {fileID: -1863859237976802683, guid: fb4d6d1e3a991f049a315e98baf675bd, type: 3}
+  - {fileID: 2130535880278150251, guid: fb4d6d1e3a991f049a315e98baf675bd, type: 3}
+  - {fileID: 1202984965197363600, guid: fb4d6d1e3a991f049a315e98baf675bd, type: 3}
+  - {fileID: 21300000, guid: 469b9768bdb9f606aaf85392638ac713, type: 3}
 --- !u!1 &6797576712842548848
 GameObject:
   m_ObjectHideFlags: 0

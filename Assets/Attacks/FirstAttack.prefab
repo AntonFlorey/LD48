@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 4423486870792318046}
   - component: {fileID: 957250042844137027}
   - component: {fileID: 678445642317472385}
+  - component: {fileID: 1284996723764145985}
   m_Layer: 10
-  m_Name: SlashAttack
+  m_Name: FirstAttack
   m_TagString: attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,3 +129,26 @@ MonoBehaviour:
   autoDestroy: 1
   knockback: 8
   knockbackDuration: 0.5
+  constantVelocity: 0
+  attackAngle: {x: 1, y: 0}
+--- !u!50 &1284996723764145985
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6476308254274508147}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: 7e7bb1946caf8044a86ddce005aa6849, type: 2}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

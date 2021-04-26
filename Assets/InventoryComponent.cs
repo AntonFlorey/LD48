@@ -10,7 +10,8 @@ public enum InventoryItem
     DoubleJumpBoots,
     InsaneKnockback,
     EvenMoreInsaneKnockback,
-    InsaneAttackSpeed
+    InsaneAttackSpeed,
+    Arrow
 }
 
 public class InventoryComponent : MonoBehaviour
@@ -18,15 +19,19 @@ public class InventoryComponent : MonoBehaviour
     public List<InventoryItem> items = new List<InventoryItem>();
     private PlayerController myPlayer;
     public List<InventoryItem> itemsLeftToSpawn = new List<InventoryItem>();
+    public GameObject arrowItemAttackPrefab;
+    public List<Sprite> allItemSprites;
     
     // Start is called before the first frame update
     void Start()
     {
         Assert.AreEqual(Enum.GetValues(typeof(InventoryItem)).Length, itemsLeftToSpawn.Count + 1);
+        Assert.AreEqual(Enum.GetValues(typeof(InventoryItem)).Length, allItemSprites.Count);
+
         myPlayer = GetComponent<PlayerController>();
     }
 
-    public void AddItem(InventoryItem item)
+    public void AddItemEffect(InventoryItem item)
     {
         items.Add(item);
         switch (item)
@@ -42,6 +47,9 @@ public class InventoryComponent : MonoBehaviour
                 return;
             case InventoryItem.InsaneAttackSpeed:
                 myPlayer.attackSpeed += 0.5f;
+                return;
+            case InventoryItem.Arrow:
+                myPlayer.attackPrefab = arrowItemAttackPrefab;
                 return;
         }
         Debug.LogWarning("unhandeled item " + item);

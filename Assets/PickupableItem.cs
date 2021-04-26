@@ -44,7 +44,7 @@ public class PickupableItem : MonoBehaviour
 
         if (givesItem)
         {
-            player.GetComponent<InventoryComponent>().AddItem(itemType);
+            player.GetComponent<InventoryComponent>().AddItemEffect(itemType);
         }
         Destroy(gameObject);
     }
