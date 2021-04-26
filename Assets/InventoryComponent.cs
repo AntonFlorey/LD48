@@ -6,6 +6,7 @@ public class InventoryComponent : MonoBehaviour
 {
     public List<InventoryItem> items = new List<InventoryItem>();
     private PlayerController myPlayer;
+    public List<InventoryItem> itemsLeftToSpawn = new List<InventoryItem>();
     
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class InventoryComponent : MonoBehaviour
         {
             case InventoryItem.DoubleJumpBoots:
                 myPlayer.maxjumps++;
-                break;
+                return;
         }
         Debug.LogWarning("unhandeled item " + item);
     }

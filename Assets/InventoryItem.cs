@@ -8,3 +8,4 @@ public enum InventoryItem
     Ignore,
     DoubleJumpBoots
 }
+

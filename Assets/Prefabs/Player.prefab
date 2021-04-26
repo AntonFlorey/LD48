@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d5923d494c2c8e4ae02196d0a25241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxjumps: 2
+  maxjumps: 1
   moveSpeed: 6
   jumpForce: 20
   torsoHeight: 1.2
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: 
-  myPlayer: {fileID: 0}
+  itemsLeftToSpawn: 01000000
 --- !u!1 &6797576712842548848
 GameObject:
   m_ObjectHideFlags: 0
