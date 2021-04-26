@@ -151,6 +151,10 @@ public class PlayerController : MonoBehaviour
 		else if (collision.collider.CompareTag("ground"))
 		{
             jumpsLeft = maxjumps;
+		} else if (collision.collider.CompareTag("pickup"))
+		{
+			var pickupComp = collision.collider.GetComponent<PickupableItem>();
+			pickupComp.OnPickup(gameObject);
 		}
 	}
 
