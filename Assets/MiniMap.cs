@@ -24,8 +24,8 @@ public class MiniMap : MonoBehaviour
 	{
         Image im = (Image)uiElem.GetComponentInChildren(typeof(Image), true);
         RawImage rim = (RawImage)uiElem.GetComponentInChildren(typeof(RawImage), true);
-        im.enabled = Input.GetButton("Tab") || true;
-        rim.enabled = Input.GetButton("Tab") || true;
+        im.enabled = Input.GetButton("Tab");
+        rim.enabled = Input.GetButton("Tab");
     }
 
 	private bool SameRoom(StageNode a, StageNode b)
