@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -169,9 +169,10 @@ public class RoomManager : MonoBehaviour
     {
         myPlayer = player.GetComponent<PlayerController>();
         currentLevelStartStage = GenerateLevelStartStage();
-        currentStage = currentLevelStartStage;
         Assert.AreEqual(stageTypeFrequencies.Length, StageNode.NUM_STAGE_TYPES);
 
+        currentStage = currentLevelStartStage;
+        currentLevel = 0;
         myCurrentStageText = currentStageText.GetComponent<Text>();
         GenerateMap();
     }
@@ -381,4 +382,10 @@ public class RoomManager : MonoBehaviour
 	{
         minimap.CreateMap(this);
 	}
+
+    public void OnPlayerDie()
+    {
+        Debug.Log("restarting game!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

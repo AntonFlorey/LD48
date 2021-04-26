@@ -33,11 +33,13 @@ public class HealthComponent : MonoBehaviour
     [SerializeField] private float knockBacktime = 0f;
     [SerializeField] private Material defaultMat;
     [SerializeField] private Material cutoutMat;
-
-
+    
     void Start()
     {
-        if (transform.parent != null)
+        if (GetComponent<PlayerController>() != null)
+        {
+            myRoom = GetComponent<PlayerController>().currentRoomNode.myRoom;
+        } else if (transform.parent != null)
             myRoom = transform.parent.gameObject.GetComponent<Room>();
         health = maxHealth;
         if (heartImage != null)
@@ -73,9 +75,7 @@ public class HealthComponent : MonoBehaviour
                 myRenderer.color = resetColor;
             }
             if (IsDead())
-            {
-                transform.localScale = fullScale * (damageAnimTimeLeft / damageAnimTime);
-            }
+                UpdateWhileDead();
         }
 
         if (takingDamage)
@@ -89,9 +89,22 @@ public class HealthComponent : MonoBehaviour
             }
         }
     }
+    
+    private void UpdateWhileDead()
+    {
+        if (CompareTag("enemy"))
+        {
+            transform.localScale = fullScale * (damageAnimTimeLeft / damageAnimTime);
+        }
+        if (CompareTag("Player"))
+        {
+            // TODO!
+        }
+    }
+
     public bool IsDead()
     {
-        return gameObject.CompareTag("enemy") && health <= 0;
+        return health <= 0;
     }
 
     private void ToggleMaterial()
@@ -149,8 +162,15 @@ public class HealthComponent : MonoBehaviour
 
     private void DoDie()
     {
-        myRoom.MarkEnemyDeath(gameObject);
-        Destroy(gameObject);
+        if (gameObject.CompareTag("enemy"))
+        {
+            myRoom.MarkEnemyDeath(gameObject);
+            Destroy(gameObject);
+        }
+        if (gameObject.CompareTag("Player"))
+        {
+            myRoom.roomNode.manager.OnPlayerDie();
+        }
     }
 
     public void RecieveTriggerFromHitbox(Collider2D other)
