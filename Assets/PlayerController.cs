@@ -136,7 +136,10 @@ public class PlayerController : MonoBehaviour
 	{
 		if (!attacking && !crouch)
 		{
-            myBody.velocity = new Vector3(moveSpeed * Input.GetAxis("Horizontal"), Mathf.Clamp(myBody.velocity.y, -maxVelY, maxVelY));
+			if (!myHealth.knockedBack)
+			{
+				myBody.velocity = new Vector3(moveSpeed * Input.GetAxis("Horizontal"), Mathf.Clamp(myBody.velocity.y, -maxVelY, maxVelY));
+			}
 		}
 		else if(attacking)
 		{
@@ -291,9 +294,9 @@ public class PlayerController : MonoBehaviour
 		}
 
         float yVel = myBody.velocity.y;
-        if (airborne)
+        if (airborne || myHealth.knockedBack)
 		{
-            if(yVel > 0)
+            if(yVel >= 0)
 			{
                 // Player is rising
                 ChangeAnimatorState("Player_Rise");

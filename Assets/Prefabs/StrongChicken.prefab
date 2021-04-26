@@ -78,6 +78,8 @@ MonoBehaviour:
   damage: 1
   active: 0
   autoDestroy: 0
+  knockback: 30
+  knockbackDuration: 0.5
 --- !u!1 &5009388995366303733
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +273,7 @@ MonoBehaviour:
   touchDamage: 1
   damageCooldown: 1
   damageAnimTime: 0.4
+  invulnerable: 0
   damageColor: {r: 1, g: 1, b: 1, a: 1}
   heartImage: {fileID: 0}
 --- !u!114 &5426101528057945777
@@ -290,3 +293,5 @@ MonoBehaviour:
   dropChances:
   - 0.35
   dropOffset: {x: 0, y: 0.5, z: 0}
+  knockedBack: 0
+  knockBacktime: 0

@@ -12,6 +12,7 @@ public class CrawlMovementController : MonoBehaviour
     private Room myRoom;
     private Rigidbody2D myBody;
     private SpriteRenderer mySpriteRenderer;
+    private HealthComponent myHealth;
 
     private void Start()
     {
@@ -20,29 +21,33 @@ public class CrawlMovementController : MonoBehaviour
         myBody = GetComponent<Rigidbody2D>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         mySpriteRenderer.flipX = (walkingDirection == RoomSide.Right);
+        myHealth = GetComponent<HealthComponent>();
     }
 
     void FixedUpdate()
     {
         if (!myRoom.IsActive())
             return;
-        float epsilon = 0.1f;
-        var radius = transform.localScale / 2;
-        var obstacleInFront = Physics2D.Raycast(
-            transform.position, Room.RoomSideToVec(walkingDirection),
-            radius.x + epsilon).collider != null;
-        var groundInFront = Physics2D.Raycast(
-            transform.position + Room.RoomSideToVec(walkingDirection) * (radius.x + epsilon),
-            new Vector2(0, -1), radius.y + epsilon).collider != null;
-        // Debug.DrawRay(transform.position + Room.RoomSideToVec(walkingDirection) * (radius.x + epsilon), new Vector2(0, -1));
-        // Debug.Log("obstacle:" + obstacleInFront + ";ground:" + groundInFront);
-        if (obstacleInFront || (!walksOffEdges && !groundInFront))
-        {
-            // turn, do not update pos
-            walkingDirection = Room.OppositeSide(walkingDirection);
-            mySpriteRenderer.flipX = (walkingDirection == RoomSide.Right);
-            return;
+		if (!myHealth.knockedBack)
+		{
+            float epsilon = 0.1f;
+            var radius = transform.localScale / 2;
+            var obstacleInFront = Physics2D.Raycast(
+                transform.position, Room.RoomSideToVec(walkingDirection),
+                radius.x + epsilon).collider != null;
+            var groundInFront = Physics2D.Raycast(
+                transform.position + Room.RoomSideToVec(walkingDirection) * (radius.x + epsilon),
+                new Vector2(0, -1), radius.y + epsilon).collider != null;
+            // Debug.DrawRay(transform.position + Room.RoomSideToVec(walkingDirection) * (radius.x + epsilon), new Vector2(0, -1));
+            // Debug.Log("obstacle:" + obstacleInFront + ";ground:" + groundInFront);
+            if (obstacleInFront || (!walksOffEdges && !groundInFront))
+            {
+                // turn, do not update pos
+                walkingDirection = Room.OppositeSide(walkingDirection);
+                mySpriteRenderer.flipX = (walkingDirection == RoomSide.Right);
+                return;
+            }
+            myBody.velocity = new Vector2(velocity * Room.RoomSideToVec(walkingDirection).x, myBody.velocity.y);
         }
-        myBody.velocity = new Vector2(velocity * Room.RoomSideToVec(walkingDirection).x, myBody.velocity.y);
     }
 }

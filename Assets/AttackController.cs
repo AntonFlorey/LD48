@@ -10,6 +10,8 @@ public class AttackController : MonoBehaviour
     public bool active = false;
     private int lifetimeLeft;
     public bool autoDestroy = false;
+    public float knockback = 0f;
+    public float knockbackDuration = 0f;
     
     void Start()
     {
