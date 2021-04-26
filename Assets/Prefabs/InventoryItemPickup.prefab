@@ -140,3 +140,6 @@ MonoBehaviour:
   healAmount: 0
   givesItem: 1
   itemType: 0
+  floatFrequency: 5
+  floatRadius: 0.3
+  spawnInAnimationDuration: 40
