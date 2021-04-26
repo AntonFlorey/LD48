@@ -12,6 +12,7 @@ public class HealthComponent : MonoBehaviour
     public float damageAnimTime = 0.2f;
     private Color resetColor;
     public Color damageColor = Color.red;
+    public Color healColor = Color.green;
     public GameObject heartImage = null;
     private RectTransform myHeartImageTransform = null;
     private Collider2D myCollider;
@@ -22,6 +23,7 @@ public class HealthComponent : MonoBehaviour
     private float damageAnimTimeLeft = 0;
     private float damageCooldownLeft = 0;
     private Vector3 fullScale;
+    private int lastDamage;
 
     void Start()
     {
@@ -50,7 +52,7 @@ public class HealthComponent : MonoBehaviour
         {
             damageAnimTimeLeft -= Time.deltaTime;
             float time = Mathf.Abs(Mathf.Sin(damageAnimTimeLeft * 10));
-            myRenderer.color = Color.Lerp(resetColor, damageColor, time);
+            myRenderer.color = Color.Lerp(resetColor, lastDamage > 0 ? damageColor : healColor, time);
             if (damageAnimTimeLeft <= 0)
             {
                 showingAnimation = false;
@@ -88,8 +90,9 @@ public class HealthComponent : MonoBehaviour
         damageCooldownLeft = damageCooldown;
         showingAnimation = true;
         damageAnimTimeLeft = damageAnimTime;
-        myRenderer.color = damageColor;
+        myRenderer.color = damage > 0 ? damageColor : healColor;
         fullScale = transform.localScale;
+        lastDamage = damage;
     }
 
     private void DoDie()

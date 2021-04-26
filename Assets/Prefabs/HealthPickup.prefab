@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 610248595711851807}
   - component: {fileID: 610248595711851806}
   m_Layer: 0
-  m_Name: PickupItem
+  m_Name: HealthPickup
   m_TagString: pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0693f89a56e3f30f9ac0a939ac16bef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTowardsObject: {fileID: 3812019442374871236, guid: 530af64c22bde13488c56370de25b434, type: 3}
+  maxMoveTowardsDistance: 500
+  moveTowardsForce: 2
   healAmount: 1
 --- !u!212 &610248595711851803
 SpriteRenderer:
@@ -114,7 +117,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 7e7bb1946caf8044a86ddce005aa6849, type: 2}
+  m_Material: {fileID: 6200000, guid: 536ebc38e251dc91b8e845007c612044, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

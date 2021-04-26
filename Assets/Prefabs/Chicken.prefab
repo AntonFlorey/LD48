@@ -288,5 +288,5 @@ MonoBehaviour:
   droppedItems:
   - {fileID: 610248595711851802, guid: bbdd9802f1ecc80b38a12c7da89c8eac, type: 3}
   dropChances:
-  - 0.35
+  - 1
   dropOffset: {x: 0, y: 0.5, z: 0}
