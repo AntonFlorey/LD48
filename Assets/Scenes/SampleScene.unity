@@ -260,8 +260,9 @@ MonoBehaviour:
   myPlayer: {fileID: 0}
   currentStageText: {fileID: 709930688}
   minimap: {fileID: 369943613}
+  initialLevelRoomPrefab: {fileID: 3102208128844926754, guid: 584ed5955e1f389a897f9b484f327d97, type: 3}
   roomWidth: 100
-  levelCount: 3
+  levelCount: 4
   currentLevel: 0
   roomCount: 0
   stageTypeFrequencies:
@@ -894,7 +895,7 @@ MonoBehaviour:
   moveSpeed: 6
   jumpForce: 20
   torsoHeight: 1.2
-  maxVelY: 50
+  maxVelY: 40
   attackPrefab: {fileID: 6476308254274508147, guid: f485a9d8d1d3277fbb7549bc16ac2466, type: 3}
   leftAttackOffset: 0
   rightAttackOffset: 0

@@ -17,10 +17,11 @@ public class RoomManager : MonoBehaviour
     public GameObject currentStageText;
     private Text myCurrentStageText;
     public MiniMap minimap;
+    public GameObject initialLevelRoomPrefab;
 
     public int roomWidth = 100;
 
-    public int levelCount = 3;
+    public int levelCount = 4;
     public int currentLevel = 0;
     public StageNode currentLevelStartStage;
     public StageNode currentStage;
@@ -184,7 +185,9 @@ public class RoomManager : MonoBehaviour
         }
         roomCount = 0;
         roomNodes.Clear();
-        var startNode = new RoomNode(this, startRoomPrefab, 0);
+        var isInitialStage = (currentLevel == 0 && currentStage.stageDepth == 0);
+        var actualStartRoomPrefab = !isInitialStage ? startRoomPrefab : initialLevelRoomPrefab;
+        var startNode = new RoomNode(this, actualStartRoomPrefab, 0);
         List<RoomNode> leftmostRooms = new List<RoomNode>();
         List<RoomNode> rightmostRooms = new List<RoomNode>();
         leftmostRooms.Add(startNode);
@@ -194,6 +197,8 @@ public class RoomManager : MonoBehaviour
         var needSpecialRooms = currentStage.type != StageNode.StageType.Normal;
         var shouldStillGenerate = new ShouldStillGenerate(numGenericRooms, currentStage.GetNumWaysDown(), 
             needSpecialRooms ? 1 : 0, currentStage.type);
+        if (isInitialStage)
+            shouldStillGenerate = new ShouldStillGenerate(0, 0, 0, StageNode.StageType.Normal);
         int radius = 1;
         while (CountDoorsAtSide(RoomSide.Left, leftmostRooms) + CountDoorsAtSide(RoomSide.Left, rightmostRooms) > 0)
         {
