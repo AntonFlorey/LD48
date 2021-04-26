@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int jumpsLeft = 1;
 	private bool dead = false;
     [SerializeField] private bool airborne = false;
+	[SerializeField] private bool wait = false;
 	private bool crouch = false; 
     public RoomNode currentRoomNode;
 	public float rcWidth;
@@ -179,8 +180,14 @@ public class PlayerController : MonoBehaviour
 		{
 			return;
 		}
-        attacking = true;
 		ChangeAnimatorState("Player_Attack", attackSpeed);
+		wait = true;
+		StartCoroutine(SpawnAttack());
+	}
+
+	private IEnumerator SpawnAttack()
+	{
+		yield return new WaitUntil(() => wait == false);
 		Vector3 mousePos = Input.mousePosition;
 		mousePos.z = myCamera.nearClipPlane;
 		var worldPos = myCamera.ScreenToWorldPoint(mousePos);
@@ -191,8 +198,8 @@ public class PlayerController : MonoBehaviour
 		var attack = Instantiate(attackPrefab, transform.parent);
 		var attackController = attack.GetComponent<AttackController>();
 		var extraOffset = attackDir == RoomSide.Left ? leftAttackOffset : rightAttackOffset;
-		attack.transform.position = transform.position + 
-		                            new Vector3(attackDirInt * (extraOffset + attack.transform.localScale.x / 2), 0, 0);
+		attack.transform.position = transform.position +
+									new Vector3(attackDirInt * (extraOffset + attack.transform.localScale.x / 2), 0, 0);
 		attackController.active = true;
 		attackController.knockback *= knockbackMultiplier;
 		attackController.StartAttack(attackDir);
@@ -306,10 +313,6 @@ public class PlayerController : MonoBehaviour
 		// Attack Animation
 		if (attacking)
 		{
-            if(myAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
-			{
-                attacking = false;
-			}
             return;
 		}
 

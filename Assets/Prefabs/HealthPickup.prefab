@@ -47,9 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTowardsObject: {fileID: 0}
-  maxMoveTowardsDistance: 20
+  maxMoveTowardsDistance: 5
   moveTowardsForce: 10
   healAmount: 1
+  givesItem: 0
+  itemType: 0
 --- !u!212 &610248595711851803
 SpriteRenderer:
   m_ObjectHideFlags: 0
