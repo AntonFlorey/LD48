@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private Collider2D myCollider;
     private HealthComponent myHealth;
     private Camera myCamera;
-    private int jumpsLeft = 1;
+    [SerializeField] private int jumpsLeft = 1;
 	private bool dead = false;
     [SerializeField] private bool airborne = false;
 	private bool crouch = false; 
@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
 		}
 		else if(attacking)
 		{
-			myBody.velocity = new Vector3(moveSpeed * Input.GetAxis("Horizontal") * attackPenalty, Mathf.Clamp(myBody.velocity.y, -maxVelY, maxVelY));
+			myBody.velocity = new Vector3(moveSpeed * Input.GetAxis("Horizontal") * attackPenalty, Mathf.Clamp(myBody.velocity.y, -maxVelY, maxVelY) * attackPenalty);
 		}
 		else
 		{
@@ -212,6 +212,7 @@ public class PlayerController : MonoBehaviour
 		else if (collision.collider.CompareTag("ground"))
 		{
             jumpsLeft = maxjumps;
+			Debug.Log("jump reset by" + collision.collider);
 		} 
 		else if (collision.collider.CompareTag("pickup"))
 		{
@@ -223,6 +224,7 @@ public class PlayerController : MonoBehaviour
 			if (!crouch)
 			{
 				jumpsLeft = maxjumps;
+				Debug.Log("jump reset by" + collision.collider);
 			}
 		}
 	}
