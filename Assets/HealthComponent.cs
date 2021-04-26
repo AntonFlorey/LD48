@@ -29,6 +29,7 @@ public class HealthComponent : MonoBehaviour
     private Vector3 fullScale;
     private int lastDamage;
     public bool knockedBack = false;
+    private bool droppedItems = false;
     [SerializeField] private float knockBacktime = 0f;
     [SerializeField] private Material defaultMat;
     [SerializeField] private Material cutoutMat;
@@ -125,6 +126,16 @@ public class HealthComponent : MonoBehaviour
         myRenderer.color = damage > 0 ? damageColor : healColor;
         fullScale = transform.localScale;
         lastDamage = damage;
+        if (health <= 0 && !droppedItems)
+        {
+            Debug.Log("drop items now!");
+            var dropComp = gameObject.GetComponent<DropItemsComponent>();
+            if (dropComp != null)
+            {
+                dropComp.DoDrop();
+                droppedItems = true;
+            }
+        }
     }
 
     public IEnumerator Knockback(Vector2 force, float time)
@@ -139,9 +150,6 @@ public class HealthComponent : MonoBehaviour
     private void DoDie()
     {
         myRoom.MarkEnemyDeath(gameObject);
-        var dropComp = gameObject.GetComponent<DropItemsComponent>();
-        if (dropComp != null)
-            dropComp.DoDrop();
         Destroy(gameObject);
     }
 
