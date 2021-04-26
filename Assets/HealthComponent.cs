@@ -11,8 +11,8 @@ public class HealthComponent : MonoBehaviour
     public float damageAnimTime = 0.2f;
     private Color resetColor;
     public Color damageColor = Color.red;
-    public GameObject text = null;
-    private Text myText;
+    public GameObject heartImage = null;
+    private RectTransform myHeartImageTransform = null;
     private Collider2D myCollider;
     private Room myRoom;
     private SpriteRenderer myRenderer;
@@ -27,10 +27,8 @@ public class HealthComponent : MonoBehaviour
         if (transform.parent != null)
             myRoom = transform.parent.gameObject.GetComponent<Room>();
         health = maxHealth;
-        if (text != null)
-        {
-            myText = text.GetComponent<Text>();
-        }
+        if (heartImage != null)
+            myHeartImageTransform = heartImage.GetComponent<RectTransform>();
         var colliders = GetComponentsInChildren(typeof(Collider2D), true);
         myCollider = (Collider2D)colliders[colliders.Length - 1];
         myRenderer = GetComponent<SpriteRenderer>();
@@ -40,9 +38,9 @@ public class HealthComponent : MonoBehaviour
 
     private void UpdateText()
     {
-        if (text == null)
+        if (heartImage == null)
             return;
-        myText.text = health + " / " + maxHealth;
+        myHeartImageTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 100 * health);
     }
 
     public void Update()
