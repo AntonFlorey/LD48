@@ -807,12 +807,12 @@ MonoBehaviour:
   itemsLeftToSpawn: 0100000002000000030000000400000005000000
   arrowItemAttackPrefab: {fileID: 6476308254274508147, guid: 87a6385d4d4be1d079c6141d6d03489c, type: 3}
   allItemSprites:
-  - {fileID: 0}
-  - {fileID: 5543941588292853863, guid: fb4d6d1e3a991f049a315e98baf675bd, type: 3}
-  - {fileID: -1863859237976802683, guid: fb4d6d1e3a991f049a315e98baf675bd, type: 3}
-  - {fileID: 2130535880278150251, guid: fb4d6d1e3a991f049a315e98baf675bd, type: 3}
-  - {fileID: 1202984965197363600, guid: fb4d6d1e3a991f049a315e98baf675bd, type: 3}
-  - {fileID: 21300000, guid: 469b9768bdb9f606aaf85392638ac713, type: 3}
+  - {fileID: 8033092973025764044, guid: 3b94e7f88df879740a09ee8ea5e813be, type: 3}
+  - {fileID: -488721925442295091, guid: 3b94e7f88df879740a09ee8ea5e813be, type: 3}
+  - {fileID: 1801263428120863714, guid: 3b94e7f88df879740a09ee8ea5e813be, type: 3}
+  - {fileID: 1801263428120863714, guid: 3b94e7f88df879740a09ee8ea5e813be, type: 3}
+  - {fileID: -6099050445329199328, guid: 3b94e7f88df879740a09ee8ea5e813be, type: 3}
+  - {fileID: -7652154954077232485, guid: 3b94e7f88df879740a09ee8ea5e813be, type: 3}
   display: {fileID: 1212909462}
   iconPrefab: {fileID: 2419196245730648874, guid: a5d4c809513cf6d26b61d64e6519b89c, type: 3}
   displayIconSize: 100
