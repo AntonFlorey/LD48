@@ -90,11 +90,13 @@ public class Room : MonoBehaviour
             }
 
             groundTiles.tag = "ground";
+            
             var oldPos = groundTiles.transform.position;
             groundTiles.transform.position = new Vector3(oldPos.x, oldPos.y, 10);
         }
         tileMap = tiles.GetComponent<Tilemap>();
         groundTileMap = groundTiles.GetComponent<Tilemap>();
+        groundTiles.layer = 13;
 
         aliveEnemies = new List<GameObject>();
         for (int enemyIdx = 0; enemyIdx < transform.childCount; enemyIdx++)

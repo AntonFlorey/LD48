@@ -10,6 +10,7 @@ TagManager:
   - enemy
   - attack
   - pickup
+  - platform
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - EnemyHitbox
   - PlayerDMG
   - EnemyDMG
-  - 
-  - 
+  - Platform
+  - Ground
   - 
   - 
   - 

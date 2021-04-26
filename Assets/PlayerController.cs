@@ -25,12 +25,14 @@ public class PlayerController : MonoBehaviour
     private HealthComponent myHealth;
     private Camera myCamera;
     private int jumpsLeft = 1;
-    private bool airborne = false;
+    [SerializeField] private bool airborne = false;
 	private bool crouch = false; 
     public RoomNode currentRoomNode;
+	public float rcWidth;
     public float moveAnimRatio = 0.1f;
     [SerializeField] private bool attacking = false;
     public RoomSide orientation = RoomSide.Right;
+	public LayerMask groundMask = LayerMask.GetMask("Ground", "Platform");
 
 
     // Start is called before the first frame update
@@ -50,15 +52,59 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 		HandleInput();
-        // Check for ground underneath
-        LayerMask mask = LayerMask.GetMask("ground");
-        mask = int.MaxValue;
-        RaycastHit2D[] rc = Physics2D.RaycastAll(transform.position, Vector2.down, torsoHeight, mask);
-        //Debug.DrawRay(transform.position, torsoHeight * Vector2.down, Color.green, 1f);
-        airborne = rc.Length == 0;
-
+		// Check for ground underneath
+		CheckAirborne();
         ToggleOrientation();
     }
+
+	private void CheckAirborne()
+	{
+		RaycastHit2D[] rc1 = Physics2D.RaycastAll(transform.position, Vector2.down, torsoHeight, groundMask.value);
+		Debug.Log(groundMask.value);
+		//RaycastHit2D[] rc2 = Physics2D.RaycastAll(transform.position + Vector3.right * rcWidth, Vector2.down, torsoHeight, mask);
+		//Debug.DrawRay(transform.position + Vector3.left * rcWidth, torsoHeight * Vector2.down, Color.green, 1f);
+		//Debug.DrawRay(transform.position + Vector3.right * rcWidth, torsoHeight * Vector2.down, Color.green, 1f);
+		if (rc1.Length != 0)
+		{
+			Collider2D platform = null;
+			foreach (var sth in rc1)
+			{
+				if (sth.collider.CompareTag("ground"))
+				{
+					airborne = false;
+					return;
+				}else if (sth.collider.CompareTag("platform"))
+				{
+					platform = sth.collider;
+				}
+			}
+			if (crouch)
+			{
+				airborne = true;
+				// Agressive raycasts
+				Collider2D left = Physics2D.Raycast(transform.position + Vector3.left * rcWidth, Vector2.down, torsoHeight, groundMask.value).collider;
+				Collider2D right = Physics2D.Raycast(transform.position + Vector3.right * rcWidth, Vector2.down, torsoHeight, groundMask.value).collider;
+				Collider2D center = Physics2D.Raycast(transform.position, Vector2.down, torsoHeight, groundMask.value).collider;
+				Debug.DrawRay(transform.position + Vector3.left * rcWidth, torsoHeight * Vector2.down, Color.green, 1f);
+				Debug.DrawRay(transform.position + Vector3.right * rcWidth, torsoHeight * Vector2.down, Color.green, 1f);
+				Debug.DrawRay(transform.position, torsoHeight * Vector2.down, Color.green, 1f);
+
+				if (left != null) StartCoroutine(PlatformFall(left));
+				if (right != null) StartCoroutine(PlatformFall(right));
+				if (center != null) StartCoroutine(PlatformFall(center));
+
+				return;
+			}
+			else
+			{
+				airborne = false;
+			}
+		}
+		else
+		{
+			airborne = true;
+		}
+	}
 
 	private void HandleInput()
 	{
@@ -155,7 +201,22 @@ public class PlayerController : MonoBehaviour
 		{
 			var pickupComp = collision.collider.GetComponent<PickupableItem>();
 			pickupComp.OnPickup(gameObject);
+		}else if (collision.collider.CompareTag("platform"))
+		{
+			if (!crouch)
+			{
+				jumpsLeft = maxjumps;
+			}
 		}
+	}
+
+	private IEnumerator PlatformFall(Collider2D collider)
+	{
+		groundMask = LayerMask.GetMask("Ground");
+		Physics2D.IgnoreCollision(collider, myCollider);
+		yield return new WaitForSeconds(0.5f);
+		Physics2D.IgnoreCollision(collider, myCollider, false);
+		groundMask = LayerMask.GetMask("Ground", "Platform");
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
@@ -237,13 +298,15 @@ public class PlayerController : MonoBehaviour
 			{
                 // Player is rising
                 ChangeAnimatorState("Player_Rise");
-            }
+				return;
+			}
             else
 			{
                 // Player is falling 
-                ChangeAnimatorState("Player_Fall"); // TODO
-            }
-            return;
+                ChangeAnimatorState("Player_Fall");
+				return;
+			}
+            
         }
 
 		if (crouch)
