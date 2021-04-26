@@ -81,7 +81,7 @@ public class InventoryComponent : MonoBehaviour
             int offsetX = 0;
             int offsetY = iconNum * displayIconSize;
             if (iconNum > 0)
-                offsetY -= displayIconPadding;
+                offsetY += (iconNum - 1) * displayIconPadding;
             InventoryItem item = items[iconNum];
             var icon = Instantiate(iconPrefab, display.transform);
             icon.GetComponent<Image>().sprite = allItemSprites[(int) item];
