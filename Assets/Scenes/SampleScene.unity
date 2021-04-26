@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6420208d6cbb9e188d08f194470668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startRoomPrefab: {fileID: 3102208128844926754, guid: f0c0ee85a141f8112a1d7018573fe85f, type: 3}
+  startRoomPrefab: {fileID: 3102208128844926754, guid: 4306153a23e76443f83388e9cad44de9, type: 3}
   firstStageType: 1
   roomPrefabs:
   - {fileID: 3102208128844926754, guid: f0c0ee85a141f8112a1d7018573fe85f, type: 3}

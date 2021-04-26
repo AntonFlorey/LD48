@@ -601,6 +601,7 @@ Transform:
   - {fileID: 5174257566700122470}
   - {fileID: 257555575076860990}
   - {fileID: 6720152216562903117}
+  - {fileID: 2323151991788104800}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -635,6 +636,11 @@ MonoBehaviour:
   - {fileID: 2336420689300688903}
   tiles: {fileID: 3102208129057769954}
   groundTiles: {fileID: 1875063757294428317}
+  entryPoint: {fileID: 0}
+  wayDown: {fileID: 0}
+  specialRoom: 0
+  specialRoomType: 0
+  finishedRoomItemSpawner: {fileID: 0}
 --- !u!1 &3102208129057769954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,6 +1928,68 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1001 &198562683817282087
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3102208128844926756}
+    m_Modifications:
+    - target: {fileID: 2520909514980894279, guid: 56374976a26b297ba9313e8d2fcb707e, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520909514980894279, guid: 56374976a26b297ba9313e8d2fcb707e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.660952
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520909514980894279, guid: 56374976a26b297ba9313e8d2fcb707e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.048529
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520909514980894279, guid: 56374976a26b297ba9313e8d2fcb707e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520909514980894279, guid: 56374976a26b297ba9313e8d2fcb707e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520909514980894279, guid: 56374976a26b297ba9313e8d2fcb707e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520909514980894279, guid: 56374976a26b297ba9313e8d2fcb707e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520909514980894279, guid: 56374976a26b297ba9313e8d2fcb707e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520909514980894279, guid: 56374976a26b297ba9313e8d2fcb707e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520909514980894279, guid: 56374976a26b297ba9313e8d2fcb707e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520909514980894279, guid: 56374976a26b297ba9313e8d2fcb707e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5009388995366303733, guid: 56374976a26b297ba9313e8d2fcb707e, type: 3}
+      propertyPath: m_Name
+      value: FlyingPotato
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 56374976a26b297ba9313e8d2fcb707e, type: 3}
+--- !u!4 &2323151991788104800 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2520909514980894279, guid: 56374976a26b297ba9313e8d2fcb707e, type: 3}
+  m_PrefabInstance: {fileID: 198562683817282087}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3198202887168296416
 PrefabInstance:
   m_ObjectHideFlags: 0

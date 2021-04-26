@@ -233,7 +233,7 @@ public class RoomManager : MonoBehaviour
             }
         }
 
-        var entryPos = startNode.roomObject.GetComponent<Room>().entryPoint.transform.position;
+        var entryPos = startNode.roomObject.GetComponent<Room>().GetEntryPos();
         player.transform.position = new Vector3(entryPos.x, entryPos.y, player.transform.position.z);
         myPlayer.currentRoomNode = startNode;
         minimap.CreateMap(this);

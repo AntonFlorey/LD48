@@ -23,6 +23,7 @@ public class DropItemsComponent : MonoBehaviour
     private void DoDropSingleItem(GameObject drop, bool moveToPlayer=true)
     { 
         drop.transform.position = transform.position + dropOffset;
+        drop.transform.position = new Vector3(drop.transform.position.x, drop.transform.position.y, 0);
         var player = gameObject.transform.parent.gameObject.GetComponent<Room>().roomNode.manager.player;
         drop.GetComponent<PickupableItem>().moveTowardsObject = player;
         var maybeParentBody = gameObject.GetComponent<Rigidbody2D>();

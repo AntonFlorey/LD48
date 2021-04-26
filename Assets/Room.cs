@@ -195,4 +195,15 @@ public class Room : MonoBehaviour
     {
         return aliveEnemies.Count == 0;
     }
+
+    public Vector3 GetEntryPos()
+    {
+        if (entryPoint)
+            return entryPoint.transform.position;
+        if (leftDoors.Count > 0)
+            return leftDoors[0].transform.position + Vector3.right;
+        if (rightDoors.Count > 0)
+            return rightDoors[0].transform.position + Vector3.left;
+        return Vector3.zero;
+    }
 }
