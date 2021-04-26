@@ -233,7 +233,7 @@ public class PlayerController : MonoBehaviour
 		groundMask = LayerMask.GetMask("Ground", "Platform");
 	}
 
-	private void OnTriggerEnter2D(Collider2D other)
+	private void OnTriggerStay2D(Collider2D other)
 	{
 		GameObject doorObj = other.gameObject;
 		if (doorObj.transform.parent == null)
