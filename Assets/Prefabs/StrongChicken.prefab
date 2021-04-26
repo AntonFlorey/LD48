@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 3228117620187243727}
   - component: {fileID: 8866915237654369096}
   - component: {fileID: 2020925339046356250}
+  - component: {fileID: 5426101528057945777}
   m_Layer: 7
   m_Name: StrongChicken
   m_TagString: enemy
@@ -271,4 +272,21 @@ MonoBehaviour:
   damageCooldown: 1
   damageAnimTime: 0.4
   damageColor: {r: 1, g: 1, b: 1, a: 1}
-  text: {fileID: 0}
+  heartImage: {fileID: 0}
+--- !u!114 &5426101528057945777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5009388995366303733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a8db8d08205641abfbda0211412bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItems:
+  - {fileID: 610248595711851802, guid: bbdd9802f1ecc80b38a12c7da89c8eac, type: 3}
+  dropChances:
+  - 0.35
+  dropOffset: {x: 0, y: 0.5, z: 0}

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class HealthComponent : MonoBehaviour
 {
@@ -94,6 +95,9 @@ public class HealthComponent : MonoBehaviour
     private void DoDie()
     {
         myRoom.MarkEnemyDeath(gameObject);
+        var dropComp = gameObject.GetComponent<DropItemsComponent>();
+        if (dropComp != null)
+            dropComp.DoDrop();
         Destroy(gameObject);
     }
 
