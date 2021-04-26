@@ -275,7 +275,12 @@ MonoBehaviour:
   damageAnimTime: 0.4
   invulnerable: 0
   damageColor: {r: 1, g: 1, b: 1, a: 1}
+  healColor: {r: 0, g: 1, b: 0, a: 1}
   heartImage: {fileID: 0}
+  knockedBack: 0
+  knockBacktime: 0
+  defaultMat: {fileID: 2100000, guid: e6047c0d7df4dc54d8682e1b2118c752, type: 2}
+  cutoutMat: {fileID: 2100000, guid: d4546340839cd694598923464b4d89e7, type: 2}
 --- !u!114 &1586052092876956537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,5 +298,3 @@ MonoBehaviour:
   dropChances:
   - 1
   dropOffset: {x: 0, y: 0.5, z: 0}
-  knockedBack: 0
-  knockBacktime: 0

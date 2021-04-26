@@ -110,9 +110,14 @@ MonoBehaviour:
   rightAttackOffset: 0
   attackSpeed: 1
   attackPenalty: 0
+  airborne: 0
+  rcWidth: 1
   moveAnimRatio: 0.15
   attacking: 0
   orientation: 2
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!50 &3812019442374871232
 Rigidbody2D:
   serializedVersion: 4
@@ -186,8 +191,14 @@ MonoBehaviour:
   touchDamage: 1
   damageCooldown: 1
   damageAnimTime: 0.2
+  invulnerable: 0
   damageColor: {r: 1, g: 0, b: 0, a: 1}
-  text: {fileID: 0}
+  healColor: {r: 0, g: 1, b: 0, a: 1}
+  heartImage: {fileID: 0}
+  knockedBack: 0
+  knockBacktime: 0
+  defaultMat: {fileID: 2100000, guid: e6047c0d7df4dc54d8682e1b2118c752, type: 2}
+  cutoutMat: {fileID: 2100000, guid: d4546340839cd694598923464b4d89e7, type: 2}
 --- !u!1 &6797576712842548848
 GameObject:
   m_ObjectHideFlags: 0

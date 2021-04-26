@@ -29,6 +29,9 @@ public class HealthComponent : MonoBehaviour
     private int lastDamage;
     public bool knockedBack = false;
     [SerializeField] private float knockBacktime = 0f;
+    [SerializeField] private Material defaultMat;
+    [SerializeField] private Material cutoutMat;
+
 
     void Start()
     {
@@ -60,6 +63,7 @@ public class HealthComponent : MonoBehaviour
 
     public void Update()
     {
+        ToggleMaterial();
         knockedBack = knockBacktime > 0f;
         if (showingAnimation)
         {
@@ -93,6 +97,18 @@ public class HealthComponent : MonoBehaviour
         return gameObject.CompareTag("enemy") && health <= 0;
     }
 
+    private void ToggleMaterial()
+	{
+		if (showingAnimation)
+		{
+            myRenderer.material = cutoutMat;
+		}
+		else
+		{
+            myRenderer.material = defaultMat;
+		}
+	}
+
     public void TakeDamage(AttackController atk)
     {
         if(atk.knockback != 0)
@@ -117,7 +133,6 @@ public class HealthComponent : MonoBehaviour
 
     public IEnumerator Knockback(Vector2 force, float time)
     {
-        Debug.LogWarning("Warning!");
         knockBacktime += time;
         myBody.velocity = Vector3.zero;
         myBody.AddForce(force, ForceMode2D.Impulse);
