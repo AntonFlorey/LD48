@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4423486870792318046}
   - component: {fileID: 678445642317472385}
   - component: {fileID: 1284996723764145985}
-  m_Layer: 10
-  m_Name: ChargeAttack
+  m_Layer: 11
+  m_Name: EnemyChargeAttackSmall
   m_TagString: attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,13 +71,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac677224254f8ab79578db436014c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLifetime: 40
+  maxLifetime: 20
   damage: 1
   active: 0
   autoDestroy: 1
-  knockback: 15
+  knockback: 10
   knockbackDuration: 0.5
-  constantVelocity: 16
+  constantVelocity: 10
   attackAngle: {x: 1, y: 0}
 --- !u!50 &1284996723764145985
 Rigidbody2D:

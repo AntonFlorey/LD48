@@ -60,7 +60,7 @@ public class AttackInPlayerDirectionController : MonoBehaviour
             var attackController = attack.GetComponent<AttackController>();
             attack.transform.position = transform.position + Room.RoomSideToVec(movementDirection) * (transform.localScale.x / 2f);
             attackController.active = true;
-            attackController.StartAttack(movementDirection, true);
+            attackController.StartAttack(movementDirection);
         }
     }
 }

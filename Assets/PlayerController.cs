@@ -202,7 +202,7 @@ public class PlayerController : MonoBehaviour
 									new Vector3(attackDirInt * (extraOffset + attack.transform.localScale.x / 2), 0, 0);
 		attackController.active = true;
 		attackController.knockback *= knockbackMultiplier;
-		attackController.StartAttack(attackDir, false);
+		attackController.StartAttack(attackDir);
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
