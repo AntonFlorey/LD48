@@ -9,6 +9,7 @@ public class MapCamera : MonoBehaviour
     public float speed;
     [SerializeField] MiniMap myMap;
     private Vector3 initialLocalPos;
+    public int foresight = 1;
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class MapCamera : MonoBehaviour
         Bounds b = myMap.bound;
         if (b == null)
             return;  // not loaded.
-        var depth = myMap.myManager.currentStage.stageDepth;
+        var depth = myMap.myManager.currentStage.stageDepth + foresight;
         var maxDepth = myMap.myManager.levelStageDepth;
         var yPos = myMap.spacing / 2f * (maxDepth / 2f - depth);
         var newPos = new Vector3(0, yPos, 0);
