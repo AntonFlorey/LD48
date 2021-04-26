@@ -29,11 +29,13 @@ public class CameraController : MonoBehaviour
 	void FollowPlayer()
 	{
 		if (playeer.currentRoomNode.myRoom == null)
-			Debug.Log("ohhh noooo!!!");
+			return;  // wait for world to load.
 		transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z), lerpSpeed);
 		// Clamp dis shit
 
 		Bounds b = playeer.currentRoomNode.myRoom.getBounds();
+		if (b.size == Vector3.zero)
+			return; // again, please wait for world to load.
 		float widthOffset = myCam.orthographicSize * myCam.aspect;
 		float heightOffset = myCam.orthographicSize;
 		float clampX = Mathf.Clamp(transform.position.x, b.min.x + widthOffset, b.max.x - widthOffset);
