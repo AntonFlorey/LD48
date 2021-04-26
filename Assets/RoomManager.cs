@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
-using UnityEngine.Windows.WebCam;
 using Random = UnityEngine.Random;
 
 public class RoomManager : MonoBehaviour
