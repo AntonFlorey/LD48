@@ -198,6 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6899300420747202032}
   - component: {fileID: 3841177488975789227}
+  - component: {fileID: 381493224}
   m_Layer: 8
   m_Name: Hitbox
   m_TagString: Player
@@ -235,3 +236,16 @@ CapsuleCollider2D:
   m_Offset: {x: -0.057565987, y: 0.09338176}
   m_Size: {x: 0.55890644, y: 1.7803147}
   m_Direction: 0
+--- !u!114 &381493224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6797576712842548848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40acb29a03e39cf4dbb957ccdae74c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myHealthComponent: {fileID: 1021095571}
