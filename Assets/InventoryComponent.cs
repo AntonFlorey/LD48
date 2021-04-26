@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public enum InventoryItem
 {
-    Ignore,
-    DoubleJumpBoots,
-    InsaneKnockback,
-    EvenMoreInsaneKnockback,
-    InsaneAttackSpeed,
-    Arrow
+    Ignore = 0,
+    DoubleJumpBoots = 1,
+    InsaneKnockback = 2,
+    EvenMoreInsaneKnockback = 3,
+    InsaneAttackSpeed = 4,
+    Arrow = 5
 }
 
 public class InventoryComponent : MonoBehaviour
@@ -27,7 +27,7 @@ public class InventoryComponent : MonoBehaviour
     public GameObject iconPrefab;
     private List<GameObject> currentDisplayIcons = new List<GameObject>();
     public int displayIconSize = 100;
-    public int displayIconPadding = 10;
+    public int displayIconPadding = 30;
     
     // Start is called before the first frame update
     void Start()
