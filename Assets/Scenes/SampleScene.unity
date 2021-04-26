@@ -1175,7 +1175,11 @@ PrefabInstance:
     - target: {fileID: 1021095571, guid: 530af64c22bde13488c56370de25b434, type: 3}
       propertyPath: text
       value: 
-      objectReference: {fileID: 1198800313}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021095571, guid: 530af64c22bde13488c56370de25b434, type: 3}
+      propertyPath: heartImage
+      value: 
+      objectReference: {fileID: 1165988111}
     - target: {fileID: 3812019442374871234, guid: 530af64c22bde13488c56370de25b434, type: 3}
       propertyPath: m_RootOrder
       value: 3
