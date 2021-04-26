@@ -264,7 +264,7 @@ public class RoomManager : MonoBehaviour
                 bool connectAgain = Random.Range(0, 2) == 0;
                 connectAgain |= newStageNum == 0;  // have to connect to first.
                 connectAgain |= connectToLeft == 0;  // have to connect if nothing else left
-                int willConnectTo = (int) ((connectToLeft * 1f / (newWidth - newStageNum)) + 0.5f);
+                int willConnectTo = (int) ((connectToLeft * 1f / (newWidth - newStageNum)));
                 willConnectTo = Random.Range(willConnectTo - 1, willConnectTo + 1);  // add some noise
                 willConnectTo = Math.Min(Math.Max(willConnectTo, 1), connectToLeft);
                 Debug.Log("Decided to connect again=" + connectAgain + " and to news=" + willConnectTo + " from the" + connectToLeft + " that are left");
