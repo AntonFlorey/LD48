@@ -16,7 +16,7 @@ public class MapCamera : MonoBehaviour
         Bounds b = myMap.bound;
         if(b != null)
 		{
-            transform.position += new Vector3(x, y, 0f) * Time.deltaTime * speed;
+            transform.position += new Vector3(0f, y, 0f) * Time.deltaTime * speed;
             transform.localPosition = new Vector3(Mathf.Clamp(transform.localPosition.x, b.min.x, b.max.x), Mathf.Clamp(transform.localPosition.y, b.min.y, b.max.y), transform.localPosition.z);
         }
     }
