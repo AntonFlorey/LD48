@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6420208d6cbb9e188d08f194470668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startRoomPrefab: {fileID: 3102208128844926754, guid: f0c0ee85a141f8112a1d7018573fe85f, type: 3}
   roomPrefabs:
   - {fileID: 3102208128844926754, guid: f0c0ee85a141f8112a1d7018573fe85f, type: 3}
   - {fileID: 3102208128844926754, guid: 42f36987af6e7e903817feb284ccc059, type: 3}
@@ -520,7 +521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bound:
     m_Center: {x: 1, y: -2, z: 0}
-    m_Extent: {x: 8, y: 9, z: 0}
+    m_Extent: {x: 4, y: 8, z: 0}
   icons:
   - {fileID: 1161201145128540330, guid: fb4d6d1e3a991f049a315e98baf675bd, type: 3}
   - {fileID: 2130535880278150251, guid: fb4d6d1e3a991f049a315e98baf675bd, type: 3}

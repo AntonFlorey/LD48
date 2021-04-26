@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class RoomManager : MonoBehaviour
 {
+    public GameObject startRoomPrefab;
     public List<GameObject> roomPrefabs;
     public GameObject player;
     public PlayerController myPlayer;
@@ -181,7 +183,7 @@ public class RoomManager : MonoBehaviour
         }
         roomCount = 0;
         roomNodes.Clear();
-        var startNode = new RoomNode(this, roomPrefabs[0], 0);
+        var startNode = new RoomNode(this, startRoomPrefab, 0);
         List<RoomNode> leftmostRooms = new List<RoomNode>();
         List<RoomNode> rightmostRooms = new List<RoomNode>();
         leftmostRooms.Add(startNode);
