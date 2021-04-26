@@ -92,13 +92,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2520909514980894279}
   - component: {fileID: 2185459226527515551}
-  - component: {fileID: 7263052610636520227}
-  - component: {fileID: -2385622088173398844}
   - component: {fileID: -3468765936338543897}
   - component: {fileID: 3228117620187243727}
   - component: {fileID: 8866915237654369096}
   - component: {fileID: 2020925339046356250}
   - component: {fileID: 1586052092876956537}
+  - component: {fileID: 2870334701947432369}
   m_Layer: 7
   m_Name: Charger
   m_TagString: enemy
@@ -172,40 +171,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7263052610636520227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5009388995366303733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5d4d28bf69059decb06bc26bfbf0f7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkingDirection: 1
-  walksOffEdges: 0
-  velocity: 1
---- !u!95 &-2385622088173398844
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5009388995366303733}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 658817ce0b062e3459094f80b618cd56, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!50 &-3468765936338543897
 Rigidbody2D:
   serializedVersion: 4
@@ -256,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 250
-  jumpForce: 8
+  jumpForce: 4
   currentTime: 250
 --- !u!114 &2020925339046356250
 MonoBehaviour:
@@ -270,8 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb277968d3c61f8f4a7fae5e4bf062e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
-  health: 2
+  maxHealth: 5
+  health: 5
   touchDamage: 1
   damageCooldown: 1
   damageAnimTime: 0.4
@@ -298,10 +263,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   droppedItems:
   - {fileID: 610248595711851802, guid: bbdd9802f1ecc80b38a12c7da89c8eac, type: 3}
+  - {fileID: 610248595711851802, guid: bbdd9802f1ecc80b38a12c7da89c8eac, type: 3}
   dropChances:
+  - 1
   - 1
   dropRandomInventoryItem: 0
   randomInventoryItemPrefab: {fileID: 0}
   dropOffset: {x: 0, y: 0.5, z: 0}
   dropForceMin: {x: -0.5, y: 0.2, z: 0}
   dropForceMax: {x: 0.5, y: 0.6, z: 0}
+--- !u!114 &2870334701947432369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5009388995366303733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0aae19ace2403f8beb25b7cbfc9d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementDirection: 1
+  maxAttackCooldown: 120
+  attackPrefab: {fileID: 678445642317472385, guid: 0b9058472e7243e46b2d564991567aff, type: 3}
+  turnRatio: 0.6
+  chargeSpeed: 16
+  maxChargeDurationTime: 40

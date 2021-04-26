@@ -36,7 +36,7 @@ public class AttackController : MonoBehaviour
         }   
     }
 
-    public void StartAttack(RoomSide attackDir)
+    public void StartAttack(RoomSide attackDir, bool byEnemy)
     {
         this.attackDir = attackDir;
         int attackDirInt = attackDir == RoomSide.Right ? 1 : -1;
@@ -44,5 +44,13 @@ public class AttackController : MonoBehaviour
         myBody.velocity = attackDirInt * constantVelocity * attackAngle.normalized;
         var myRenderer = GetComponent<SpriteRenderer>();
         myRenderer.flipX = attackDir == RoomSide.Left;
+        if (byEnemy)
+        {
+            gameObject.layer = 11;
+        }
+        else
+        {
+            gameObject.layer = 10;
+        }
     }
 }
