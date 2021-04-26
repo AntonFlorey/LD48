@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 public class RoomManager : MonoBehaviour
 {
     public GameObject startRoomPrefab;
+    public StageNode.StageType firstStageType = StageNode.StageType.Normal;
     public List<GameObject> roomPrefabs;
     public GameObject player;
     public PlayerController myPlayer;
@@ -251,7 +252,7 @@ public class RoomManager : MonoBehaviour
         int maxWidthDiff = 2;
         Debug.Log("Making stages:");
         List<StageNode> prevStages = new List<StageNode>();
-        StageNode start = new StageNode(this, 0, 0, StageNode.StageType.Normal, 0, 0);
+        StageNode start = new StageNode(this, 0, 0, firstStageType, 0, 0);
         prevStages.Add(start);
         for (var depth = 1; depth < totalDepth; depth++)
         {

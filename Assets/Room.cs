@@ -19,6 +19,7 @@ public class Room : MonoBehaviour
     public GameObject wayDown = null;
     public bool specialRoom;
     public StageNode.StageType specialRoomType;
+    public DropItemsComponent finishedRoomItemSpawner = null;
     private Tilemap tileMap;
     private Tilemap groundTileMap;
     private List<GameObject> aliveEnemies;
@@ -108,32 +109,33 @@ public class Room : MonoBehaviour
             }
         }
 
-        UpdateDoors();
+        foreach (var door in leftDoors)
+        {
+            door.GetComponent<BoxCollider2D>().isTrigger = false;
+        }
+        foreach (var door in rightDoors)
+        {
+            door.GetComponent<BoxCollider2D>().isTrigger = false;
+        }
+        MaybeOpenDoors();
     }
 
-    private void UpdateDoors()
+    private void MaybeOpenDoors()
     {
-        var open = IsCleared();
-		if (open)
-		{
-            foreach (var door in leftDoors) {
-                StartCoroutine(OpenDoor(door));
-            }
-            foreach (var door in rightDoors)
-            {
-                StartCoroutine(OpenDoor(door));
-            }
+        if (!IsCleared())
+            return;  // do nothing.
+
+        foreach (var door in leftDoors) {
+            StartCoroutine(OpenDoor(door));
         }
-		else
-		{
-            foreach (var door in leftDoors)
-            {
-                door.GetComponent<BoxCollider2D>().isTrigger = false;
-            }
-            foreach (var door in rightDoors)
-            {
-                door.GetComponent<BoxCollider2D>().isTrigger = false;
-            }
+        foreach (var door in rightDoors)
+        {
+            StartCoroutine(OpenDoor(door));
+        }
+        // spawn items
+        if (finishedRoomItemSpawner != null)
+        {
+            finishedRoomItemSpawner.DoDrop();
         }
     }
 
@@ -186,7 +188,7 @@ public class Room : MonoBehaviour
     public void MarkEnemyDeath(GameObject enemy)
     {
         aliveEnemies.Remove(enemy);
-        UpdateDoors();
+        MaybeOpenDoors();
     }
 
     public bool IsCleared()

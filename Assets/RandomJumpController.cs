@@ -8,7 +8,7 @@ public class RandomJumpController : MonoBehaviour
 {
     private Room myRoom;
     public int maxTime = 10;
-    public float jumpForce = 2f;
+    public float jumpForce = 8f;
     public int currentTime;
     private Rigidbody2D myBody;
 
