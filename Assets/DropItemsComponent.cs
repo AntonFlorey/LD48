@@ -24,6 +24,8 @@ public class DropItemsComponent : MonoBehaviour
                 var parent = transform.parent.gameObject.transform;
                 var drop = Instantiate(droppedItems[itemNum], parent);
                 drop.transform.position = transform.position += dropOffset;
+                var player = gameObject.transform.parent.gameObject.GetComponent<Room>().roomNode.manager.player;
+                drop.GetComponent<PickupableItem>().moveTowardsObject = player;
             }
         }
     }

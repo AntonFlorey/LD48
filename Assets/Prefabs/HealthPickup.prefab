@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0693f89a56e3f30f9ac0a939ac16bef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTowardsObject: {fileID: 3812019442374871236, guid: 530af64c22bde13488c56370de25b434, type: 3}
-  maxMoveTowardsDistance: 500
-  moveTowardsForce: 2
+  moveTowardsObject: {fileID: 0}
+  maxMoveTowardsDistance: 20
+  moveTowardsForce: 10
   healAmount: 1
 --- !u!212 &610248595711851803
 SpriteRenderer:
