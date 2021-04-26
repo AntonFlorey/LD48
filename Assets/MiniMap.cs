@@ -15,6 +15,7 @@ public class MiniMap : MonoBehaviour
     public float spacing = 1f;
     public float thickness = 1f;
     public GameObject uiElem;
+    public RoomManager myManager;
 
     private List<GameObject> activeLines = new List<GameObject>();
     private List<GameObject> activeIcons = new List<GameObject>();
@@ -23,8 +24,8 @@ public class MiniMap : MonoBehaviour
 	{
         Image im = (Image)uiElem.GetComponentInChildren(typeof(Image), true);
         RawImage rim = (RawImage)uiElem.GetComponentInChildren(typeof(RawImage), true);
-        im.enabled = Input.GetButton("Tab");
-        rim.enabled = Input.GetButton("Tab");
+        im.enabled = Input.GetButton("Tab") || true;
+        rim.enabled = Input.GetButton("Tab") || true;
     }
 
 	private bool SameRoom(StageNode a, StageNode b)
@@ -46,7 +47,7 @@ public class MiniMap : MonoBehaviour
         return maxd;
 	}
 
-    public void CreateMap(RoomManager myManager)
+    public void RerenderMap()
 	{
         ClearMap();
         StageNode startNode = myManager.currentLevelStartStage;

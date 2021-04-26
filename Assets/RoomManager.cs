@@ -242,7 +242,7 @@ public class RoomManager : MonoBehaviour
         var entryPos = startNode.roomObject.GetComponent<Room>().GetEntryPos();
         player.transform.position = new Vector3(entryPos.x, entryPos.y, player.transform.position.z);
         myPlayer.currentRoomNode = startNode;
-        minimap.CreateMap(this);
+        minimap.RerenderMap();
     }
 
     private static int RandomTowardsTarget(int old, int target, int maxDiff, int noise=1)
@@ -265,6 +265,8 @@ public class RoomManager : MonoBehaviour
             Debug.Log("Depth=" + depth);
             int prevWidth = prevStages.Count;
             int newWidth = Math.Max(RandomTowardsTarget(prevWidth, targetWidth, maxWidthDiff), 2);
+            if (currentLevel == 0 && depth == 1)
+                newWidth = 1;  // initial room only has one way down.
             Debug.Log("Will make" + newWidth + " new");
             List<StageNode> newStages = new List<StageNode>();
             int connectedPrevUntil = 0;
@@ -380,7 +382,7 @@ public class RoomManager : MonoBehaviour
 
     public void ReloadMinimap()
 	{
-        minimap.CreateMap(this);
+        minimap.RerenderMap();
 	}
 
     public void OnPlayerDie()
