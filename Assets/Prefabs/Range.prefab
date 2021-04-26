@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 2020925339046356250}
   - component: {fileID: 1586052092876956537}
   m_Layer: 7
-  m_Name: Chicken
+  m_Name: Range
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,7 +161,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6524517629087480824, guid: e321c158ab5701a9da47a0bd92529723, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 580f9beb6fdc62e4ca9a10d862954b26, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
