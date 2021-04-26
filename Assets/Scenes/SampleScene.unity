@@ -803,7 +803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b84267d5d5d18ee58365faf4189f15a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: 0500000001000000
+  items: 
   itemsLeftToSpawn: 0100000002000000030000000400000005000000
   arrowItemAttackPrefab: {fileID: 6476308254274508147, guid: 87a6385d4d4be1d079c6141d6d03489c, type: 3}
   allItemSprites:
