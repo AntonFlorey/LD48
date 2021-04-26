@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     public float moveAnimRatio = 0.1f;
     [SerializeField] private bool attacking = false;
     public RoomSide orientation = RoomSide.Right;
-	public LayerMask groundMask = LayerMask.GetMask("Ground", "Platform");
+	public LayerMask groundMask;
 
 
     // Start is called before the first frame update
@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
         myCollider = GetComponent<Collider2D>();
         myHealth = GetComponent<HealthComponent>();
         myCamera = Camera.main;
+		groundMask = LayerMask.GetMask("Platform", "Ground");
     }
 
     // Update is called once per frame
@@ -60,10 +61,6 @@ public class PlayerController : MonoBehaviour
 	private void CheckAirborne()
 	{
 		RaycastHit2D[] rc1 = Physics2D.RaycastAll(transform.position, Vector2.down, torsoHeight, groundMask.value);
-		Debug.Log(groundMask.value);
-		//RaycastHit2D[] rc2 = Physics2D.RaycastAll(transform.position + Vector3.right * rcWidth, Vector2.down, torsoHeight, mask);
-		//Debug.DrawRay(transform.position + Vector3.left * rcWidth, torsoHeight * Vector2.down, Color.green, 1f);
-		//Debug.DrawRay(transform.position + Vector3.right * rcWidth, torsoHeight * Vector2.down, Color.green, 1f);
 		if (rc1.Length != 0)
 		{
 			Collider2D platform = null;
@@ -197,11 +194,13 @@ public class PlayerController : MonoBehaviour
 		else if (collision.collider.CompareTag("ground"))
 		{
             jumpsLeft = maxjumps;
-		} else if (collision.collider.CompareTag("pickup"))
+		} 
+		else if (collision.collider.CompareTag("pickup"))
 		{
 			var pickupComp = collision.collider.GetComponent<PickupableItem>();
 			pickupComp.OnPickup(gameObject);
-		}else if (collision.collider.CompareTag("platform"))
+		}
+		else if (collision.collider.CompareTag("platform"))
 		{
 			if (!crouch)
 			{

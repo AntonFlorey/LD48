@@ -9,8 +9,8 @@ TagManager:
   - down
   - enemy
   - attack
-  - pickup
   - platform
+  - pickup
   layers:
   - Default
   - TransparentFX
