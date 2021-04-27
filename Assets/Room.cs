@@ -65,6 +65,7 @@ public class Room : MonoBehaviour
         {
             groundTiles = Instantiate(tiles, transform);
             groundTiles.name = tiles.name + "_Ground";
+            groundTiles.transform.position += new Vector3(0f, 0f, 1f);
             var deepTileMap = tiles.GetComponent<Tilemap>();
             var groundTileMap = groundTiles.GetComponent<Tilemap>();
             var bounds = groundTileMap.cellBounds;

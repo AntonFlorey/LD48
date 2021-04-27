@@ -8,7 +8,7 @@ public class AttackController : MonoBehaviour
     public int maxLifetime = 500;
     public int damage = 1;
     public bool active = false;
-    private int lifetimeLeft;
+    private float lifetimeLeft;
     public bool autoDestroy = false;
     public float knockback = 0f;
     public float knockbackDuration = 0f;
@@ -18,7 +18,7 @@ public class AttackController : MonoBehaviour
     
     void Start()
     {
-        lifetimeLeft = maxLifetime;
+        lifetimeLeft = (float)maxLifetime;
     }
 
     void Update()
@@ -27,7 +27,7 @@ public class AttackController : MonoBehaviour
             return;
 		if (autoDestroy)
         {
-            lifetimeLeft -= 1;
+            lifetimeLeft -= Time.deltaTime * 100;
             if (lifetimeLeft <= 0)
             {
                 Debug.Log("Attack destroyed!");
