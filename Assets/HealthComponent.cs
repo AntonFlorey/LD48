@@ -124,7 +124,18 @@ public class HealthComponent : MonoBehaviour
     {
         if(!immuneToknockback && atk.knockback != 0)
 		{
-            StartCoroutine(Knockback((transform.position - atk.transform.position).normalized * atk.knockback, atk.knockbackDuration));
+            Vector2 force = Vector2.zero;
+            if (atk.knockbackDirection == Vector2.zero)
+            {
+                force = (transform.position - atk.transform.position).normalized * atk.knockback;
+
+            }
+            else
+            {
+                force = atk.knockbackDirection.normalized * atk.knockback;
+
+            }
+            StartCoroutine(Knockback(force, atk.knockbackDuration));
         }
         TakeDamage(atk.damage);
     }

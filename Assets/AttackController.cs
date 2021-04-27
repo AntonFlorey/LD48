@@ -15,6 +15,7 @@ public class AttackController : MonoBehaviour
     public float constantVelocity = 0f;
     public Vector2 attackAngle = Vector2.right;
     private RoomSide attackDir;
+    public Vector2 knockbackDirection = Vector2.zero;
     
     void Start()
     {
@@ -43,6 +44,19 @@ public class AttackController : MonoBehaviour
         Rigidbody2D myBody = GetComponent<Rigidbody2D>();
         myBody.velocity = attackDirInt * constantVelocity * attackAngle.normalized;
         var myRenderer = GetComponent<SpriteRenderer>();
-        myRenderer.flipX = attackDir == RoomSide.Left;
+        if (myRenderer != null)
+            myRenderer.flipX = attackDir == RoomSide.Left;
+    }
+
+    public void StartAttack(RoomSide attackDir, Vector2 knockbackDir)
+    {
+        this.attackDir = attackDir;
+        this.knockbackDirection = knockbackDir;
+        int attackDirInt = attackDir == RoomSide.Right ? 1 : -1;
+        Rigidbody2D myBody = GetComponent<Rigidbody2D>();
+        myBody.velocity = attackDirInt * constantVelocity * attackAngle.normalized;
+        var myRenderer = GetComponent<SpriteRenderer>();
+        if(myRenderer != null)
+            myRenderer.flipX = attackDir == RoomSide.Left;
     }
 }
