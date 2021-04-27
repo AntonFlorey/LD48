@@ -28,10 +28,13 @@ public class RoomManager : MonoBehaviour
     private List<RoomNode> roomNodes = new List<RoomNode>();
     public int roomCount = 0;
     public float[] stageTypeFrequencies;
+    public bool waitingForDeathClick = false;
 
-    public int levelStageDepth = 12;
+    public int levelStageDepth = 16;
     public List<int> levelTargetStageWidths;
     public List<int> levelTargetNumGenericRoomsPerStage;
+
+    public Text deathScreen;
 
     private int CountDoorsAtSide(RoomSide side, List<RoomNode> nodes)
     {
@@ -170,6 +173,8 @@ public class RoomManager : MonoBehaviour
         myPlayer = player.GetComponent<PlayerController>();
         currentLevelStartStage = GenerateLevelStartStage();
         Assert.AreEqual(stageTypeFrequencies.Length, StageNode.NUM_STAGE_TYPES);
+        waitingForDeathClick = false;
+        deathScreen.enabled = false;
 
         currentStage = currentLevelStartStage;
         currentLevel = 0;
@@ -179,7 +184,7 @@ public class RoomManager : MonoBehaviour
 
     public void GenerateMap()
     {
-        myCurrentStageText.text = "Stage " + (currentStage.stageDepth+1);
+        myCurrentStageText.text = "LD" + ((levelCount - currentLevel) * levelStageDepth - currentStage.stageDepth);
         foreach (RoomNode node in roomNodes)
         {
             Destroy(node.roomObject);
@@ -387,7 +392,19 @@ public class RoomManager : MonoBehaviour
 
     public void OnPlayerDie()
     {
-        Debug.Log("restarting game!");
+        myPlayer.Die();
+        deathScreen.enabled = true;
+        waitingForDeathClick = true;
+    }
+
+    public void Update()
+    {
+        if (!waitingForDeathClick)
+            return;
+        if (!Input.GetButtonDown("Fire1"))
+            return;
+        deathScreen.enabled = false;
+        waitingForDeathClick = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

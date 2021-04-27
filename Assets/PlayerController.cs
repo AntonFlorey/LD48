@@ -358,7 +358,7 @@ public class PlayerController : MonoBehaviour
 		myAnimator.PlayInFixedTime(targetState);
 	}
 
-	private void Die(){
+	public void Die(){
 		ChangeAnimatorState("Player_Die");
 	}
 }
