@@ -264,10 +264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   droppedItems:
   - {fileID: 610248595711851802, guid: bbdd9802f1ecc80b38a12c7da89c8eac, type: 3}
-  - {fileID: 610248595711851802, guid: bbdd9802f1ecc80b38a12c7da89c8eac, type: 3}
   dropChances:
   - 0.6
-  - 0.4
   dropRandomInventoryItem: 0
   randomInventoryItemPrefab: {fileID: 0}
   dropOffset: {x: 0, y: 0.5, z: 0}
