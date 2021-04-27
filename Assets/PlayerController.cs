@@ -67,16 +67,12 @@ public class PlayerController : MonoBehaviour
 		RaycastHit2D[] rc1 = Physics2D.RaycastAll(transform.position, Vector2.down, torsoHeight, groundMask.value);
 		if (rc1.Length != 0)
 		{
-			Collider2D platform = null;
 			foreach (var sth in rc1)
 			{
 				if (sth.collider.CompareTag("ground"))
 				{
 					airborne = false;
 					return;
-				}else if (sth.collider.CompareTag("platform"))
-				{
-					platform = sth.collider;
 				}
 			}
 			if (crouch)
@@ -90,9 +86,9 @@ public class PlayerController : MonoBehaviour
 				Debug.DrawRay(transform.position + Vector3.right * rcWidth, torsoHeight * Vector2.down, Color.green, 1f);
 				Debug.DrawRay(transform.position, torsoHeight * Vector2.down, Color.green, 1f);
 
-				if (left != null) StartCoroutine(PlatformFall(left));
-				if (right != null) StartCoroutine(PlatformFall(right));
-				if (center != null) StartCoroutine(PlatformFall(center));
+				if (left != null && left.tag == "platform") StartCoroutine(PlatformFall(left));
+				if (right != null && right.tag == "platform") StartCoroutine(PlatformFall(right));
+				if (center != null && center.tag == "platform") StartCoroutine(PlatformFall(center));
 
 				return;
 			}
@@ -238,6 +234,7 @@ public class PlayerController : MonoBehaviour
 
 	private IEnumerator PlatformFall(Collider2D collider)
 	{
+		crouch = false;
 		groundMask = LayerMask.GetMask("Ground");
 		Physics2D.IgnoreCollision(collider, myCollider);
 		yield return new WaitForSeconds(0.5f);
