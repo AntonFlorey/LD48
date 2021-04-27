@@ -106,11 +106,19 @@ public class RoomManager : MonoBehaviour
         foreach (GameObject roomPrefab in roomPrefabs)
         {
             var incomingDoorCount = roomPrefab.GetComponent<Room>().GetDoors(side).Count;
-            var outgoingDoorCount = roomPrefab.GetComponent<Room>().GetDoors(Room.OppositeSide(side)).Count;
-            if (!(1 <= incomingDoorCount && incomingDoorCount <= maxIncomingDoors &&
-                  minOutgoingDoors <= outgoingDoorCount))
-                continue;
             var room = roomPrefab.GetComponent<Room>();
+            if (!(1 <= incomingDoorCount && incomingDoorCount <= maxIncomingDoors))
+                continue;
+            if (shouldStillGenerate.numGenericRooms == 0 && shouldStillGenerate.numWaysDown == 0 &&
+                shouldStillGenerate.numSpecialRooms == 1 && room.specialRoomType == shouldStillGenerate.specialRoomType)
+            {
+                // special case: here, we can always finish, no matter how many outgoing doors there are.
+                available.Add(roomPrefab);
+                continue;
+            }
+            var outgoingDoorCount = roomPrefab.GetComponent<Room>().GetDoors(Room.OppositeSide(side)).Count;
+            if (!(minOutgoingDoors <= outgoingDoorCount))
+                continue;
             if (room.entryPoint != null)
                 continue;
             var isWayDown = room.wayDown != null;
