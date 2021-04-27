@@ -651,7 +651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.9, y: 4.98, z: 0}
+  m_LocalPosition: {x: 8.9, y: 4.98, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1131901699}
@@ -903,8 +903,8 @@ MonoBehaviour:
   torsoHeight: 1.2
   maxVelY: 40
   attackPrefab: {fileID: 6476308254274508147, guid: f485a9d8d1d3277fbb7549bc16ac2466, type: 3}
-  leftAttackOffset: 0
-  rightAttackOffset: 0
+  leftAttackOffset: 0.5
+  rightAttackOffset: 0.5
   attackSpeed: 1
   attackPenalty: 0
   knockbackMultiplier: 1
