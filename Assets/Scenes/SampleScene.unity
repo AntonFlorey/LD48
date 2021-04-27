@@ -824,7 +824,7 @@ MonoBehaviour:
   display: {fileID: 1212909462}
   iconPrefab: {fileID: 2419196245730648874, guid: a5d4c809513cf6d26b61d64e6519b89c, type: 3}
   displayIconSize: 100
-  displayIconPadding: 10
+  displayIconPadding: 30
 --- !u!114 &1021095572
 MonoBehaviour:
   m_ObjectHideFlags: 0
