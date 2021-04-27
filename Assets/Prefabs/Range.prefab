@@ -46,9 +46,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.10271498, y: 0.39333218}
-  m_Size: {x: 1.7433331, y: 1.1581951}
-  m_Direction: 1
+  m_Offset: {x: -0.017870367, y: -0.30899143}
+  m_Size: {x: 1.5258602, y: 2.5628512}
+  m_Direction: 0
 --- !u!114 &7691163375349718609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f5810e461cb3a47b1dde9cba4d2c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 500
+  attackRange: 5
   secondsBetweenAttacks: 5
   myProjectile: {fileID: 2973306540939702604, guid: 83b8e3fcc0cd9934e83b5e27754f9d06, type: 3}
   target: {fileID: 0}
