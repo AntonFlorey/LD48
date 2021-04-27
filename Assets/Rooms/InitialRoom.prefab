@@ -52756,7 +52756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1857888148460320940, guid: ce85cdc0f630a184ab7277b5cb280329, type: 3}
       propertyPath: m_Text
-      value: 'In many level, you can take different paths by going down into your
+      value: 'In many levels, you can take different paths by going down into your
         memories from a different room.
 
 
@@ -53777,7 +53777,7 @@ PrefabInstance:
       propertyPath: m_Text
       value: 'Hello there!
 
-        Not again! It''s the 42th Ludum Dare now, and
+        Not again! It''s the 42nd Ludum Dare now, and
         you are still going for it.
 
 
