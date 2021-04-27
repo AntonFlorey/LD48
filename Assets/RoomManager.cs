@@ -392,6 +392,7 @@ public class RoomManager : MonoBehaviour
 
     public void OnPlayerDie()
     {
+        myPlayer.dead = true;
         myPlayer.Die();
         deathScreen.enabled = true;
         waitingForDeathClick = true;

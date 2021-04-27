@@ -738,7 +738,7 @@ MonoBehaviour:
     Good luck next time.
 
 
-    <Press SPACE / A>'
+    <Press SPACE / X>'
 --- !u!222 &572273168
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -998,6 +998,7 @@ MonoBehaviour:
   attackPenalty: 0
   knockbackMultiplier: 1
   jumpsLeft: 1
+  dead: 0
   airborne: 0
   wait: 0
   rcWidth: 1

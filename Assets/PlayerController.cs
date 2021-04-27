@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private HealthComponent myHealth;
     private Camera myCamera;
     [SerializeField] private int jumpsLeft = 1;
-	private bool dead = false;
+	public bool dead = false;
     [SerializeField] private bool airborne = false;
 	[SerializeField] private bool wait = false;
 	private bool crouch = false; 
