@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 3228117620187243727}
   - component: {fileID: 2020925339046356250}
   - component: {fileID: 1586052092876956537}
+  - component: {fileID: 2142108766305181920}
   m_Layer: 7
   m_Name: Range
   m_TagString: enemy
@@ -111,8 +112,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5009388995366303733}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.5, y: 4.5, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 756911275217304693}
@@ -223,8 +224,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: 0.013730228, y: -0.7002394}
+  m_Size: {x: 1.2746037, y: 1.4393659}
   m_Direction: 0
 --- !u!114 &2020925339046356250
 MonoBehaviour:
@@ -244,6 +245,7 @@ MonoBehaviour:
   damageCooldown: 1
   damageAnimTime: 0.4
   invulnerable: 0
+  immuneToknockback: 1
   damageColor: {r: 1, g: 1, b: 1, a: 1}
   healColor: {r: 0, g: 1, b: 0, a: 1}
   cutoutColor: {r: 0, g: 0, b: 0, a: 1}
@@ -273,3 +275,19 @@ MonoBehaviour:
   dropOffset: {x: 0, y: 0.5, z: 0}
   dropForceMin: {x: -0.5, y: 0.2, z: 0}
   dropForceMax: {x: 0.5, y: 0.6, z: 0}
+--- !u!114 &2142108766305181920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5009388995366303733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f5810e461cb3a47b1dde9cba4d2c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 500
+  secondsBetweenAttacks: 5
+  myProjectile: {fileID: 2973306540939702604, guid: 83b8e3fcc0cd9934e83b5e27754f9d06, type: 3}
+  target: {fileID: 0}

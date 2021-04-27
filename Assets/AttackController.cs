@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UI;
 using UnityEngine;
 
 public class AttackController : MonoBehaviour
@@ -31,6 +30,7 @@ public class AttackController : MonoBehaviour
             lifetimeLeft -= 1;
             if (lifetimeLeft <= 0)
             {
+                Debug.Log("Attack destroyed!");
                 Destroy(gameObject);
             }
         }   

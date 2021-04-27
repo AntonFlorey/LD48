@@ -841,6 +841,7 @@ MonoBehaviour:
   damageCooldown: 1
   damageAnimTime: 0.2
   invulnerable: 0
+  immuneToknockback: 0
   damageColor: {r: 1, g: 1, b: 1, a: 1}
   healColor: {r: 0, g: 1, b: 0, a: 1}
   cutoutColor: {r: 0, g: 0, b: 0, a: 1}

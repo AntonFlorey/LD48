@@ -12,6 +12,7 @@ public class HealthComponent : MonoBehaviour
     public float damageCooldown = 1f;
     public float damageAnimTime = 0.2f;
     public bool invulnerable = false;
+    public bool immuneToknockback = false;
     private Color resetColor;
     public Color damageColor = Color.red;
     public Color healColor = Color.green;
@@ -121,7 +122,7 @@ public class HealthComponent : MonoBehaviour
 
     public void TakeDamage(AttackController atk)
     {
-        if(atk.knockback != 0)
+        if(!immuneToknockback && atk.knockback != 0)
 		{
             StartCoroutine(Knockback((transform.position - atk.transform.position).normalized * atk.knockback, atk.knockbackDuration));
         }
