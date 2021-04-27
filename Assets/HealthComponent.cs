@@ -155,6 +155,7 @@ public class HealthComponent : MonoBehaviour
     public IEnumerator Knockback(Vector2 force, float time)
     {
         knockBacktime += time;
+        knockedBack = true;
         myBody.velocity = Vector3.zero;
         myBody.AddForce(force, ForceMode2D.Impulse);
         yield return new WaitForSeconds(time);

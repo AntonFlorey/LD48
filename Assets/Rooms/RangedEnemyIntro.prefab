@@ -154,8 +154,8 @@ MonoBehaviour:
   groundTiles: {fileID: 0}
   entryPoint: {fileID: 0}
   wayDown: {fileID: 0}
-  specialRoom: 0
-  specialRoomType: 0
+  specialRoom: 1
+  specialRoomType: 3
   finishedRoomItemSpawner: {fileID: 0}
 --- !u!1 &4095759317559725282
 GameObject:

@@ -359,6 +359,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	public void Die(){
+		myBody.velocity = Vector3.zero;
 		ChangeAnimatorState("Player_Die");
 	}
 }
