@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 1586052092876956537}
   - component: {fileID: 2870334701947432369}
   m_Layer: 7
-  m_Name: Charger
+  m_Name: BigCharger
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,12 +235,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb277968d3c61f8f4a7fae5e4bf062e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
-  health: 5
+  maxHealth: 3
+  health: 3
   touchDamage: 1
   damageCooldown: 1
   damageAnimTime: 0.4
   invulnerable: 0
+  immuneToknockback: 0
   damageColor: {r: 1, g: 1, b: 1, a: 1}
   healColor: {r: 0, g: 1, b: 0, a: 1}
   cutoutColor: {r: 0, g: 0, b: 0, a: 1}

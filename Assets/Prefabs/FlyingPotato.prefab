@@ -80,6 +80,8 @@ MonoBehaviour:
   autoDestroy: 0
   knockback: 20
   knockbackDuration: 0.2
+  constantVelocity: 0
+  attackAngle: {x: 1, y: 0}
 --- !u!1 &5009388995366303733
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +241,7 @@ MonoBehaviour:
   damageCooldown: 1
   damageAnimTime: 0.4
   invulnerable: 0
+  immuneToknockback: 0
   damageColor: {r: 1, g: 1, b: 1, a: 1}
   healColor: {r: 0, g: 1, b: 0, a: 1}
   cutoutColor: {r: 0, g: 0, b: 0, a: 1}
@@ -261,8 +264,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   droppedItems:
   - {fileID: 610248595711851802, guid: bbdd9802f1ecc80b38a12c7da89c8eac, type: 3}
+  - {fileID: 610248595711851802, guid: bbdd9802f1ecc80b38a12c7da89c8eac, type: 3}
   dropChances:
-  - 0.2
+  - 0.6
+  - 0.4
   dropRandomInventoryItem: 0
   randomInventoryItemPrefab: {fileID: 0}
   dropOffset: {x: 0, y: 0.5, z: 0}
