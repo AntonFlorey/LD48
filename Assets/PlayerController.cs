@@ -198,7 +198,8 @@ public class PlayerController : MonoBehaviour
 									new Vector3(attackDirInt * (extraOffset + attack.transform.localScale.x / 2), 0, 0);
 		attackController.active = true;
 		attackController.knockback *= knockbackMultiplier;
-		attackController.StartAttack(attackDir);
+		Vector2 knockBackDir = attackDir == RoomSide.Left ? Vector2.left : Vector2.right;
+		attackController.StartAttack(attackDir, knockBackDir);
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
