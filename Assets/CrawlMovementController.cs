@@ -44,7 +44,7 @@ public class CrawlMovementController : MonoBehaviour
             {
                 // turn, do not update pos
                 walkingDirection = Room.OppositeSide(walkingDirection);
-                mySpriteRenderer.flipX = (walkingDirection == RoomSide.Right);
+                mySpriteRenderer.flipX = (walkingDirection == RoomSide.Left);
                 return;
             }
             myBody.velocity = new Vector2(velocity * Room.RoomSideToVec(walkingDirection).x, myBody.velocity.y);

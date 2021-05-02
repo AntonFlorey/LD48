@@ -99,12 +99,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLifetime: 100
   damage: 1
-  active: 0
+  active: 1
   autoDestroy: 1
   knockback: 10
   knockbackDuration: 0.2
   constantVelocity: 0
   attackAngle: {x: 1, y: 0}
+  knockbackDirection: {x: 0, y: 0}
 --- !u!58 &-560215775593922462
 CircleCollider2D:
   m_ObjectHideFlags: 0

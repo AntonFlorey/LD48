@@ -173,8 +173,8 @@ public class Room : MonoBehaviour
     {
         switch (s)
         {
-            case RoomSide.Left: return new Vector3(1, 0, 0);
-            case RoomSide.Right: return new Vector3(-1, 0, 0);
+            case RoomSide.Left: return Vector3.left;
+            case RoomSide.Right: return Vector3.right;
             default:
                 Assert.IsTrue(false);
                 return new Vector3(0, 0, 0);  // return any

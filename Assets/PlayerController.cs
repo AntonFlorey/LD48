@@ -277,7 +277,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("enter door from door num"+oldDoorNum+"to"+newDoorNum);
         RoomNode newRoom = oldRoom.GetNeighborRooms(oldDoorSide)[oldDoorNum];
         var newDoor = newRoom.roomObject.GetComponent<Room>().GetDoor(newDoorSide, newDoorNum);
-        transform.position = newDoor.transform.position + Room.RoomSideToVec(newDoorSide);
+        transform.position = newDoor.transform.position - Room.RoomSideToVec(newDoorSide);
         currentRoomNode = newRoom;
 		currentRoomNode.manager.ReloadMinimap();
     }

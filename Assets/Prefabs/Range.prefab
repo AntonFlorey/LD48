@@ -82,6 +82,7 @@ MonoBehaviour:
   knockbackDuration: 0.2
   constantVelocity: 0
   attackAngle: {x: 1, y: 0}
+  knockbackDirection: {x: 0, y: 0}
 --- !u!1 &5009388995366303733
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +288,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f5810e461cb3a47b1dde9cba4d2c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 5
-  secondsBetweenAttacks: 5
+  attackRange: 12
+  secondsBetweenAttacks: 4
   myProjectile: {fileID: 2973306540939702604, guid: 83b8e3fcc0cd9934e83b5e27754f9d06, type: 3}
   target: {fileID: 0}
+  attackSpeed: 0.15
+  projectileRange: 15
+  attackSpacing: 1

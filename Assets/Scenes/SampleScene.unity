@@ -990,7 +990,7 @@ MonoBehaviour:
   maxjumps: 1
   moveSpeed: 6
   jumpForce: 20
-  torsoHeight: 1.2
+  torsoHeight: 1.5
   maxVelY: 40
   attackPrefab: {fileID: 6476308254274508147, guid: f485a9d8d1d3277fbb7549bc16ac2466, type: 3}
   leftAttackOffset: 0.5

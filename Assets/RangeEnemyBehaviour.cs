@@ -11,6 +11,9 @@ public class RangeEnemyBehaviour : MonoBehaviour
 
     private Animator myAnimator;
     private float currWaitTime = 0f;
+    [SerializeField] private float attackSpeed = 0.2f;
+    [SerializeField] private float projectileRange = 20f;
+    [SerializeField] private float attackSpacing = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,15 +31,24 @@ public class RangeEnemyBehaviour : MonoBehaviour
         currWaitTime = Mathf.Max(0f, currWaitTime - Time.deltaTime);
         if(currWaitTime == 0 && (transform.position - target.position).magnitude <= attackRange)
 		{
-            Fire();
+            StartCoroutine(Fire());
             myAnimator.Play("RangeEnemy_Attack", 0, 0);
         }
     }
 
-    private void Fire()
+    private IEnumerator Fire()
 	{
         currWaitTime += secondsBetweenAttacks;
-        GameObject yee = Instantiate(myProjectile);
-        yee.transform.position = target.position;
+        Vector2 direction = (target.position - transform.position).normalized;
+        float currLength = attackSpacing;
+        while (currLength <= projectileRange)
+		{
+            Debug.Log("test");
+            var v = new Vector2(transform.position.x, transform.position.y) + direction * currLength;
+            GameObject yee = Instantiate(myProjectile, new Vector3(v.x, v.y, myProjectile.transform.position.z), Quaternion.identity);
+            currLength += attackSpacing;
+            yield return new WaitForSeconds(attackSpeed);
+		}
+        yield return null;
     }
 }

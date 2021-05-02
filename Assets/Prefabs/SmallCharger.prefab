@@ -43,7 +43,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.005648136, y: -0.01843214}
@@ -82,6 +82,7 @@ MonoBehaviour:
   knockbackDuration: 0.2
   constantVelocity: 0
   attackAngle: {x: 1, y: 0}
+  knockbackDirection: {x: 0, y: 0}
 --- !u!1 &5009388995366303733
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,6 +118,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 756911275217304693}
+  - {fileID: 1658392757952306923}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -205,8 +207,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: 0.022201538, y: 0.00000023841858}
+  m_Size: {x: 1.0824642, y: 1.6089644}
   m_Direction: 0
 --- !u!114 &8866915237654369096
 MonoBehaviour:
@@ -215,7 +217,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5009388995366303733}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 356c15037e42402db785abdd9ce49d30, type: 3}
   m_Name: 
@@ -241,6 +243,7 @@ MonoBehaviour:
   damageCooldown: 1
   damageAnimTime: 0.4
   invulnerable: 0
+  immuneToknockback: 0
   damageColor: {r: 1, g: 1, b: 1, a: 1}
   healColor: {r: 0, g: 1, b: 0, a: 1}
   cutoutColor: {r: 0, g: 0, b: 0, a: 1}
@@ -285,8 +288,94 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementDirection: 1
-  maxAttackCooldown: 120
+  maxAttackCooldown: 5
   attackPrefab: {fileID: 678445642317472385, guid: aaf1c588e133904e78c6f928f7013829, type: 3}
   turnRatio: 0.6
-  chargeSpeed: 10
-  maxChargeDurationTime: 20
+  chargeSpeed: 15
+  maxChargeDurationTime: 2
+  range: 15
+  attackCollider: {fileID: 7694902606901990163}
+--- !u!1 &7694902606901990163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1658392757952306923}
+  - component: {fileID: 9134206335686289020}
+  - component: {fileID: 7523349665426537319}
+  m_Layer: 11
+  m_Name: dash hitbox
+  m_TagString: attack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1658392757952306923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7694902606901990163}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2520909514980894279}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &9134206335686289020
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7694902606901990163}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.00031852722, y: 0.7999897}
+      - {x: 0.32773203, y: -0.035357684}
+      - {x: 0.043358386, y: -0.78862417}
+      - {x: 0.5528494, y: -0.8689947}
+      - {x: 0.75518703, y: -0.029402256}
+      - {x: 0.64680576, y: 0.9023127}
+--- !u!114 &7523349665426537319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7694902606901990163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac677224254f8ab79578db436014c0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLifetime: 500
+  damage: 1
+  active: 0
+  autoDestroy: 0
+  knockback: 30
+  knockbackDuration: 0.5
+  constantVelocity: 0
+  attackAngle: {x: 1, y: 0}
+  knockbackDirection: {x: 0, y: 0}

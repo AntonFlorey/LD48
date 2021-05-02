@@ -2500,9 +2500,9 @@ GameObject:
   - component: {fileID: 8856892388569216208}
   - component: {fileID: 7968340089713598392}
   - component: {fileID: 5593776939131883153}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LongBoi
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2515,7 +2515,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4890885729960933016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.47, y: 9.08, z: 0}
+  m_LocalPosition: {x: 12.16, y: 9.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3102208128844926756}
@@ -2586,13 +2586,13 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 7e7bb1946caf8044a86ddce005aa6849, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &8856892388569216208
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2606,8 +2606,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5}
-  m_Size: {x: 3, y: 1}
+  m_Offset: {x: -0.000000047445887, y: -0.398005}
+  m_Size: {x: 3.0000005, y: 0.79601324}
   m_Direction: 1
 --- !u!114 &7968340089713598392
 MonoBehaviour:
